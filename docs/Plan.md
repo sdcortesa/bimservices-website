@@ -19,6 +19,8 @@ Ready to keep:
 
 Still in testing:
 
+- Header logo contrast and swap timing between Hero state and scrolled state.
+- Initial page fade timing on local vs. hosted load.
 - Hero placeholder and parallax intensity.
 - Project overlay behavior on touch devices.
 - General Sans 300 body weight on small screens.
@@ -44,6 +46,8 @@ Do not touch yet:
 
 Acceptance criteria:
 
+- Header logo is clearly readable over the Hero and remains clearly readable once the header is scrolled.
+- Initial page fade feels polished and does not delay interaction.
 - About cards feel identity-first on desktop.
 - Project Experience feels understandable and intentional in its collapsed state.
 - About feels understandable and intentional in its collapsed state with the group preview image.
@@ -55,6 +59,9 @@ Acceptance criteria:
 
 Validation:
 
+- Review the logo at top-of-page, while scrolling and after returning to the top.
+- Confirm the initial page fade feels smooth on first load and page refresh.
+- Confirm reduced motion shows the page immediately and keeps the correct logo visible.
 - Review About in desktop and mobile viewports in a real browser.
 - Review Project Experience and About expansion/collapse in desktop and mobile viewports.
 - Confirm the collapsed About preview image path resolves and is easy to replace with a final team photo.
@@ -159,4 +166,5 @@ Validation:
 - Any major change to layout, visual hierarchy or brand tone should arrive as a new spec.
 - Contact details and real project evidence are the highest-impact inputs for conversion and entity trust.
 - Browser QA should happen before further visual refinements so future changes are based on rendered behavior, not only code inspection.
+- Header logo contrast should be reviewed before any further Hero color or overlay adjustments.
 - About and Project Experience are now interactive enough that future tweaks should be based on live review, not static code assumptions.

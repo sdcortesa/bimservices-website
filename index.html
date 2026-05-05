@@ -14,17 +14,31 @@
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,600&f[]=general-sans@300,400&display=swap"
       rel="stylesheet"
     />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>
+  <body class="is-loading">
     <a class="skip-link" href="#home">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-shell">
         <!-- Header layout: logo left, nav pill center, CTA right. -->
         <!-- Editable SVG logo asset. Replace file in /assets/logos/ without changing header markup. -->
+        <!-- Light logo stays visible over the Hero; dark logo fades in once the header is scrolled. -->
         <a class="site-logo" href="#home" aria-label="BIM Services home">
-          <img src="./assets/logos/bim-services-logo.svg" alt="BIM Services logo" />
+          <img
+            class="site-logo-image site-logo-image--light"
+            src="./assets/logos/bim-services-logo-white-01.svg"
+            alt="BIM Services logo"
+          />
+          <img
+            class="site-logo-image site-logo-image--dark"
+            src="./assets/logos/bim-services-logo.svg"
+            alt=""
+            aria-hidden="true"
+          />
         </a>
 
         <div class="site-nav-wrapper">

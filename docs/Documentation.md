@@ -6,14 +6,15 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
-The latest iteration converted Project Experience and About into expandable in-place sections. Project Experience now starts as a compact editorial summary and expands to reveal the project cards, while About starts with its intro plus a team group preview image and expands to reveal the individual team cards.
+The latest iteration refined the initial header and load experience. The homepage now starts with a white logo over the Hero, swaps to the blue/original logo when the sticky header gains its light scrolled state, and fades in softly on first load while respecting reduced-motion preferences.
 
 ## Project Structure
 
 - `index.html` is the main entry file and includes metadata, Fontshare stylesheet loading, stylesheet and script references.
 - `css/styles.css` contains the visual system tokens, layout rules, responsive behavior, component styles and motion/focus states.
 - `js/main.js` contains editable content data, rendering functions, navigation behavior, project overlay interaction, Hero parallax, global reveal motion and contact-form mailto logic.
-- `assets/logos/bim-services-logo.svg` is the editable SVG logo used in the header.
+- `assets/logos/bim-services-logo.svg` is the blue/original SVG logo used once the header is scrolled over light backgrounds.
+- `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five temporary framework step placeholder graphics.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
@@ -81,7 +82,8 @@ Color roles:
 
 Current active assets:
 
-- Logo: `assets/logos/bim-services-logo.svg`
+- Scrolled header logo: `assets/logos/bim-services-logo.svg`
+- Top-of-page header logo: `assets/logos/bim-services-logo-white-01.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework placeholders: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
 - Project placeholders: `assets/images/projects/project-residential-bim-support.svg`, `project-coordination-package.svg`, `project-documentation-set.svg`
@@ -102,6 +104,7 @@ Temporary or pending assets:
 ## Components
 
 - Header: sticky floating header with logo asset, centered navigation, CTA and mobile hamburger menu.
+- Header logo system: two stacked SVG assets with opacity swap between top-of-page Hero state and scrolled light-header state.
 - Buttons: shared `.button` styles with primary, secondary and form-submit variants.
 - Cards: shared radius/shadow/surface language for workflow, service, project and team cards.
 - Service cards: rendered from the `services` array in `js/main.js`.
@@ -115,7 +118,9 @@ Temporary or pending assets:
 
 - Mobile menu opens and closes via hamburger button, outside click, Escape key, nav link click and desktop resize.
 - Header gains a scrolled state after scroll starts.
+- Header logo starts white over the Hero and crossfades to the blue/original logo once the header enters its scrolled light state.
 - Internal anchor links navigate within the single page.
+- The page uses a short initial fade-in on load, disabled when `prefers-reduced-motion` is enabled.
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
 - Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback.
 - Workflow cards reuse the same reveal system with a slightly stronger reveal distance and stagger.
@@ -149,6 +154,7 @@ SEO notes:
 - Neon is the active secondary accent replacing the previous Golden Pulse direction.
 - Cabinet Grotesk + General Sans is the active typography pairing.
 - Motion is lightweight and controlled through CSS transitions, scroll listeners and Intersection Observer instead of a motion library.
+- Header branding now uses a light-over-dark to blue-over-light swap rather than one fixed logo color.
 - Project Experience and About now use in-place expandable regions instead of showing all secondary content immediately.
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
@@ -161,6 +167,8 @@ SEO notes:
 - Some older project sample SVGs remain unused in the assets folder.
 - JavaScript rendering uses `innerHTML` from local constants; safe in the current static context, but should be reconsidered if content becomes externally managed.
 - Hero parallax should be tested on physical mobile devices.
+- The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.
+- The initial page fade should be checked against GitHub Pages load behavior to confirm it does not feel too subtle or too slow.
 - Project Experience and About toggles should be tested in a live browser to confirm the expand/collapse rhythm and transition height behavior.
 - About hover/focus behavior should be visually reviewed in a real browser to confirm reveal height, spacing and rhythm on large screens.
 - The collapsed About state still uses a temporary group-photo placeholder instead of a real team image.
@@ -176,6 +184,8 @@ SEO notes:
 - Decide whether unused legacy project sample placeholders should be deleted or archived.
 - Review the lighter General Sans body weight on mobile and lower-density displays.
 - Validate Hero parallax and project overlay behavior in a real browser.
+- Validate the white-to-blue logo swap across desktop, mobile and anchor navigation states.
+- Validate the initial page fade on live hosting and under slower network conditions.
 - Validate the Project Experience and About expandable interactions in desktop and mobile browsers.
 - Validate About card reveal behavior in desktop and touch contexts.
 - Validate the team photo overlay intensity with real skin tones and real photography.
@@ -184,4 +194,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass added in-place expandable states for Project Experience and About, created a dedicated team-group JPG placeholder, and kept the project ready for GitHub review and synchronization without changing copy or the overall layout direction.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass refined the initial header state with a white-over-Hero logo, restored the blue/original logo for the scrolled light header, and added a lightweight initial page fade without changing layout, copy or overall structure.

@@ -624,6 +624,30 @@ function setupNavigation() {
   window.addEventListener("scroll", updateHeaderScrollState, { passive: true });
 }
 
+function setupInitialPageFade() {
+  const body = document.body;
+  if (!body) return;
+
+  // Reduced motion: show the page immediately instead of animating the initial load.
+  if (prefersReducedMotion.matches) {
+    body.classList.remove("is-loading");
+    body.classList.add("is-loaded");
+    return;
+  }
+
+  function markPageLoaded() {
+    body.classList.remove("is-loading");
+    body.classList.add("is-loaded");
+  }
+
+  if (document.readyState === "complete") {
+    window.requestAnimationFrame(markPageLoaded);
+    return;
+  }
+
+  window.addEventListener("load", markPageLoaded, { once: true });
+}
+
 function setupProjectOverlays() {
   const cards = Array.from(document.querySelectorAll(".project-card"));
   const triggers = Array.from(document.querySelectorAll("[data-project-trigger]"));
@@ -893,6 +917,7 @@ bindContactContent();
 bindFooterContent();
 bindContactInfo();
 setupNavigation();
+setupInitialPageFade();
 setupHeroParallax();
 setupRevealMotion();
 setupExpandableSections();

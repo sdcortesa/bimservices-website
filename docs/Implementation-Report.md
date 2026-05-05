@@ -2,13 +2,14 @@
 
 ## Audit Implementation Summary
 
-This iteration introduced in-place expandable behavior for Project Experience and About, while preserving all current copy, cards and editorial structure. It also added a group-photo placeholder asset for the collapsed About state. The change stayed within interaction, visibility and motion rather than redesigning the page.
+This iteration applied a minimal refinement to the header and initial page load. The header now uses a white logo over the Hero, swaps to the blue/original logo once the sticky header enters its light scrolled state, and the page fades in softly on first load. The patch stayed within branding state and motion without changing layout, copy or section structure.
 
 ## Files Modified
 
 - `css/styles.css`
 - `js/main.js`
-- `assets/images/team/team-group-placeholder.jpg`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `assets/logos/bim-services-logo-1.png`
 - `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
@@ -16,12 +17,75 @@ This iteration introduced in-place expandable behavior for Project Experience an
 
 ## Main Changes
 
-- Added accessible in-place expand/collapse for Project Experience.
-- Added accessible in-place expand/collapse for About.
-- Created a temporary JPG group-photo placeholder for the collapsed About state.
-- Kept project cards and individual team cards hidden initially, then revealed them inside the section when toggled.
-- Preserved all existing text, names, roles, descriptions and project data.
-- Updated project documentation to reflect the new expandable interaction and GitHub sync state.
+- Added a two-state header logo system for top-of-page vs. scrolled header states.
+- Connected the new white logo asset at `assets/logos/bim-services-logo-white-01.svg`.
+- Removed the older tracked PNG logo asset in favor of SVG-based logo states.
+- Added a short initial page fade-in that respects reduced-motion preferences.
+- Preserved all existing text, layout, navigation and section structure.
+- Updated project documentation to reflect the logo-state change, load fade and GitHub sync state.
+
+## Header Logo Swap + Initial Fade Review
+
+### Logo assets used
+
+- Top-of-page / Hero logo:
+  - `assets/logos/bim-services-logo-white-01.svg`
+- Scrolled light-header logo:
+  - `assets/logos/bim-services-logo.svg`
+
+### Header state detection
+
+- The implementation reuses the existing `is-scrolled` class already applied to `.site-header` in `setupNavigation()` inside `js/main.js`.
+- No extra scroll listener was introduced.
+- The same threshold already used for the sticky header visual state now also controls the logo swap.
+
+### Swap technique
+
+- The header uses two stacked `<img>` elements inside the existing `.site-logo` link.
+- CSS toggles their opacity based on `.site-header.is-scrolled`.
+- This was preferred over changing `src` with JavaScript because it avoids image flicker and keeps the swap simple.
+
+### Transition timing
+
+- Logo crossfade transition: `220ms ease-out`
+
+### Initial page fade
+
+- A small inline script in `index.html` adds a `js` class to the root element.
+- The `body` starts with `is-loading` and is switched to `is-loaded` by `setupInitialPageFade()` in `js/main.js`.
+- CSS controls the fade through opacity transition.
+
+Approximate timing:
+
+- Initial page fade: `420ms ease-out`
+
+### Reduced motion
+
+- If `prefers-reduced-motion` is active:
+  - the page is shown immediately
+  - body fade transition is removed
+  - logo opacity transition is removed
+
+### Files touched for this patch
+
+- `index.html`
+- `css/styles.css`
+- `js/main.js`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `docs/Documentation.md`
+- `docs/Plan.md`
+- `docs/Implementation-Report.md`
+
+### Decisions assumed by Codex
+
+- The new white SVG provided locally was normalized to the dashed filename `bim-services-logo-white-01.svg` to match the spec path exactly.
+- The previously tracked `assets/logos/bim-services-logo-1.png` was treated as obsolete for the active header system because the spec now relies on the two SVG assets.
+
+### Open review points
+
+- Confirm the white logo still feels crisp over the Hero on all screen densities.
+- Confirm the 220ms crossfade is subtle enough and does not feel delayed at the scroll threshold.
+- Confirm the page fade still feels good once tested on GitHub Pages, not only locally.
 
 ## Typography Update Review
 
@@ -286,22 +350,26 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 
 - Local branch: `main`
 - Tracking branch: `origin/main`
-- Working tree was clean before this iteration started.
+- Working tree was not clean before this iteration started.
+- Detected logo-related local changes before implementation:
+  - deleted tracked file: `assets/logos/bim-services-logo-1.png`
+  - added local white SVG asset with underscore naming that was normalized into `assets/logos/bim-services-logo-white-01.svg`
 
 ### Files created or modified
 
 - `index.html`
 - `css/styles.css`
 - `js/main.js`
-- `assets/images/team/team-group-placeholder.jpg`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `assets/logos/bim-services-logo-1.png`
 - `docs/Documentation.md`
 - `docs/Plan.md`
 - `docs/Implementation-Report.md`
 
 ### Commit and push status
 
-- The repository was prepared for a single commit containing markup, styles, behavior, asset and documentation together.
-- Recommended commit message for this snapshot: `Add expandable sections for projects and about`
+- The repository was prepared for a single commit containing header markup, styles, behavior, logo assets and documentation together.
+- Recommended commit message for this snapshot: `Refine header logo state and initial page fade`
 - No merge conflicts or broken path warnings were detected during the static review.
 
 ### Notes
