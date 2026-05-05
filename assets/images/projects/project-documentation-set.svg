@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Documentation Set Placeholder</title>
+  <desc id="desc">Temporary project image placeholder for Documentation Set.</desc>
+  <rect width="800" height="500" fill="#f6f8fb" />
+  <rect x="34" y="34" width="732" height="432" fill="none" stroke="#002d72" stroke-opacity="0.16" />
+  <rect x="128" y="96" width="164" height="232" fill="#ffffff" stroke="#002d72" stroke-opacity="0.14" />
+  <rect x="318" y="96" width="164" height="232" fill="#ffffff" stroke="#002d72" stroke-opacity="0.14" />
+  <rect x="508" y="96" width="164" height="232" fill="#ffffff" stroke="#002d72" stroke-opacity="0.14" />
+  <rect x="152" y="132" width="92" height="12" fill="#d8e022" fill-opacity="0.44" />
+  <rect x="342" y="132" width="92" height="12" fill="#1e88e5" fill-opacity="0.24" />
+  <rect x="532" y="132" width="92" height="12" fill="#002d72" fill-opacity="0.16" />
+  <text x="98" y="396" fill="#002d72" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">
+    Documentation Set
+  </text>
+  <text x="98" y="432" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="18">
+    Project image placeholder
+  </text>
+</svg>

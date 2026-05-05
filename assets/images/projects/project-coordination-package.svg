@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Coordination Package Placeholder</title>
+  <desc id="desc">Temporary project image placeholder for Coordination Package.</desc>
+  <rect width="800" height="500" fill="#eef5ff" />
+  <rect x="34" y="34" width="732" height="432" fill="none" stroke="#002d72" stroke-opacity="0.16" />
+  <circle cx="248" cy="232" r="110" fill="#002d72" fill-opacity="0.1" />
+  <circle cx="372" cy="232" r="110" fill="#1e88e5" fill-opacity="0.14" />
+  <circle cx="496" cy="232" r="110" fill="#d8e022" fill-opacity="0.22" />
+  <line x1="248" y1="232" x2="496" y2="232" stroke="#002d72" stroke-opacity="0.24" stroke-width="6" />
+  <text x="98" y="396" fill="#002d72" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">
+    Coordination Package
+  </text>
+  <text x="98" y="432" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="18">
+    Project image placeholder
+  </text>
+</svg>

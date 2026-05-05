@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables."
+    />
+    <title>BIM Services | BIM Modeling, Coordination &amp; Documentation for AEC Teams</title>
+    <!-- Fontshare: Cabinet Grotesk + General Sans -->
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,600&f[]=general-sans@300,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#home">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <!-- Header layout: logo left, nav pill center, CTA right. -->
+        <!-- Editable SVG logo asset. Replace file in /assets/logos/ without changing header markup. -->
+        <a class="site-logo" href="#home" aria-label="BIM Services home">
+          <img src="./assets/logos/bim-services-logo.svg" alt="BIM Services logo" />
+        </a>
+
+        <div class="site-nav-wrapper">
+          <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav="primary">
+            <a href="#home">Home</a>
+            <a href="#how-we-work">How We Work</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div class="header-actions">
+          <!-- Header CTA uses Neon as a test direction; easy to change later. -->
+          <a class="button header-cta" id="header-contact-cta" href="#contact">Let's talk</a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="container">
+          <!-- Hero layout: immersive visual background with overlaid text. -->
+          <div class="hero-stage reveal">
+            <!-- Hero visual placeholder: replace this with final image, BIM render, model viewer or interactive visual. -->
+            <div class="hero-visual-layer" data-hero-parallax aria-hidden="true">
+              <div class="hero-visual-tag">
+                <span id="hero-visual-tag-text">Visual area - to be replaced</span>
+              </div>
+            </div>
+
+            <!-- Hero overlay: adjust opacity to balance text legibility and visual impact. -->
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-copy">
+              <p class="eyebrow" id="hero-eyebrow">For architecture, engineering and construction teams</p>
+              <h1 id="hero-headline">BIM Delivery Intelligence</h1>
+              <p class="hero-subtitle" id="hero-subtitle">
+                From BIM models to construction-ready project delivery.
+              </p>
+              <p class="hero-supporting" id="hero-supporting">
+                We help architecture, engineering and construction teams transform
+                project information into coordinated models, technical documentation
+                and deliverables ready for construction.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" id="hero-primary-cta" href="#contact">
+                  Tell us about your project
+                </a>
+                <a class="button button-secondary" id="hero-secondary-cta" href="#how-we-work">
+                  See how we work
+                </a>
+              </div>
+
+              <p class="hero-microcopy" id="hero-microcopy">
+                You don't need to have the full scope defined to start working with us.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="workflow-section section-spacing"
+        id="how-we-work"
+        aria-labelledby="how-we-work-title"
+      >
+        <div class="container workflow-shell">
+          <div class="section-heading section-heading-compact">
+            <p class="section-kicker" id="framework-kicker">How We Work</p>
+            <h2 id="how-we-work-title">The BIM Delivery Intelligence Framework</h2>
+            <p id="framework-intro">
+              A structured method to turn incomplete or uncoordinated project
+              information into construction-ready deliverables.
+            </p>
+          </div>
+
+          <div class="workflow-grid" id="framework-grid"></div>
+        </div>
+      </section>
+
+      <section class="section-spacing" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="section-kicker" id="services-kicker">Services</p>
+            <h2 id="services-title">BIM Services Across the Framework</h2>
+            <p id="services-intro">
+              BIM Services adapts to your project stage, team structure and level
+              of information available. Each service can support a specific need
+              or work as part of the BIM Delivery Intelligence Framework.
+            </p>
+          </div>
+
+          <div class="services-grid" id="services-grid"></div>
+        </div>
+      </section>
+
+      <section class="section-spacing" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="section-kicker" id="projects-kicker">Project Experience</p>
+            <h2 id="projects-title">Selected Project Experience</h2>
+            <p id="projects-intro">
+              BDI Framework applied to project examples across architecture,
+              infrastructure and construction.
+            </p>
+          </div>
+
+          <div class="projects-grid" id="projects-grid"></div>
+        </div>
+      </section>
+
+      <section class="section-spacing" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="section-kicker" id="about-kicker">About</p>
+            <h2 id="about-title">About BIM Services</h2>
+          </div>
+
+          <div class="about-copy reveal" id="about-copy">
+            <p>
+              BIM Services is a technical support studio specialized in BIM
+              coordination, modeling and construction documentation for AEC teams.
+            </p>
+            <p>
+              We work with architecture firms, engineering offices, contractors
+              and developers who need external production capacity, technical
+              clarity and organized project delivery.
+            </p>
+            <p>
+              Our team combines technical expertise in Revit, BIM workflows and
+              construction documentation with a flexible, client-adapted approach.
+            </p>
+          </div>
+          <div class="team-grid" id="team-grid" data-reveal-group="about-team"></div>
+        </div>
+      </section>
+
+      <section class="section-spacing" id="contact" aria-labelledby="contact-title">
+        <div class="container contact-shell reveal">
+          <div class="contact-copy">
+            <p class="section-kicker" id="contact-kicker">Contact</p>
+            <h2 id="contact-title">Start a Conversation</h2>
+            <p class="contact-intro" id="contact-intro">
+              You don't need to have everything defined before reaching out. Tell
+              us about your project and we'll help you identify the right support.
+            </p>
+
+            <div class="contact-actions">
+              <a
+                class="contact-button"
+                id="whatsapp-link"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Contact BIM Services on WhatsApp"
+              >
+                <span class="contact-button-label">WhatsApp</span>
+                <span class="contact-button-value" id="whatsapp-display">[PHONE_NUMBER_TO_CONFIRM]</span>
+              </a>
+
+              <a class="contact-button" id="email-link" href="#" aria-label="Email BIM Services">
+                <span class="contact-button-label">Email</span>
+                <span class="contact-button-value" id="email-display">[EMAIL_TO_CONFIRM]</span>
+              </a>
+            </div>
+
+            <!-- Future booking CTA: add "Schedule a call" button here. -->
+            <!-- Possible integrations: Calendly, Cal.com or another booking system. -->
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="form-field">
+              <label for="company-project">Company / Project</label>
+              <input
+                id="company-project"
+                name="companyProject"
+                type="text"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Tell us about your project, timeline or support needs."
+                required
+              ></textarea>
+            </div>
+
+            <button class="button button-primary form-submit" id="contact-submit" type="submit">
+              Send message
+            </button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>
+          <a class="brand footer-brand" href="#home" data-brand>BIM Services</a>
+          <p class="footer-note" id="footer-entity-description">
+            BIM Services provides BIM modeling, 3D coordination, construction
+            documentation and technical support for architecture, engineering and
+            construction teams.
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation" data-nav="footer">
+          <a href="#services">Services</a>
+          <a href="#how-we-work">How We Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-contact">
+          <a id="footer-email-link" href="#">Email: [EMAIL_TO_CONFIRM]</a>
+          <a id="footer-whatsapp-link" href="#" target="_blank" rel="noreferrer">
+            WhatsApp: [PHONE_NUMBER_TO_CONFIRM]
+          </a>
+          <p id="footer-location-note">Serving international AEC teams.</p>
+          <p>&copy; <span id="footer-year"></span> BIM Services</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

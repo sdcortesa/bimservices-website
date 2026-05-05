@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow Step 05 Placeholder</title>
+  <desc id="desc">Temporary visual placeholder for the Deliver step.</desc>
+  <rect width="640" height="360" fill="#eef5ff" />
+  <rect x="28" y="28" width="584" height="304" fill="none" stroke="#002d72" stroke-opacity="0.18" />
+  <rect x="58" y="84" width="220" height="154" fill="#002d72" fill-opacity="0.12" />
+  <rect x="304" y="84" width="192" height="18" fill="#1e88e5" fill-opacity="0.2" />
+  <rect x="304" y="116" width="164" height="18" fill="#002d72" fill-opacity="0.12" />
+  <rect x="304" y="148" width="214" height="18" fill="#002d72" fill-opacity="0.12" />
+  <rect x="304" y="180" width="128" height="18" fill="#d8e022" fill-opacity="0.42" />
+  <text x="58" y="280" fill="#002d72" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">
+    Deliver
+  </text>
+  <text x="58" y="310" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="16">
+    Workflow step 05 placeholder
+  </text>
+</svg>
