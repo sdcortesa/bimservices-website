@@ -6,7 +6,7 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
-The latest iteration refined the initial header and load experience. The homepage now starts with a white logo over the Hero, swaps to the blue/original logo when the sticky header gains its light scrolled state, and fades in softly on first load while respecting reduced-motion preferences.
+The latest iteration refined the How We Work / BIM Delivery Intelligence Framework cards and cleaned the visible header navigation. Workflow cards now place the step number directly beside the step title as one integrated heading unit, and the header no longer repeats Home or Contact in the visible nav because those actions are already covered by the logo and the Let's talk CTA.
 
 ## Project Structure
 
@@ -119,6 +119,7 @@ Temporary or pending assets:
 - Mobile menu opens and closes via hamburger button, outside click, Escape key, nav link click and desktop resize.
 - Header gains a scrolled state after scroll starts.
 - Header logo starts white over the Hero and crossfades to the blue/original logo once the header enters its scrolled light state.
+- Visible header navigation now includes only How We Work, Services, Projects and About.
 - Internal anchor links navigate within the single page.
 - The page uses a short initial fade-in on load, disabled when `prefers-reduced-motion` is enabled.
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
@@ -155,9 +156,11 @@ SEO notes:
 - Cabinet Grotesk + General Sans is the active typography pairing.
 - Motion is lightweight and controlled through CSS transitions, scroll listeners and Intersection Observer instead of a motion library.
 - Header branding now uses a light-over-dark to blue-over-light swap rather than one fixed logo color.
+- Header navigation intentionally omits Home and Contact because those actions are already handled by the logo and header CTA.
 - Project Experience and About now use in-place expandable regions instead of showing all secondary content immediately.
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
+- Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
 
 ## Known Issues
 
@@ -167,6 +170,7 @@ SEO notes:
 - Some older project sample SVGs remain unused in the assets folder.
 - JavaScript rendering uses `innerHTML` from local constants; safe in the current static context, but should be reconsidered if content becomes externally managed.
 - Hero parallax should be tested on physical mobile devices.
+- Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
 - The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.
 - The initial page fade should be checked against GitHub Pages load behavior to confirm it does not feel too subtle or too slow.
 - Project Experience and About toggles should be tested in a live browser to confirm the expand/collapse rhythm and transition height behavior.
@@ -184,6 +188,7 @@ SEO notes:
 - Decide whether unused legacy project sample placeholders should be deleted or archived.
 - Review the lighter General Sans body weight on mobile and lower-density displays.
 - Validate Hero parallax and project overlay behavior in a real browser.
+- Validate workflow card balance, especially steps with longer titles on tablet and mobile widths.
 - Validate the white-to-blue logo swap across desktop, mobile and anchor navigation states.
 - Validate the initial page fade on live hosting and under slower network conditions.
 - Validate the Project Experience and About expandable interactions in desktop and mobile browsers.
@@ -194,4 +199,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass refined the initial header state with a white-over-Hero logo, restored the blue/original logo for the scrolled light header, and added a lightweight initial page fade without changing layout, copy or overall structure.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass compacted the workflow cards, merged step number + title into a unified heading treatment, and cleaned the visible header navigation while preserving all existing copy and the overall page structure.

@@ -1,16 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
-  <title id="title">Coordination Package Placeholder</title>
-  <desc id="desc">Temporary project image placeholder for Coordination Package.</desc>
-  <rect width="800" height="500" fill="#eef5ff" />
-  <rect x="34" y="34" width="732" height="432" fill="none" stroke="#002d72" stroke-opacity="0.16" />
-  <circle cx="248" cy="232" r="110" fill="#002d72" fill-opacity="0.1" />
-  <circle cx="372" cy="232" r="110" fill="#1e88e5" fill-opacity="0.14" />
-  <circle cx="496" cy="232" r="110" fill="#d8e022" fill-opacity="0.22" />
-  <line x1="248" y1="232" x2="496" y2="232" stroke="#002d72" stroke-opacity="0.24" stroke-width="6" />
-  <text x="98" y="396" fill="#002d72" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">
-    Coordination Package
-  </text>
-  <text x="98" y="432" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="18">
-    Project image placeholder
-  </text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 500">
+  <!-- Generator: Adobe Illustrator 29.2.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 108)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke-opacity: .2;
+      }
+
+      .st0, .st1 {
+        fill: none;
+        stroke: #002d72;
+      }
+
+      .st2 {
+        font-family: Arial-BoldMT, Arial;
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .st2, .st3 {
+        fill: #002d72;
+      }
+
+      .st2, .st4 {
+        isolation: isolate;
+      }
+
+      .st1 {
+        stroke-opacity: .2;
+        stroke-width: 6px;
+      }
+
+      .st5 {
+        fill: #d8e022;
+        fill-opacity: .2;
+      }
+
+      .st3 {
+        fill-opacity: .1;
+      }
+
+      .st6 {
+        fill: #1e88e5;
+        fill-opacity: .1;
+      }
+
+      .st4 {
+        fill: #4b5563;
+        font-family: ArialMT, Arial;
+        font-size: 18px;
+      }
+    </style>
+  </defs>
+  <rect class="st0" x="34" y="34" width="732" height="432"/>
+  <circle class="st3" cx="248" cy="232" r="110"/>
+  <circle class="st6" cx="372" cy="232" r="110"/>
+  <circle class="st5" cx="496" cy="232" r="110"/>
+  <line class="st1" x1="248" y1="232" x2="496" y2="232"/>
+  <text class="st2" transform="translate(98 396)"><tspan x="0" y="0">Coordination Package</tspan></text>
+  <text class="st4" transform="translate(98 432)"><tspan x="0" y="0">Project image placeholder</tspan></text>
 </svg>

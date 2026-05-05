@@ -1,15 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
-  <title id="title">Residential BIM Support Placeholder</title>
-  <desc id="desc">Temporary project image placeholder for Residential BIM Support.</desc>
-  <rect width="800" height="500" fill="#f8f2dc" />
-  <rect x="34" y="34" width="732" height="432" fill="none" stroke="#002d72" stroke-opacity="0.16" />
-  <rect x="98" y="120" width="180" height="220" fill="#002d72" fill-opacity="0.12" />
-  <rect x="300" y="88" width="156" height="252" fill="#1e88e5" fill-opacity="0.18" />
-  <rect x="478" y="144" width="118" height="196" fill="#d8e022" fill-opacity="0.3" />
-  <text x="98" y="396" fill="#002d72" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">
-    Residential BIM Support
-  </text>
-  <text x="98" y="432" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="18">
-    Project image placeholder
-  </text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 500">
+  <!-- Generator: Adobe Illustrator 29.2.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 108)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #002d72;
+        stroke-opacity: .2;
+      }
+
+      .st1 {
+        font-family: Arial-BoldMT, Arial;
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .st1, .st2 {
+        fill: #002d72;
+      }
+
+      .st1, .st3 {
+        isolation: isolate;
+      }
+
+      .st4 {
+        fill: #1e88e5;
+        fill-opacity: .2;
+      }
+
+      .st2 {
+        fill-opacity: .1;
+      }
+
+      .st5 {
+        fill: #d8e022;
+        fill-opacity: .3;
+      }
+
+      .st3 {
+        fill: #4b5563;
+        font-family: ArialMT, Arial;
+        font-size: 18px;
+      }
+    </style>
+  </defs>
+  <rect class="st0" x="34" y="34" width="732" height="432"/>
+  <rect class="st2" x="98" y="120" width="180" height="220"/>
+  <rect class="st4" x="300" y="88" width="156" height="252"/>
+  <rect class="st5" x="478" y="144" width="118" height="196"/>
+  <text class="st1" transform="translate(98 396)"><tspan x="0" y="0">Residential BIM Support</tspan></text>
+  <text class="st3" transform="translate(98 432)"><tspan x="0" y="0">Project image placeholder</tspan></text>
 </svg>

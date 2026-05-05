@@ -9,12 +9,10 @@ const seoMetadata = {
 
 // Content system: keep hero, framework, services and SEO metadata editable.
 const navItems = [
-  { label: "Home", href: "#home" },
   { label: "How We Work", href: "#how-we-work" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const footerNavItems = [
@@ -371,8 +369,10 @@ function renderFramework() {
           <div class="workflow-card-visual" aria-hidden="true">
             <img src="${step.image}" alt="" loading="lazy" />
           </div>
-          <span class="workflow-number">${step.number}</span>
-          <h3>${step.title}</h3>
+          <div class="workflow-step-heading">
+            <span class="workflow-number">${step.number}</span>
+            <h3 class="workflow-step-title">${step.title}</h3>
+          </div>
           <p>${step.description}</p>
         </article>
       `,

@@ -19,6 +19,8 @@ Ready to keep:
 
 Still in testing:
 
+- Workflow card balance after the number moved beside the title.
+- Header navigation density after removing Home and Contact from the visible menu.
 - Header logo contrast and swap timing between Hero state and scrolled state.
 - Initial page fade timing on local vs. hosted load.
 - Hero placeholder and parallax intensity.
@@ -46,6 +48,9 @@ Do not touch yet:
 
 Acceptance criteria:
 
+- Workflow cards feel vertically compact and visually connected to their images.
+- Workflow number + title reads as one unit without crowding mobile widths.
+- Header nav feels cleaner without losing discoverability of Home or Contact.
 - Header logo is clearly readable over the Hero and remains clearly readable once the header is scrolled.
 - Initial page fade feels polished and does not delay interaction.
 - About cards feel identity-first on desktop.
@@ -59,6 +64,8 @@ Acceptance criteria:
 
 Validation:
 
+- Review workflow cards in desktop, tablet and mobile widths.
+- Confirm the logo still makes Home discoverable and the CTA still makes Contact obvious after the nav cleanup.
 - Review the logo at top-of-page, while scrolling and after returning to the top.
 - Confirm the initial page fade feels smooth on first load and page refresh.
 - Confirm reduced motion shows the page immediately and keeps the correct logo visible.
@@ -167,4 +174,5 @@ Validation:
 - Contact details and real project evidence are the highest-impact inputs for conversion and entity trust.
 - Browser QA should happen before further visual refinements so future changes are based on rendered behavior, not only code inspection.
 - Header logo contrast should be reviewed before any further Hero color or overlay adjustments.
+- Workflow spacing changes should be validated in a live browser before any broader redesign of the framework section.
 - About and Project Experience are now interactive enough that future tweaks should be based on live review, not static code assumptions.

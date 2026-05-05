@@ -2,14 +2,19 @@
 
 ## Audit Implementation Summary
 
-This iteration applied a minimal refinement to the header and initial page load. The header now uses a white logo over the Hero, swaps to the blue/original logo once the sticky header enters its light scrolled state, and the page fades in softly on first load. The patch stayed within branding state and motion without changing layout, copy or section structure.
+This iteration refined the Workflow / BIM Delivery Intelligence Framework cards and cleaned the visible header navigation. The workflow content block now sits higher and reads as one integrated unit with number + title together, while the header no longer repeats Home and Contact as nav items because those actions are already covered by the logo and the CTA.
 
 ## Files Modified
 
+- `assets/images/projects/project-coordination-package.svg`
+- `assets/images/projects/project-documentation-set.svg`
+- `assets/images/projects/project-residential-bim-support.svg`
+- `assets/images/workflow/workflow-step-04-placeholder.svg`
+- `assets/images/workflow/workflow-step-05-placeholder.svg`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `assets/logos/bim-services-logo.svg`
 - `css/styles.css`
 - `js/main.js`
-- `assets/logos/bim-services-logo-white-01.svg`
-- `assets/logos/bim-services-logo-1.png`
 - `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
@@ -17,12 +22,89 @@ This iteration applied a minimal refinement to the header and initial page load.
 
 ## Main Changes
 
-- Added a two-state header logo system for top-of-page vs. scrolled header states.
-- Connected the new white logo asset at `assets/logos/bim-services-logo-white-01.svg`.
-- Removed the older tracked PNG logo asset in favor of SVG-based logo states.
-- Added a short initial page fade-in that respects reduced-motion preferences.
-- Preserved all existing text, layout, navigation and section structure.
-- Updated project documentation to reflect the logo-state change, load fade and GitHub sync state.
+- Moved the workflow step number beside the step title so each card uses one integrated heading unit.
+- Reduced the vertical spread inside workflow cards to bring the information block closer to the visual placeholder.
+- Removed Home and Contact from the visible header navigation.
+- Kept the logo pointing to `#home` and the Let's talk CTA pointing to `#contact`.
+- Preserved all existing workflow copy, step count, page structure and section content.
+- Updated project documentation to reflect the refinement pass and current Git state.
+
+## Workflow Alignment + Header Cleanup Review
+
+### Workflow adjustments
+
+- The workflow card content block was compacted by:
+  - reducing internal card padding slightly
+  - reducing the gap between the visual placeholder and the text block
+  - removing the isolated badge treatment from the number
+  - limiting vertical spread inside the card
+- The card still keeps the same five framework steps and the same text content.
+
+### Number + title logic
+
+- The step number now sits directly beside the title in a shared horizontal heading unit.
+- The number uses the blue interaction family and keeps strong scale, but no longer behaves like a separate badge or label.
+- This makes each heading read more like:
+  - `01 Model`
+  - `02 Structure`
+  - `03 Coordinate`
+  - `04 Quantify`
+  - `05 Deliver`
+
+### Spacing changes
+
+- Workflow card padding was reduced slightly for a more compact internal rhythm.
+- The visual-to-heading gap was reduced so the lower block no longer feels dropped too far down.
+- A dedicated `.workflow-step-heading` wrapper now controls alignment and gap between number and title.
+- Mobile overrides reduce number size and heading gap slightly to avoid awkward wrapping.
+
+### Header cleanup
+
+- Removed `Home` from the visible primary navigation.
+- Removed `Contact` from the visible primary navigation.
+- Final visible nav now keeps:
+  - `How We Work`
+  - `Services`
+  - `Projects`
+  - `About`
+- The logo still links to `#home`.
+- The `Let's talk` CTA still links to `#contact`.
+
+### Files modified for this iteration
+
+- `assets/images/projects/project-coordination-package.svg`
+- `assets/images/projects/project-documentation-set.svg`
+- `assets/images/projects/project-residential-bim-support.svg`
+- `assets/images/workflow/workflow-step-04-placeholder.svg`
+- `assets/images/workflow/workflow-step-05-placeholder.svg`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `assets/logos/bim-services-logo.svg`
+- `index.html`
+- `js/main.js`
+- `css/styles.css`
+- `docs/Documentation.md`
+- `docs/Plan.md`
+- `docs/Implementation-Report.md`
+
+### Git state before implementation
+
+- Local branch: `main`
+- Tracking branch: `origin/main`
+- Pre-existing manual modifications were detected before coding:
+  - `assets/images/projects/project-coordination-package.svg`
+  - `assets/images/projects/project-documentation-set.svg`
+  - `assets/images/projects/project-residential-bim-support.svg`
+  - `assets/images/workflow/workflow-step-04-placeholder.svg`
+  - `assets/images/workflow/workflow-step-05-placeholder.svg`
+  - `assets/logos/bim-services-logo-white-01.svg`
+  - `assets/logos/bim-services-logo.svg`
+- No untracked files were detected in the initial review.
+
+### Open review points
+
+- Confirm the new workflow heading balance in a live browser, especially on tablet widths.
+- Check whether step descriptions should tighten or loosen slightly once real browser rendering is reviewed.
+- Confirm that removing Home and Contact from the visible nav still feels intuitive for first-time visitors.
 
 ## Header Logo Swap + Initial Fade Review
 
@@ -357,19 +439,24 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 
 ### Files created or modified
 
+- `assets/images/projects/project-coordination-package.svg`
+- `assets/images/projects/project-documentation-set.svg`
+- `assets/images/projects/project-residential-bim-support.svg`
+- `assets/images/workflow/workflow-step-04-placeholder.svg`
+- `assets/images/workflow/workflow-step-05-placeholder.svg`
+- `assets/logos/bim-services-logo-white-01.svg`
+- `assets/logos/bim-services-logo.svg`
 - `index.html`
 - `css/styles.css`
 - `js/main.js`
-- `assets/logos/bim-services-logo-white-01.svg`
-- `assets/logos/bim-services-logo-1.png`
 - `docs/Documentation.md`
 - `docs/Plan.md`
 - `docs/Implementation-Report.md`
 
 ### Commit and push status
 
-- The repository was prepared for a single commit containing header markup, styles, behavior, logo assets and documentation together.
-- Recommended commit message for this snapshot: `Refine header logo state and initial page fade`
+- The repository is prepared for a single commit containing the workflow/header refinement plus the valid manual asset changes already present in the working tree.
+- Recommended commit message for this snapshot: `Refine workflow alignment and header navigation`
 - No merge conflicts or broken path warnings were detected during the static review.
 
 ### Notes
