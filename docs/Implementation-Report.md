@@ -455,8 +455,9 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 
 ### Commit and push status
 
-- The repository is prepared for a single commit containing the workflow/header refinement plus the valid manual asset changes already present in the working tree.
-- Recommended commit message for this snapshot: `Refine workflow alignment and header navigation`
+- Commit created: `ea1533c`
+- Commit message used: `Refine workflow alignment and header navigation`
+- Push to `origin/main`: completed successfully
 - No merge conflicts or broken path warnings were detected during the static review.
 
 ### Notes
