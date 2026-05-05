@@ -147,7 +147,32 @@
             </p>
           </div>
 
-          <div class="projects-grid" id="projects-grid"></div>
+          <div class="expandable-section reveal" data-expandable-section="projects">
+            <div class="section-toggle-row">
+              <button
+                class="button button-secondary section-toggle"
+                id="projects-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="project-experience-content"
+              >
+                <span data-toggle-label>View project experience</span>
+                <span class="section-toggle-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div
+              class="expandable-region projects-expandable"
+              id="project-experience-content"
+              role="region"
+              aria-labelledby="projects-title"
+              aria-hidden="true"
+              hidden
+              inert
+            >
+              <div class="projects-grid" id="projects-grid"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -173,7 +198,41 @@
               construction documentation with a flexible, client-adapted approach.
             </p>
           </div>
-          <div class="team-grid" id="team-grid" data-reveal-group="about-team"></div>
+          <div class="expandable-section reveal about-expandable" data-expandable-section="about">
+            <div class="about-preview" id="about-team-preview">
+              <!-- TEMP asset: team group photo placeholder, replace with final team photo -->
+              <img
+                class="about-group-image"
+                src="./assets/images/team/team-group-placeholder.jpg"
+                alt="Team group photo placeholder for BIM Services"
+              />
+            </div>
+
+            <div class="section-toggle-row">
+              <button
+                class="button button-secondary section-toggle"
+                id="about-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="about-team-content"
+              >
+                <span data-toggle-label>Meet the team</span>
+                <span class="section-toggle-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div
+              class="expandable-region about-team-expandable"
+              id="about-team-content"
+              role="region"
+              aria-labelledby="about-title"
+              aria-hidden="true"
+              hidden
+              inert
+            >
+              <div class="team-grid" id="team-grid"></div>
+            </div>
+          </div>
         </div>
       </section>
 

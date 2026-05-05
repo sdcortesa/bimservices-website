@@ -23,6 +23,8 @@ Still in testing:
 - Project overlay behavior on touch devices.
 - General Sans 300 body weight on small screens.
 - Neon accent strength in real browser context.
+- Expandable section rhythm for Project Experience and About.
+- Group-photo preview quality and crop for the collapsed About state.
 - About card reveal rhythm on desktop and mobile.
 - Global reveal timing and repetition across the full page.
 - Team photo blue-treatment intensity with real photography.
@@ -43,6 +45,9 @@ Do not touch yet:
 Acceptance criteria:
 
 - About cards feel identity-first on desktop.
+- Project Experience feels understandable and intentional in its collapsed state.
+- About feels understandable and intentional in its collapsed state with the group preview image.
+- The About group preview swaps cleanly with the individual team cards without visual overlap.
 - Role and description reveal smoothly on hover and keyboard focus.
 - Mobile keeps About details visible without hidden hover-only content.
 - Global reveal motion feels consistent and understated across headings, intros and cards.
@@ -51,7 +56,10 @@ Acceptance criteria:
 Validation:
 
 - Review About in desktop and mobile viewports in a real browser.
+- Review Project Experience and About expansion/collapse in desktop and mobile viewports.
+- Confirm the collapsed About preview image path resolves and is easy to replace with a final team photo.
 - Check keyboard focus on each team card.
+- Check keyboard activation and `aria-expanded` updates on both section toggle buttons.
 - Confirm `prefers-reduced-motion` disables reveal transitions cleanly.
 - Confirm reveal timing does not feel repetitive or overly delayed.
 - Review team photo overlay and hover recovery with real photos when available.
@@ -151,4 +159,4 @@ Validation:
 - Any major change to layout, visual hierarchy or brand tone should arrive as a new spec.
 - Contact details and real project evidence are the highest-impact inputs for conversion and entity trust.
 - Browser QA should happen before further visual refinements so future changes are based on rendered behavior, not only code inspection.
-- About and global reveal motion are now interactive enough that future tweaks should be based on live review, not static code assumptions.
+- About and Project Experience are now interactive enough that future tweaks should be based on live review, not static code assumptions.

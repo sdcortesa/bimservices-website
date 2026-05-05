@@ -2,23 +2,26 @@
 
 ## Audit Implementation Summary
 
-This iteration refined the visual treatment of the team photos inside About. The change stayed narrowly focused on image presentation and hover behavior: no copy, structure, layout, asset files or general interaction model were changed.
+This iteration introduced in-place expandable behavior for Project Experience and About, while preserving all current copy, cards and editorial structure. It also added a group-photo placeholder asset for the collapsed About state. The change stayed within interaction, visibility and motion rather than redesigning the page.
 
 ## Files Modified
 
 - `css/styles.css`
 - `js/main.js`
+- `assets/images/team/team-group-placeholder.jpg`
+- `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
 - `docs/Plan.md`
 
 ## Main Changes
 
-- Wrapped team images in a dedicated `.team-photo` container in `js/main.js`.
-- Added a Deep Sapphire overlay treatment and controlled desaturation/brightness to team photos in `css/styles.css`.
-- Made the image treatment react to whole-card hover/focus rather than direct image hover.
-- Kept the base treatment strong enough for mobile, where hover is not available.
-- Updated project documentation to reflect the new team-photo treatment.
+- Added accessible in-place expand/collapse for Project Experience.
+- Added accessible in-place expand/collapse for About.
+- Created a temporary JPG group-photo placeholder for the collapsed About state.
+- Kept project cards and individual team cards hidden initially, then revealed them inside the section when toggled.
+- Preserved all existing text, names, roles, descriptions and project data.
+- Updated project documentation to reflect the new expandable interaction and GitHub sync state.
 
 ## Typography Update Review
 
@@ -148,7 +151,6 @@ The hover does not fully remove the treatment, so the image never becomes comple
 
 ### What changed in About
 
-- The About team grid now acts as a grouped reveal trigger through `data-reveal-group="about-team"` in `index.html`.
 - Team cards now use a clearer internal hierarchy in `js/main.js`:
   - visual first
   - name second
@@ -180,7 +182,6 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 - The system now observes:
   - generic `.reveal` elements
   - workflow cards
-  - grouped reveal containers such as the About team grid
 - The shared motion pattern is:
   - `opacity: 0 -> 1`
   - gentle `translateY`
@@ -207,8 +208,6 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 - Section headings
 - Intro copy blocks
 - Service cards
-- Project cards
-- Team cards
 - Contact shell
 - Workflow cards
 
@@ -216,13 +215,100 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 
 - The final reveal rhythm should be checked in a live browser across desktop and mobile.
 - About card reveal height should be visually tested with real team bios if the text grows.
-- The grouped About reveal should be checked on very small screens, where lower cards may still begin animating before they are fully in view.
 
 ### Risks / weaknesses
 
 - Team cards are now keyboard-focusable via `tabindex="0"` to support non-hover reveal, which should be checked in a live browser to confirm focus order feels natural.
-- Grouped About reveal is intentionally synchronized, but that means mobile can reveal lower cards slightly earlier than their exact viewport entry.
 - The new global reveal system is simpler and more maintainable than the previous split approach, but it still benefits from real-device tuning before being treated as final.
+
+## Expandable Sections Review
+
+### Project Experience
+
+- `Selected Project Experience` now starts in a compact editorial state inside `index.html`.
+- The collapsed state shows:
+  - section heading
+  - intro copy
+  - one toggle button labeled `View project experience`
+- The expanded state reveals the existing project cards in place inside `#project-experience-content`.
+- The same button switches to `Show less` and collapses the region again.
+
+### About
+
+- `About BIM Services` now starts as a compact block with:
+  - section heading
+  - existing intro copy
+  - a temporary group-photo preview
+  - one toggle button labeled `Meet the team`
+- The expanded state hides the preview image and reveals the existing individual team cards inside `#about-team-content`.
+- The same button switches to `Show less` and restores the collapsed preview state when pressed again.
+
+### Toggle implementation
+
+- Both sections use real `<button>` controls.
+- Each button updates:
+  - `aria-expanded`
+  - `aria-controls`
+  - visible button label text
+- Each expandable region updates:
+  - `hidden`
+  - `aria-hidden`
+  - `inert`
+- The expand/collapse behavior is centralized in `setExpandableSectionState()` and `setupExpandableSections()` in `js/main.js`.
+
+### Motion behavior
+
+- Expand/collapse uses in-place height and opacity transitions.
+- The effect is intentionally separate from the viewport-based reveal system.
+- Transition timing is controlled with `--expandable-duration` in `css/styles.css`.
+
+### Mobile behavior
+
+- The same buttons work on touch devices without hover.
+- The page grows naturally when a section opens; no modal or drawer pattern is used.
+- The toggle button stretches to full width on small screens to make tapping clearer.
+
+### Assets created or reused
+
+- Created `assets/images/team/team-group-placeholder.jpg` for the collapsed About preview.
+- Reused the existing individual JPG team placeholders for the expanded About state.
+- Reused the existing project placeholder cards for the expanded Projects state.
+
+### Open review points
+
+- Check in a live browser whether the expand/collapse height transition feels fast enough on longer content.
+- Confirm whether `Show less` is the final preferred label or whether a more editorial variation is needed later.
+- Replace the group-photo placeholder with a real team image once available.
+
+## GitHub Sync Review
+
+### Repository status before changes
+
+- Local branch: `main`
+- Tracking branch: `origin/main`
+- Working tree was clean before this iteration started.
+
+### Files created or modified
+
+- `index.html`
+- `css/styles.css`
+- `js/main.js`
+- `assets/images/team/team-group-placeholder.jpg`
+- `docs/Documentation.md`
+- `docs/Plan.md`
+- `docs/Implementation-Report.md`
+
+### Commit and push status
+
+- The repository was prepared for a single commit containing markup, styles, behavior, asset and documentation together.
+- Recommended commit message for this snapshot: `Add expandable sections for projects and about`
+- No merge conflicts or broken path warnings were detected during the static review.
+
+### Notes
+
+- No folder restructuring was introduced.
+- No temporary files were left outside `assets/`.
+- The iteration should be committed and pushed together so markup, styles, behavior, asset and docs remain synchronized.
 
 ## SEO / Metadata Review
 

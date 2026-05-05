@@ -256,6 +256,26 @@ const motionSettings = {
   workflowStaggerDelay: 120,
 };
 
+// Expandable sections: controls in-place expand/collapse for Projects and About.
+const expandableSections = [
+  {
+    sectionId: "projects",
+    toggleId: "projects-toggle",
+    contentId: "project-experience-content",
+    previewId: null,
+    buttonTextClosed: "View project experience",
+    buttonTextOpen: "Show less",
+  },
+  {
+    sectionId: "about",
+    toggleId: "about-toggle",
+    contentId: "about-team-content",
+    previewId: "about-team-preview",
+    buttonTextClosed: "Meet the team",
+    buttonTextOpen: "Show less",
+  },
+];
+
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function setTextContent(selector, value) {
@@ -412,7 +432,7 @@ function renderProjects() {
   projectsGrid.innerHTML = projects
     .map(
       (project, index) => `
-        <article class="project-card reveal">
+        <article class="project-card">
           <button
             class="project-media"
             type="button"
@@ -475,12 +495,10 @@ function renderTeam() {
 
   teamGrid.innerHTML = teamMembers
     .map(
-      (member, index) => `
+      (member) => `
         <article
-          class="team-card reveal"
+          class="team-card"
           tabindex="0"
-          data-reveal-parent="about-team"
-          style="--reveal-delay: ${index * motionSettings.aboutCardsDelay}ms;"
         >
           ${createTeamMedia(member)}
           <div class="team-card-body">
@@ -678,26 +696,13 @@ function setupHeroParallax() {
 }
 
 function setupRevealMotion() {
-  const revealTargets = Array.from(
-    document.querySelectorAll(".reveal:not([data-reveal-parent]), [data-workflow-card]"),
-  );
-  const groupedContainers = Array.from(
-    document.querySelectorAll("[data-reveal-group]"),
-  );
+  const revealTargets = Array.from(document.querySelectorAll(".reveal, [data-workflow-card]"));
 
-  if (!revealTargets.length && !groupedContainers.length) return;
+  if (!revealTargets.length) return;
 
   // Reduced motion: reveal animations are disabled or simplified when prefers-reduced-motion is active.
   if (prefersReducedMotion.matches) {
     revealTargets.forEach((target) => target.classList.add("is-visible"));
-    groupedContainers.forEach((container) => {
-      const groupName = container.getAttribute("data-reveal-group");
-      if (!groupName) return;
-
-      document
-        .querySelectorAll(`[data-reveal-parent="${groupName}"]`)
-        .forEach((target) => target.classList.add("is-visible"));
-    });
     return;
   }
 
@@ -712,17 +717,7 @@ function setupRevealMotion() {
 
         const target = entry.target;
 
-        if (target instanceof HTMLElement && target.hasAttribute("data-reveal-group")) {
-          const groupName = target.getAttribute("data-reveal-group");
-          if (groupName) {
-            document
-              .querySelectorAll(`[data-reveal-parent="${groupName}"]`)
-              .forEach((child) => child.classList.add("is-visible"));
-          }
-        } else {
-          target.classList.add("is-visible");
-        }
-
+        target.classList.add("is-visible");
         observer.unobserve(target);
       });
     },
@@ -735,9 +730,109 @@ function setupRevealMotion() {
   revealTargets.forEach((target) => {
     observer.observe(target);
   });
+}
 
-  groupedContainers.forEach((container) => {
-    observer.observe(container);
+function updateExpandableButton(button, text) {
+  const label = button.querySelector("[data-toggle-label]");
+  if (label) {
+    label.textContent = text;
+    return;
+  }
+
+  button.textContent = text;
+}
+
+function setExpandableSectionState(config, expanded, options = {}) {
+  const { instant = false } = options;
+  const section = document.querySelector(`[data-expandable-section="${config.sectionId}"]`);
+  const button = document.querySelector(`#${config.toggleId}`);
+  const content = document.querySelector(`#${config.contentId}`);
+  const preview = config.previewId ? document.querySelector(`#${config.previewId}`) : null;
+
+  if (!section || !button || !content) return;
+
+  // Accessibility: toggle buttons update aria-expanded and control their related content region.
+  button.setAttribute("aria-expanded", String(expanded));
+  updateExpandableButton(
+    button,
+    expanded ? config.buttonTextOpen : config.buttonTextClosed,
+  );
+  section.classList.toggle("is-expanded", expanded);
+  content.setAttribute("aria-hidden", String(!expanded));
+  content.toggleAttribute("inert", !expanded);
+
+  if (preview) {
+    preview.classList.toggle("is-hidden", expanded);
+    preview.setAttribute("aria-hidden", String(expanded));
+  }
+
+  if (prefersReducedMotion.matches || instant) {
+    content.hidden = !expanded;
+    content.classList.toggle("is-expanded", expanded);
+    content.style.maxHeight = expanded ? "none" : "";
+    delete content.dataset.animating;
+    return;
+  }
+
+  if (expanded) {
+    content.dataset.animating = "true";
+    content.hidden = false;
+    content.style.maxHeight = "0px";
+
+    window.requestAnimationFrame(() => {
+      content.classList.add("is-expanded");
+      content.style.maxHeight = `${content.scrollHeight}px`;
+    });
+
+    const handleExpandEnd = (event) => {
+      if (event.target !== content || event.propertyName !== "max-height") return;
+
+      content.style.maxHeight = "none";
+      delete content.dataset.animating;
+      content.removeEventListener("transitionend", handleExpandEnd);
+    };
+
+    content.addEventListener("transitionend", handleExpandEnd);
+    return;
+  }
+
+  const currentHeight = content.scrollHeight;
+  content.dataset.animating = "true";
+  content.style.maxHeight = `${currentHeight}px`;
+
+  window.requestAnimationFrame(() => {
+    content.classList.remove("is-expanded");
+    content.style.maxHeight = "0px";
+  });
+
+  const handleCollapseEnd = (event) => {
+      if (event.target !== content || event.propertyName !== "max-height") return;
+
+      content.hidden = true;
+      content.style.maxHeight = "";
+      delete content.dataset.animating;
+      content.removeEventListener("transitionend", handleCollapseEnd);
+    };
+
+  content.addEventListener("transitionend", handleCollapseEnd);
+}
+
+function setupExpandableSections() {
+  // Project Experience: collapsed state shows heading, intro and toggle only.
+  // About: collapsed state shows intro and group photo; expanded state shows individual team cards.
+  expandableSections.forEach((config) => {
+    const button = document.querySelector(`#${config.toggleId}`);
+    if (!button) return;
+
+    setExpandableSectionState(config, false, { instant: true });
+
+    button.addEventListener("click", () => {
+      const content = document.querySelector(`#${config.contentId}`);
+      if (content?.dataset.animating === "true") return;
+
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      setExpandableSectionState(config, !expanded);
+    });
   });
 }
 
@@ -800,5 +895,6 @@ bindContactInfo();
 setupNavigation();
 setupHeroParallax();
 setupRevealMotion();
+setupExpandableSections();
 setupProjectOverlays();
 setupContactForm();

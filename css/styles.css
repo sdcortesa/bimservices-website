@@ -35,6 +35,7 @@
   --font-weight-body-strong: 400;
   --font-weight-heading-medium: 400;
   --font-weight-heading: 600;
+  --expandable-duration: 480ms;
   --team-photo-overlay-opacity: 0.26;
   --team-photo-overlay-hover-opacity: 0.08;
   --team-photo-base-saturation: 0.62;
@@ -771,6 +772,73 @@ html.motion-safe .workflow-card.is-visible {
   background: linear-gradient(180deg, var(--color-surface-blue) 0%, #ffffff 100%);
 }
 
+.expandable-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.section-toggle-row {
+  display: flex;
+  align-items: center;
+}
+
+.section-toggle {
+  gap: 0.8rem;
+  box-shadow: none;
+}
+
+.section-toggle-icon {
+  position: relative;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+}
+
+.section-toggle-icon::before,
+.section-toggle-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--motion-fast) ease-out,
+    opacity var(--motion-fast) ease-out;
+}
+
+.section-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.section-toggle[aria-expanded="true"] .section-toggle-icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(0.2);
+}
+
+/* Expandable section motion: keep transitions subtle and consistent with global reveal. */
+.expandable-region {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    max-height var(--expandable-duration) ease-out,
+    opacity var(--motion-normal) ease-out,
+    transform var(--motion-normal) ease-out;
+}
+
+.expandable-region.is-expanded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expandable-region[hidden] {
+  display: none;
+}
+
 .projects-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -938,6 +1006,40 @@ html.motion-safe .workflow-card.is-visible {
   margin: 0;
   color: var(--color-text-secondary);
   line-height: 1.7;
+}
+
+.about-preview {
+  overflow: hidden;
+  max-height: 34rem;
+  border-radius: var(--radius-medium);
+  background: var(--color-white);
+  box-shadow: var(--shadow-soft);
+  transition:
+    max-height var(--expandable-duration) ease-out,
+    opacity var(--motion-normal) ease-out,
+    transform var(--motion-normal) ease-out,
+    margin-bottom var(--motion-normal) ease-out;
+}
+
+.about-preview.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.about-group-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-medium);
+}
+
+.about-team-expandable .team-grid,
+.projects-expandable .projects-grid {
+  margin-top: 0.1rem;
 }
 
 .team-grid {
@@ -1481,6 +1583,14 @@ html.motion-safe .workflow-card.is-visible {
     padding: 1.5rem;
   }
 
+  .section-toggle-row {
+    justify-content: stretch;
+  }
+
+  .section-toggle {
+    width: 100%;
+  }
+
   /* Mobile About behavior: keep secondary info visible to avoid inaccessible hover-only content. */
   .team-card {
     align-items: flex-start;
@@ -1515,6 +1625,12 @@ html.motion-safe .workflow-card.is-visible {
   }
 
   .team-image {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .expandable-region,
+  .about-preview {
     transition: none !important;
     transform: none !important;
   }

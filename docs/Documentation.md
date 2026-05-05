@@ -6,7 +6,7 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
-The latest iteration refined the team-photo treatment inside About without changing content. Team cards keep the identity-first structure from the previous pass, and the team photos now use a branded blue base treatment with controlled color recovery on card hover/focus.
+The latest iteration converted Project Experience and About into expandable in-place sections. Project Experience now starts as a compact editorial summary and expands to reveal the project cards, while About starts with its intro plus a team group preview image and expands to reveal the individual team cards.
 
 ## Project Structure
 
@@ -17,6 +17,7 @@ The latest iteration refined the team-photo treatment inside About without chang
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five temporary framework step placeholder graphics.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
+- `assets/images/team/team-group-placeholder.jpg` is the temporary group-photo preview for the collapsed About section.
 - `assets/images/team/team-member-01-placeholder.jpg`, `team-member-02-placeholder.jpg` and `team-member-03-placeholder.jpg` are individual temporary team-photo placeholders.
 - `docs/` contains project memory and audit reports.
 
@@ -84,6 +85,7 @@ Current active assets:
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework placeholders: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
 - Project placeholders: `assets/images/projects/project-residential-bim-support.svg`, `project-coordination-package.svg`, `project-documentation-set.svg`
+- Team group preview: `assets/images/team/team-group-placeholder.jpg`
 - Team placeholders:
 - `assets/images/team/team-member-01-placeholder.jpg`
 - `assets/images/team/team-member-02-placeholder.jpg`
@@ -104,6 +106,7 @@ Temporary or pending assets:
 - Cards: shared radius/shadow/surface language for workflow, service, project and team cards.
 - Service cards: rendered from the `services` array in `js/main.js`.
 - Project cards: rendered from the `projects` array, with hover/focus/tap overlay behavior.
+- Expandable section toggles: in-place expand/collapse controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
 - Team cards: rendered from the `teamMembers` array, with larger editorial visuals, stronger name hierarchy, branded blue photo treatment and hover/focus reveal for secondary details on desktop.
 - Forms: simple contact form with labels, required fields and mailto-based behavior once real email is confirmed.
 - Footer: entity description, short navigation and contact placeholders.
@@ -114,9 +117,11 @@ Temporary or pending assets:
 - Header gains a scrolled state after scroll starts.
 - Internal anchor links navigate within the single page.
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
-- Global reveal motion uses Intersection Observer for headings, intros, cards and key content blocks, with reduced-motion fallback.
+- Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback.
 - Workflow cards reuse the same reveal system with a slightly stronger reveal distance and stagger.
 - Project overlays appear on hover, focus and tap.
+- Project Experience starts collapsed and expands in place to show the current project cards.
+- About starts with intro plus group preview image, then expands in place to show the individual team cards.
 - Team cards reveal role and description on desktop hover/focus and keep the same information visible on mobile/touch layouts.
 - Team photo wrappers keep a Deep Sapphire overlay in the base state and reduce that overlay on card hover/focus to recover controlled color.
 - Contact form validates required fields and opens a mailto draft after the real email placeholder is replaced.
@@ -144,6 +149,7 @@ SEO notes:
 - Neon is the active secondary accent replacing the previous Golden Pulse direction.
 - Cabinet Grotesk + General Sans is the active typography pairing.
 - Motion is lightweight and controlled through CSS transitions, scroll listeners and Intersection Observer instead of a motion library.
+- Project Experience and About now use in-place expandable regions instead of showing all secondary content immediately.
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
 
@@ -155,7 +161,9 @@ SEO notes:
 - Some older project sample SVGs remain unused in the assets folder.
 - JavaScript rendering uses `innerHTML` from local constants; safe in the current static context, but should be reconsidered if content becomes externally managed.
 - Hero parallax should be tested on physical mobile devices.
+- Project Experience and About toggles should be tested in a live browser to confirm the expand/collapse rhythm and transition height behavior.
 - About hover/focus behavior should be visually reviewed in a real browser to confirm reveal height, spacing and rhythm on large screens.
+- The collapsed About state still uses a temporary group-photo placeholder instead of a real team image.
 - Team photo color treatment should be rebalanced when real headshots replace the current JPG placeholders.
 - Live browser review was not completed in this audit because available local runtime/browser commands were not usable in the current environment.
 
@@ -163,10 +171,12 @@ SEO notes:
 
 - Confirm real WhatsApp number and email.
 - Replace Hero, project and team placeholders with validated assets.
+- Replace the About group-photo placeholder with a real team photo when available.
 - Each team member already has an individual JPG placeholder ready for direct replacement.
 - Decide whether unused legacy project sample placeholders should be deleted or archived.
 - Review the lighter General Sans body weight on mobile and lower-density displays.
 - Validate Hero parallax and project overlay behavior in a real browser.
+- Validate the Project Experience and About expandable interactions in desktop and mobile browsers.
 - Validate About card reveal behavior in desktop and touch contexts.
 - Validate the team photo overlay intensity with real skin tones and real photography.
 - Consider a backend or form service once contact workflow is defined.
@@ -174,4 +184,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass refined About card hierarchy and introduced a reusable reveal-motion system while preserving the existing content architecture, layout direction and core interactions.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass added in-place expandable states for Project Experience and About, created a dedicated team-group JPG placeholder, and kept the project ready for GitHub review and synchronization without changing copy or the overall layout direction.
