@@ -481,6 +481,11 @@ section[id] {
   pointer-events: none;
 }
 
+/* Loading state: keep the placeholder quiet while the GLB has a chance to render. */
+.hero-3d[data-hero3d-status="loading"] .hero-3d-fallback {
+  opacity: 0;
+}
+
 /* Fallback state: transparent PNG remains visible if Three.js, WebGL or the GLB model fails. */
 .hero-3d.is-loaded .hero-3d-canvas {
   opacity: 1;

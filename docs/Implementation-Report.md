@@ -35,9 +35,10 @@ Pre-existing manual change detected and preserved:
 ### Library and loading approach
 
 - Three.js is loaded as direct ES module imports inside `js/hero-3d.js`.
-- CDN/version used: `https://cdn.jsdelivr.net/npm/three@0.164.1/`.
+- CDN/version used: `https://esm.sh/three@0.164.1`.
 - `GLTFLoader` is loaded from the matching Three.js examples module path.
-- The previous import-map approach was removed because it could leave the fallback visible if a browser failed to resolve the `"three"` module specifier.
+- The previous `cdn.jsdelivr` direct-import approach was replaced because `GLTFLoader.js` can still reference the bare `"three"` module specifier internally.
+- `esm.sh` is now used because it rewrites loader dependencies for direct browser module loading without requiring an import map.
 - The implementation avoids multiple Three.js versions and does not add a build step or package manager dependency.
 
 ### Model asset
@@ -106,10 +107,11 @@ Pre-existing manual change detected and preserved:
 - The screenshot review showed the Hero was staying in fallback state.
 - The most likely weak points were the import map dependency and the relative asset path strategy.
 - The patch removed the import map from `index.html`.
-- `js/hero-3d.js` now imports Three.js and `GLTFLoader` directly from the CDN.
+- `js/hero-3d.js` now imports Three.js and `GLTFLoader` directly from `esm.sh`.
 - GLB and fallback paths are now resolved from `import.meta.url`, which is safer for GitHub Pages project paths.
 - The load timeout now displays the fallback during slow loading but still allows the GLB to replace it if it finishes after the timeout.
 - A `data-hero3d-status` attribute now reports `loading`, `fallback` or `loaded` on the Hero 3D container for easier debugging.
+- The fallback image is hidden while the module is actively loading so the Hero does not look like it has already failed before the GLB has a chance to render.
 
 ### Accessibility
 

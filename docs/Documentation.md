@@ -42,7 +42,7 @@ The latest iteration integrated a provisional Three.js Hero model as a progressi
 - CSS
 - JavaScript
 - No front-end framework
-- Three.js loaded as direct ES module imports from `cdn.jsdelivr.net` inside `js/hero-3d.js`
+- Three.js loaded as direct ES module imports from `esm.sh` inside `js/hero-3d.js`
 - Fontshare stylesheet loaded from `api.fontshare.com`
 
 ## Typography
