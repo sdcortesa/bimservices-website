@@ -1,13 +1,18 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+// Three.js is imported directly here instead of relying on an import map.
+// This keeps the Hero module more reliable on GitHub Pages and older browsers with ES module support.
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/GLTFLoader.js";
+
+const HERO_MODEL_PATH = new URL("../assets/models/hero/cabana-tusa.glb", import.meta.url).href;
+const HERO_MODEL_FALLBACK_PATH = new URL("../assets/images/hero/hero-3d-fallback.png", import.meta.url).href;
 
 // Hero 3D: provisional GLB model used for testing. Replace path when final model is ready.
 const HERO_3D_SETTINGS = {
   containerSelector: "[data-hero-3d]",
   canvasSelector: "[data-hero-3d-canvas]",
   fallbackSelector: "[data-hero-3d-fallback]",
-  modelPath: "./assets/models/hero/cabana-tusa.glb",
-  fallbackPath: "./assets/images/hero/hero-3d-fallback.png",
+  modelPath: HERO_MODEL_PATH,
+  fallbackPath: HERO_MODEL_FALLBACK_PATH,
   maxScrollRotationDegrees: 45,
   maxManualRotationDegrees: 45,
   dragSensitivity: 0.006,
@@ -29,6 +34,18 @@ function clamp(value, min, max) {
 function showFallback(container) {
   container.classList.add("is-fallback");
   container.classList.remove("is-loaded");
+  container.dataset.hero3dStatus = "fallback";
+}
+
+function markLoading(container) {
+  container.classList.remove("is-fallback", "is-loaded");
+  container.dataset.hero3dStatus = "loading";
+}
+
+function markLoaded(container) {
+  container.classList.add("is-loaded");
+  container.classList.remove("is-fallback");
+  container.dataset.hero3dStatus = "loaded";
 }
 
 function supportsWebGL() {
@@ -68,6 +85,7 @@ function initHero3D(settings = HERO_3D_SETTINGS) {
   if (!canvasHost || !fallback) return;
 
   fallback.setAttribute("src", settings.fallbackPath);
+  markLoading(container);
 
   if (!settings.enableMobile3D || !supportsWebGL()) {
     showFallback(container);
@@ -113,10 +131,11 @@ function initHero3D(settings = HERO_3D_SETTINGS) {
     return Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.35 : 1.75);
   }
 
-  function activateFallback() {
+  function activateFallback(reason = "unknown") {
     hasFailed = true;
     showFallback(container);
     window.cancelAnimationFrame(frameId);
+    console.warn(`Hero 3D fallback activated: ${reason}`);
   }
 
   function updateSize() {
@@ -197,7 +216,9 @@ function initHero3D(settings = HERO_3D_SETTINGS) {
 
   const loadTimeout = window.setTimeout(() => {
     if (!modelLoaded) {
-      activateFallback();
+      // Fallback: transparent PNG shown when model loading is slow. A late GLB load can still replace it.
+      showFallback(container);
+      console.warn("Hero 3D fallback shown while the GLB continues loading.");
     }
   }, settings.loadTimeoutMs);
 
@@ -212,14 +233,13 @@ function initHero3D(settings = HERO_3D_SETTINGS) {
       frameModel(gltf.scene, camera);
       updateSize();
       modelLoaded = true;
-      container.classList.add("is-loaded");
-      container.classList.remove("is-fallback");
+      markLoaded(container);
       renderer.render(scene, camera);
     },
     undefined,
-    () => {
+    (error) => {
       window.clearTimeout(loadTimeout);
-      activateFallback();
+      activateFallback(error?.message || "model-load-error");
     },
   );
 
@@ -245,5 +265,4 @@ function initHero3D(settings = HERO_3D_SETTINGS) {
   renderLoop();
 }
 
-// Fallback: transparent PNG shown when WebGL/model loading fails.
 initHero3D();

@@ -42,7 +42,7 @@ The latest iteration integrated a provisional Three.js Hero model as a progressi
 - CSS
 - JavaScript
 - No front-end framework
-- Three.js loaded as an ES module from `cdn.jsdelivr.net` through an import map in `index.html`
+- Three.js loaded as direct ES module imports from `cdn.jsdelivr.net` inside `js/hero-3d.js`
 - Fontshare stylesheet loaded from `api.fontshare.com`
 
 ## Typography
@@ -193,6 +193,7 @@ SEO notes:
 - Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
 - The Hero title weight interaction should be checked in a live browser for subtlety and layout stability.
 - The Three.js Hero should be tested on GitHub Pages because it depends on CDN module loading and GLB asset loading.
+- Opening `index.html` directly from the filesystem can block GLB loading in some browsers; use GitHub Pages or a local HTTP server for 3D testing.
 - The 3D Hero fallback PNG is a temporary transparent placeholder and should be replaced with a real transparent render of the final model.
 - The provisional `cabana-tusa.glb` model has not been web-optimized inside this iteration.
 - The 3D Hero should be tested on physical mobile devices for performance, interaction comfort and fallback behavior.

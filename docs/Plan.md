@@ -86,6 +86,7 @@ Acceptance criteria:
 Validation:
 
 - Test the Hero on GitHub Pages or a local server, not only as a local file.
+- Do not validate the 3D model by opening `index.html` directly from the filesystem; browsers can block GLB loading outside HTTP.
 - Temporarily block or rename the GLB path to confirm fallback behavior.
 - Test horizontal drag with mouse and touch.
 - Confirm no Three.js console errors appear during load, resize or scroll.

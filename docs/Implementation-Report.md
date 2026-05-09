@@ -34,14 +34,16 @@ Pre-existing manual change detected and preserved:
 
 ### Library and loading approach
 
-- Three.js is loaded as an ES module through an import map in `index.html`.
+- Three.js is loaded as direct ES module imports inside `js/hero-3d.js`.
 - CDN/version used: `https://cdn.jsdelivr.net/npm/three@0.164.1/`.
 - `GLTFLoader` is loaded from the matching Three.js examples module path.
+- The previous import-map approach was removed because it could leave the fallback visible if a browser failed to resolve the `"three"` module specifier.
 - The implementation avoids multiple Three.js versions and does not add a build step or package manager dependency.
 
 ### Model asset
 
 - Final GLB path used: `assets/models/hero/cabana-tusa.glb`
+- Runtime path resolution uses `new URL("../assets/models/hero/cabana-tusa.glb", import.meta.url).href` so the model path stays correct on GitHub Pages.
 - The model was not renamed.
 - The original file was detected as an untracked root-level asset before implementation and moved into `assets/models/hero/` to avoid leaving a loose 3D asset in the project root.
 - This GLB is provisional and should be replaced with the final optimized Hero model later.
@@ -49,6 +51,7 @@ Pre-existing manual change detected and preserved:
 ### Fallback asset
 
 - Fallback path used: `assets/images/hero/hero-3d-fallback.png`
+- Runtime fallback path resolution uses `new URL("../assets/images/hero/hero-3d-fallback.png", import.meta.url).href`.
 - The fallback is a transparent PNG placeholder created for this iteration so the Hero never shows a broken or empty visual if 3D loading fails.
 - This fallback is not a final rendered PNG of the GLB model; it should be replaced with a transparent render of the final model when that visual is ready.
 
@@ -95,8 +98,18 @@ Pre-existing manual change detected and preserved:
 - The renderer uses `alpha: true`, simple lights and no postprocessing.
 - Pixel ratio is capped to reduce high-density-device cost.
 - Rendering is skipped when the Hero 3D region is outside the viewport.
-- A load timeout of `9000ms` activates fallback if the GLB does not become usable quickly.
+- A load timeout of `9000ms` shows the fallback if the GLB does not become usable quickly, but no longer permanently blocks a late GLB success from replacing the fallback.
 - If the model fails, the render loop is cancelled instead of continuing indefinitely.
+
+### Model loading fix
+
+- The screenshot review showed the Hero was staying in fallback state.
+- The most likely weak points were the import map dependency and the relative asset path strategy.
+- The patch removed the import map from `index.html`.
+- `js/hero-3d.js` now imports Three.js and `GLTFLoader` directly from the CDN.
+- GLB and fallback paths are now resolved from `import.meta.url`, which is safer for GitHub Pages project paths.
+- The load timeout now displays the fallback during slow loading but still allows the GLB to replace it if it finishes after the timeout.
+- A `data-hero3d-status` attribute now reports `loading`, `fallback` or `loaded` on the Hero 3D container for easier debugging.
 
 ### Accessibility
 
