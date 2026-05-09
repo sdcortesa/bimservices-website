@@ -114,7 +114,7 @@ Pre-existing manual change detected and preserved:
   - untracked root file `cabana-tusa.glb`
 - The pre-existing Hero placeholder SVG change was preserved.
 
-### Git state after implementation before final sync
+### Git state after implementation and sync
 
 - Modified files include:
   - `assets/images/hero/hero-main-placeholder.svg`
@@ -127,7 +127,10 @@ Pre-existing manual change detected and preserved:
   - `assets/models/hero/cabana-tusa.glb`
   - `assets/images/hero/hero-3d-fallback.png`
   - `js/hero-3d.js`
-- Commit/push status will be finalized after the implementation report is staged and synced.
+- Implementation commit created: `65ab2b6`
+- Commit message used: `Add Three.js 3D hero integration`
+- Push to `origin/main`: completed successfully.
+- A follow-up documentation sync commit was prepared after this line so the report reflects the final GitHub state.
 
 ### Validation performed
 
