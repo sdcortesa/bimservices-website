@@ -450,8 +450,7 @@ section[id] {
   cursor: grabbing;
 }
 
-.hero-3d-canvas,
-.hero-3d-fallback {
+.hero-3d-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -470,37 +469,7 @@ section[id] {
   pointer-events: none;
 }
 
-.hero-3d-fallback {
-  object-fit: contain;
-  opacity: 1;
-  transform: scale(0.96);
-  filter: drop-shadow(0 28px 34px rgba(0, 19, 49, 0.18));
-  transition:
-    opacity 320ms ease-out,
-    transform 420ms ease-out;
-  pointer-events: none;
-}
-
-/* Loading state: keep the placeholder quiet while the GLB has a chance to render. */
-.hero-3d[data-hero3d-status="loading"] .hero-3d-fallback {
-  opacity: 0;
-}
-
-/* Fallback state: transparent PNG remains visible if Three.js, WebGL or the GLB model fails. */
 .hero-3d.is-loaded .hero-3d-canvas {
-  opacity: 1;
-}
-
-.hero-3d.is-loaded .hero-3d-fallback {
-  opacity: 0;
-  transform: scale(0.98);
-}
-
-.hero-3d.is-fallback .hero-3d-canvas {
-  opacity: 0;
-}
-
-.hero-3d.is-fallback .hero-3d-fallback {
   opacity: 1;
 }
 

@@ -17,11 +17,12 @@ Ready to keep:
 - Soft technical radius system.
 - Lightweight JavaScript interactions.
 - Modular Three.js Hero enhancement in `js/hero-3d.js`, with the core Hero content still independent from WebGL.
+- Local Three.js vendor modules in `js/vendor/` for the Hero 3D integration.
 
 Still in testing:
 
 - Three.js Hero model integration using `assets/models/hero/cabana-tusa.glb`.
-- Hero 3D transparent fallback behavior using `assets/images/hero/hero-3d-fallback.png`.
+- Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
 - Hero 3D performance on GitHub Pages and mobile devices.
 - Hero title font-weight interaction on scroll.
@@ -61,7 +62,7 @@ Acceptance criteria:
 - On mobile, the 3D visual stacks below the Hero copy without hiding CTAs.
 - Scroll rotates the model horizontally in a controlled range of roughly 45 degrees.
 - Click-and-drag rotates horizontally only, with no zoom, pan or vertical orbit behavior.
-- The transparent fallback PNG appears if WebGL, CDN module loading or GLB loading fails.
+- No visual fallback placeholder appears; loading and error states are exposed with `data-hero3d-status` and `data-hero3d-error`.
 - `prefers-reduced-motion` disables the automatic 3D scroll rotation.
 - Hero text, CTAs and navigation remain usable if the 3D enhancement fails.
 - Header CTA and logo spacing feel balanced within the header container.
@@ -87,9 +88,10 @@ Validation:
 
 - Test the Hero on GitHub Pages or a local server, not only as a local file.
 - Do not validate the 3D model by opening `index.html` directly from the filesystem; browsers can block GLB loading outside HTTP.
-- Temporarily block or rename the GLB path to confirm fallback behavior.
+- Temporarily block or rename the GLB path to confirm `data-hero3d-status="error"` and `data-hero3d-error` are exposed.
 - Test horizontal drag with mouse and touch.
 - Confirm no Three.js console errors appear during load, resize or scroll.
+- Confirm `js/vendor/three.bundle.mjs` and `js/vendor/GLTFLoader.bundle.mjs` load on GitHub Pages.
 - Review mobile performance on at least one real device before consolidating the 3D direction.
 - Review header spacing at desktop, tablet and mobile widths.
 - Confirm active placeholder areas no longer show grid textures.

@@ -2,14 +2,15 @@
 
 ## Audit Implementation Summary
 
-This iteration integrated a provisional Three.js model into the existing Hero. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while adding a modular 3D canvas, transparent fallback image, controlled scroll rotation and horizontal-only drag interaction.
+This iteration removed the Hero fallback image and refocused the implementation on direct GLB loading. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while keeping the modular 3D canvas, controlled scroll rotation and horizontal-only drag interaction.
 
 ## Files Modified
 
 - `assets/models/hero/cabana-tusa.glb`
-- `assets/images/hero/hero-3d-fallback.png`
 - `css/styles.css`
 - `js/hero-3d.js`
+- `js/vendor/three.bundle.mjs`
+- `js/vendor/GLTFLoader.bundle.mjs`
 - `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
@@ -23,8 +24,8 @@ Pre-existing manual change detected and preserved:
 
 - Added a modular Three.js Hero enhancement in `js/hero-3d.js`.
 - Moved the provisional `cabana-tusa.glb` model from the project root into `assets/models/hero/`.
-- Added a transparent PNG fallback at `assets/images/hero/hero-3d-fallback.png`.
-- Integrated a decorative Hero 3D canvas on the right side of the Hero on desktop.
+- Removed the transparent PNG fallback from the active Hero flow.
+- Kept the decorative Hero 3D canvas on the right side of the Hero on desktop.
 - Added mobile stacking so the 3D visual appears below the Hero copy.
 - Added scroll-linked horizontal rotation up to approximately 45 degrees.
 - Added click-and-drag horizontal rotation only, without zoom, pan or vertical orbit.
@@ -34,12 +35,12 @@ Pre-existing manual change detected and preserved:
 
 ### Library and loading approach
 
-- Three.js is loaded as direct ES module imports inside `js/hero-3d.js`.
-- CDN/version used: `https://esm.sh/three@0.164.1`.
-- `GLTFLoader` is loaded from the matching Three.js examples module path.
-- The previous `cdn.jsdelivr` direct-import approach was replaced because `GLTFLoader.js` can still reference the bare `"three"` module specifier internally.
-- `esm.sh` is now used because it rewrites loader dependencies for direct browser module loading without requiring an import map.
-- The implementation avoids multiple Three.js versions and does not add a build step or package manager dependency.
+- Three.js is loaded from local ESM vendor files inside `js/vendor/`.
+- Vendor source/version used: `three@0.164.1`.
+- `GLTFLoader` is loaded from a local bundled ESM file.
+- The previous CDN direct-import approach was replaced because remote loader modules can still fail on dependency resolution or network availability.
+- The runtime no longer depends on a Three.js CDN.
+- The implementation avoids a build step or package manager dependency.
 
 ### Model asset
 
@@ -49,17 +50,17 @@ Pre-existing manual change detected and preserved:
 - The original file was detected as an untracked root-level asset before implementation and moved into `assets/models/hero/` to avoid leaving a loose 3D asset in the project root.
 - This GLB is provisional and should be replaced with the final optimized Hero model later.
 
-### Fallback asset
+### Fallback removal
 
-- Fallback path used: `assets/images/hero/hero-3d-fallback.png`
-- Runtime fallback path resolution uses `new URL("../assets/images/hero/hero-3d-fallback.png", import.meta.url).href`.
-- The fallback is a transparent PNG placeholder created for this iteration so the Hero never shows a broken or empty visual if 3D loading fails.
-- This fallback is not a final rendered PNG of the GLB model; it should be replaced with a transparent render of the final model when that visual is ready.
+- The visual fallback image was removed from `index.html`.
+- Fallback-specific CSS was removed from `css/styles.css`.
+- `assets/images/hero/hero-3d-fallback.png` was deleted from the repo.
+- The Hero now exposes real loading/error state through `data-hero3d-status` and `data-hero3d-error` instead of masking the issue with placeholder art.
 
 ### Hero integration
 
 - `index.html` now includes a decorative `.hero-3d` region inside the existing Hero stage.
-- The region contains a canvas host and fallback image.
+- The region contains only a canvas host.
 - The canvas uses a transparent renderer so it integrates with the current Deep Sapphire Hero background.
 - CSS positions the 3D area on the right side of the Hero on desktop.
 - On mobile, the same 3D region stacks below the Hero copy to avoid competing with the H1, supporting copy and CTAs.
@@ -86,7 +87,7 @@ Pre-existing manual change detected and preserved:
 - Mobile 3D remains enabled through `enableMobile3D: true`.
 - Renderer pixel ratio is capped lower on mobile: up to `1.35`.
 - The 3D area uses a controlled responsive height and appears below the Hero text.
-- If WebGL, module loading or model loading fails on mobile, the transparent fallback PNG remains visible.
+- If WebGL, module loading or model loading fails on mobile, the Hero 3D region stays empty and exposes debug state instead of showing fallback art.
 
 ### Reduced motion
 
@@ -99,24 +100,31 @@ Pre-existing manual change detected and preserved:
 - The renderer uses `alpha: true`, simple lights and no postprocessing.
 - Pixel ratio is capped to reduce high-density-device cost.
 - Rendering is skipped when the Hero 3D region is outside the viewport.
-- A load timeout of `9000ms` shows the fallback if the GLB does not become usable quickly, but no longer permanently blocks a late GLB success from replacing the fallback.
-- If the model fails, the render loop is cancelled instead of continuing indefinitely.
+- The previous visual fallback timeout was removed so the implementation focuses on direct model loading.
+- If the model fails, the error is logged and stored on `data-hero3d-error`.
 
 ### Model loading fix
 
 - The screenshot review showed the Hero was staying in fallback state.
 - The most likely weak points were the import map dependency and the relative asset path strategy.
 - The patch removed the import map from `index.html`.
-- `js/hero-3d.js` now imports Three.js and `GLTFLoader` directly from `esm.sh`.
+- `js/hero-3d.js` now imports Three.js and `GLTFLoader` from local vendor files.
 - GLB and fallback paths are now resolved from `import.meta.url`, which is safer for GitHub Pages project paths.
-- The load timeout now displays the fallback during slow loading but still allows the GLB to replace it if it finishes after the timeout.
-- A `data-hero3d-status` attribute now reports `loading`, `fallback` or `loaded` on the Hero 3D container for easier debugging.
-- The fallback image is hidden while the module is actively loading so the Hero does not look like it has already failed before the GLB has a chance to render.
+- The module now uses dynamic `import()` so failures can be reported after the script starts, instead of failing silently at static import evaluation.
+- A `data-hero3d-status` attribute now reports `initializing`, `modules-loading`, `model-loading`, `loaded`, `disabled` or `error` on the Hero 3D container for easier debugging.
+- `data-hero3d-error` stores the latest error message when model or module loading fails.
+
+### Local vendor module pass
+
+- Runtime imports were moved from `esm.sh` to local files:
+  - `js/vendor/three.bundle.mjs`
+  - `js/vendor/GLTFLoader.bundle.mjs`
+- This removes external CDN dependency from the runtime Hero 3D path.
+- The active Hero no longer includes a visual fallback image, so model-loading failures are no longer hidden by placeholder art.
 
 ### Accessibility
 
 - The 3D region is marked `aria-hidden="true"` because it is decorative.
-- The fallback image has empty `alt` text for the same reason.
 - Hero H1, supporting copy and CTAs remain normal HTML and do not depend on Three.js.
 - The overlay uses `pointer-events: none`, so it does not block Hero links or 3D drag interaction.
 
@@ -140,7 +148,6 @@ Pre-existing manual change detected and preserved:
   - `docs/Plan.md`
 - New files include:
   - `assets/models/hero/cabana-tusa.glb`
-  - `assets/images/hero/hero-3d-fallback.png`
   - `js/hero-3d.js`
 - Implementation commit created: `65ab2b6`
 - Commit message used: `Add Three.js 3D hero integration`
@@ -151,19 +158,17 @@ Pre-existing manual change detected and preserved:
 
 - `node --check js/main.js` completed without syntax errors.
 - `node --check js/hero-3d.js` completed without syntax errors.
-- Static path checks confirmed the GLB, fallback PNG, logo assets, CSS and JavaScript files exist.
+- Static path checks confirmed the GLB, logo assets, CSS and JavaScript files exist.
 - A temporary Node static server confirmed local HTTP access for:
   - `/index.html`
   - `/assets/models/hero/cabana-tusa.glb`
-  - `/assets/images/hero/hero-3d-fallback.png`
   - `/js/hero-3d.js`
-- The fallback PNG was verified as `Format32bppArgb`, confirming transparent PNG support.
 - Browser automation with Playwright was not available in the current environment, so visual WebGL QA remains pending.
 
 ### Open review points
 
 - Test the module import and GLB loading on GitHub Pages, not only via static code inspection.
-- Replace the temporary fallback PNG with a transparent render of the actual final model.
+- If a fallback is reintroduced later, use it only after the GLB loading path is confirmed stable.
 - Optimize the final GLB before consolidating the 3D Hero direction.
 - Review mobile performance on a real device before increasing visual complexity.
 - Confirm the 45-degree scroll and drag range feels subtle enough in a live browser.
