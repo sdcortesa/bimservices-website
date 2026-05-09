@@ -1,0 +1,7 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">4D Construction Planning icon</title>
+  <rect x="11" y="14" width="42" height="38" rx="3" fill="#eef5ff" stroke="#002d72" stroke-width="3"/>
+  <path d="M11 25h42M22 10v8M42 10v8" stroke="#002d72" stroke-width="3" stroke-linecap="square"/>
+  <path d="M20 36h8M36 36h8M20 44h8" stroke="#1e88e5" stroke-width="3" stroke-linecap="square"/>
+  <path d="M39 42l5 5 8-12" fill="none" stroke="#002d72" stroke-width="3" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>

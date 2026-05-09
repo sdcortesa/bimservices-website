@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">3D Coordination icon</title>
+  <circle cx="24" cy="30" r="14" fill="#eef5ff" stroke="#002d72" stroke-width="3"/>
+  <circle cx="40" cy="34" r="14" fill="#eef5ff" stroke="#1e88e5" stroke-width="3"/>
+  <path d="M29 24l10 16M39 24L29 40" stroke="#002d72" stroke-width="3" stroke-linecap="square"/>
+</svg>

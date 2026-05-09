@@ -2,10 +2,17 @@
 
 ## Audit Implementation Summary
 
-This iteration refined the Workflow / BIM Delivery Intelligence Framework cards and cleaned the visible header navigation. The workflow content block now sits higher and reads as one integrated unit with number + title together, while the header no longer repeats Home and Contact as nav items because those actions are already covered by the logo and the CTA.
+This iteration polished the Hero, global motion, placeholders, header spacing and service icons. The pass stayed within visual refinement and microinteraction work: no copy, section structure, service order or metadata changed.
 
 ## Files Modified
 
+- `assets/icons/services/cad-to-bim-icon.svg`
+- `assets/icons/services/specialty-bim-modeling-icon.svg`
+- `assets/icons/services/coordination-3d-icon.svg`
+- `assets/icons/services/construction-documentation-icon.svg`
+- `assets/icons/services/cost-quantity-estimation-icon.svg`
+- `assets/icons/services/construction-planning-4d-icon.svg`
+- `assets/images/team/team-group-placeholder.jpg`
 - `assets/images/projects/project-coordination-package.svg`
 - `assets/images/projects/project-documentation-set.svg`
 - `assets/images/projects/project-residential-bim-support.svg`
@@ -22,12 +29,83 @@ This iteration refined the Workflow / BIM Delivery Intelligence Framework cards 
 
 ## Main Changes
 
-- Moved the workflow step number beside the step title so each card uses one integrated heading unit.
-- Reduced the vertical spread inside workflow cards to bring the information block closer to the visual placeholder.
-- Removed Home and Contact from the visible header navigation.
-- Kept the logo pointing to `#home` and the Let's talk CTA pointing to `#contact`.
-- Preserved all existing workflow copy, step count, page structure and section content.
-- Updated project documentation to reflect the refinement pass and current Git state.
+- Added six replaceable SVG service icons under `assets/icons/services/`.
+- Connected service icon paths through the existing `services` data in `js/main.js`.
+- Balanced header lateral spacing so the logo and `Let's talk` CTA breathe more evenly.
+- Removed active CSS grid textures from Hero, service icon, project placeholder, team placeholder and contact-panel treatments.
+- Changed global reveal motion to fade-only.
+- Added a subtle Hero title font-weight change once scrolling starts.
+- Preserved existing copy, section structure, service order and metadata.
+
+## Hero Polish + Global Motion Refinement Review
+
+### Header spacing
+
+- Added balanced inline padding to `.header-shell` so the logo and CTA sit slightly farther from the lateral edges.
+- Increased the `Let's talk` CTA inline padding slightly while keeping the same button style, text and destination.
+- The logo still links to `#home`, and the CTA still links to `#contact`.
+
+### Placeholder grid cleanup
+
+- Removed visible CSS grid textures from:
+  - Hero visual placeholder treatment
+  - service icon placeholder frame
+  - project placeholder fallback
+  - team placeholder fallback
+  - contact-panel decorative treatment
+- The Hero placeholder now uses `Deep Sapphire` as a flat branded surface.
+- Project and service placeholder surfaces use `--color-surface-blue` for a softer branded surface.
+
+### Service SVG icons
+
+- Created six SVG service icon assets:
+  - `assets/icons/services/cad-to-bim-icon.svg`
+  - `assets/icons/services/specialty-bim-modeling-icon.svg`
+  - `assets/icons/services/coordination-3d-icon.svg`
+  - `assets/icons/services/construction-documentation-icon.svg`
+  - `assets/icons/services/cost-quantity-estimation-icon.svg`
+  - `assets/icons/services/construction-planning-4d-icon.svg`
+- The icons are referenced from the `services` array in `js/main.js`.
+- The existing `.service-icon` frame still controls size and position, so service-card layout did not change.
+
+### Global reveal motion
+
+- Global reveal is now opacity-only.
+- Removed global `translateY` from `.reveal` elements.
+- Added `--motion-reveal-duration: 620ms`.
+- Workflow cards keep their card-by-card reveal with translate because that section is intentionally sequential.
+
+### Hero title scroll interaction
+
+- `setupNavigation()` now also toggles `.hero-title--scrolled` on `#hero-headline` once scroll passes the existing header threshold.
+- The title moves from the normal heading weight to `--font-weight-heading-active`.
+- The effect is reversible when returning to the top.
+- The effect is disabled when `prefers-reduced-motion` is active.
+
+### Microinteractions
+
+- Header CTA spacing and service icon surfaces were softened without changing behavior.
+- Reveal timing was smoothed to feel less directional and less theatrical.
+- Existing hover/focus behaviors were preserved.
+
+### Reduced motion
+
+- Reduced motion continues to disable long transitions and scroll-driven animation.
+- The Hero title weight transition is also removed under reduced motion.
+
+### Git state before implementation
+
+- Local branch: `main`
+- Tracking branch: `origin/main`
+- Pre-existing manual modifications were detected before coding:
+  - `assets/images/team/team-group-placeholder.jpg`
+  - `assets/logos/bim-services-logo-white-01.svg`
+
+### Open review points
+
+- Verify in a browser that the Hero title weight change is visible but not distracting.
+- Confirm the fade-only reveal feels smooth on GitHub Pages.
+- Review the new service icons visually once real service icon direction is defined.
 
 ## Workflow Alignment + Header Cleanup Review
 

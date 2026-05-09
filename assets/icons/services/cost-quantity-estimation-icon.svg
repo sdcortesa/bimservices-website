@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Cost and Quantity Estimation icon</title>
+  <rect x="10" y="14" width="44" height="38" rx="3" fill="#eef5ff" stroke="#002d72" stroke-width="3"/>
+  <path d="M18 25h28M18 34h28M18 43h14" stroke="#1e88e5" stroke-width="3" stroke-linecap="square"/>
+  <path d="M42 39l4 4 8-10" fill="none" stroke="#002d72" stroke-width="3" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>

@@ -6,7 +6,7 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
-The latest iteration refined the How We Work / BIM Delivery Intelligence Framework cards and cleaned the visible header navigation. Workflow cards now place the step number directly beside the step title as one integrated heading unit, and the header no longer repeats Home or Contact in the visible nav because those actions are already covered by the logo and the Let's talk CTA.
+The latest iteration polished the Hero, placeholders, service icons and global motion. Header spacing was balanced, placeholder grids were removed from active CSS treatments, service cards now use replaceable SVG icon assets, global reveal motion is fade-only, and the Hero title subtly increases weight when the user starts scrolling.
 
 ## Project Structure
 
@@ -15,6 +15,7 @@ The latest iteration refined the How We Work / BIM Delivery Intelligence Framewo
 - `js/main.js` contains editable content data, rendering functions, navigation behavior, project overlay interaction, Hero parallax, global reveal motion and contact-form mailto logic.
 - `assets/logos/bim-services-logo.svg` is the blue/original SVG logo used once the header is scrolled over light backgrounds.
 - `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
+- `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five temporary framework step placeholder graphics.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
@@ -84,6 +85,7 @@ Current active assets:
 
 - Scrolled header logo: `assets/logos/bim-services-logo.svg`
 - Top-of-page header logo: `assets/logos/bim-services-logo-white-01.svg`
+- Service icons: `assets/icons/services/*.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework placeholders: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
 - Project placeholders: `assets/images/projects/project-residential-bim-support.svg`, `project-coordination-package.svg`, `project-documentation-set.svg`
@@ -108,6 +110,7 @@ Temporary or pending assets:
 - Buttons: shared `.button` styles with primary, secondary and form-submit variants.
 - Cards: shared radius/shadow/surface language for workflow, service, project and team cards.
 - Service cards: rendered from the `services` array in `js/main.js`.
+- Service icons: SVG assets referenced from the service data and sized through the existing `.service-icon` frame.
 - Project cards: rendered from the `projects` array, with hover/focus/tap overlay behavior.
 - Expandable section toggles: in-place expand/collapse controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
 - Team cards: rendered from the `teamMembers` array, with larger editorial visuals, stronger name hierarchy, branded blue photo treatment and hover/focus reveal for secondary details on desktop.
@@ -119,11 +122,12 @@ Temporary or pending assets:
 - Mobile menu opens and closes via hamburger button, outside click, Escape key, nav link click and desktop resize.
 - Header gains a scrolled state after scroll starts.
 - Header logo starts white over the Hero and crossfades to the blue/original logo once the header enters its scrolled light state.
+- Hero H1 subtly increases font weight after scroll starts and returns to normal at the top.
 - Visible header navigation now includes only How We Work, Services, Projects and About.
 - Internal anchor links navigate within the single page.
 - The page uses a short initial fade-in on load, disabled when `prefers-reduced-motion` is enabled.
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
-- Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback.
+- Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback. Global reveal is fade-only; Workflow can still reveal card-by-card.
 - Workflow cards reuse the same reveal system with a slightly stronger reveal distance and stagger.
 - Project overlays appear on hover, focus and tap.
 - Project Experience starts collapsed and expands in place to show the current project cards.
@@ -157,6 +161,8 @@ SEO notes:
 - Motion is lightweight and controlled through CSS transitions, scroll listeners and Intersection Observer instead of a motion library.
 - Header branding now uses a light-over-dark to blue-over-light swap rather than one fixed logo color.
 - Header navigation intentionally omits Home and Contact because those actions are already handled by the logo and header CTA.
+- Active CSS placeholder treatments now favor flat branded surfaces instead of visible grid textures.
+- Service card icons are real SVG files so they can be replaced independently later without changing card layout.
 - Project Experience and About now use in-place expandable regions instead of showing all secondary content immediately.
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
@@ -171,6 +177,8 @@ SEO notes:
 - JavaScript rendering uses `innerHTML` from local constants; safe in the current static context, but should be reconsidered if content becomes externally managed.
 - Hero parallax should be tested on physical mobile devices.
 - Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
+- The Hero title weight interaction should be checked in a live browser for subtlety and layout stability.
+- New service SVG icons should be visually reviewed against the final service-card rhythm.
 - The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.
 - The initial page fade should be checked against GitHub Pages load behavior to confirm it does not feel too subtle or too slow.
 - Project Experience and About toggles should be tested in a live browser to confirm the expand/collapse rhythm and transition height behavior.
@@ -189,6 +197,8 @@ SEO notes:
 - Review the lighter General Sans body weight on mobile and lower-density displays.
 - Validate Hero parallax and project overlay behavior in a real browser.
 - Validate workflow card balance, especially steps with longer titles on tablet and mobile widths.
+- Validate the fade-only reveal timing across the page.
+- Validate the new service icon assets at desktop and mobile sizes.
 - Validate the white-to-blue logo swap across desktop, mobile and anchor navigation states.
 - Validate the initial page fade on live hosting and under slower network conditions.
 - Validate the Project Experience and About expandable interactions in desktop and mobile browsers.
@@ -199,4 +209,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass compacted the workflow cards, merged step number + title into a unified heading treatment, and cleaned the visible header navigation while preserving all existing copy and the overall page structure.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass polished header spacing, active placeholder treatments, service icons, global reveal motion and the Hero title scroll interaction while preserving content and structure.

@@ -101,41 +101,48 @@ const servicesContent = {
 };
 
 // Services: commercial service cards, separate from BDI Framework steps.
+// Service icons: SVG assets are placeholders and can be replaced later without changing card layout.
 const services = [
   {
     title: "CAD to BIM",
     description:
       "Convert existing CAD files, PDFs or drawings into structured BIM models ready for coordination and development.",
+    icon: "./assets/icons/services/cad-to-bim-icon.svg",
     frameworkRelation: ["Model", "Structure"],
   },
   {
     title: "Specialty BIM Modeling",
     description:
       "Create detailed BIM models for architecture, structure and MEP systems with clear technical organization.",
+    icon: "./assets/icons/services/specialty-bim-modeling-icon.svg",
     frameworkRelation: ["Model", "Structure"],
   },
   {
     title: "3D Coordination",
     description:
       "Identify and resolve clashes between disciplines before construction to reduce rework and coordination issues.",
+    icon: "./assets/icons/services/coordination-3d-icon.svg",
     frameworkRelation: ["Coordinate"],
   },
   {
     title: "Construction Documentation",
     description:
       "Produce drawings, specifications and technical documentation ready for permits, coordination and construction.",
+    icon: "./assets/icons/services/construction-documentation-icon.svg",
     frameworkRelation: ["Deliver"],
   },
   {
     title: "Cost & Quantity Estimation",
     description:
       "Extract quantities, material takeoffs and cost-related project information directly from BIM models.",
+    icon: "./assets/icons/services/cost-quantity-estimation-icon.svg",
     frameworkRelation: ["Quantify"],
   },
   {
     title: "4D Construction Planning",
     description:
       "Support sequencing and timeline planning through 4D simulation based on model and construction data.",
+    icon: "./assets/icons/services/construction-planning-4d-icon.svg",
     frameworkRelation: ["Quantify", "Deliver"],
   },
 ];
@@ -244,8 +251,7 @@ const contactInfo = {
 // Motion settings: keep animations controlled and easy to disable or adjust.
 const motionSettings = {
   heroParallaxStrength: 0.08,
-  revealDistance: 18,
-  revealDuration: 520,
+  revealDuration: 620,
   revealThreshold: 0.18,
   revealRootMargin: "0px 0px -8% 0px",
   aboutCardsDelay: 40,
@@ -394,7 +400,9 @@ function renderServices() {
     .map(
       (service) => `
         <article class="service-card reveal">
-          <div class="service-icon" aria-hidden="true"></div>
+          <div class="service-icon" aria-hidden="true">
+            <img src="${service.icon}" alt="" loading="lazy" />
+          </div>
           <div>
             <h3>${service.title}</h3>
             <p>${service.description}</p>
@@ -569,6 +577,7 @@ function setupNavigation() {
   const toggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelectorAll(".site-nav a");
   const headerCta = document.querySelector("#header-contact-cta");
+  const heroTitle = document.querySelector("#hero-headline");
 
   if (!header || !toggle) return;
 
@@ -579,7 +588,13 @@ function setupNavigation() {
 
   // Header scroll behavior: adjust background, blur, border or shadow here.
   function updateHeaderScrollState() {
-    header.classList.toggle("is-scrolled", window.scrollY > 12);
+    const isScrolled = window.scrollY > 12;
+    header.classList.toggle("is-scrolled", isScrolled);
+
+    // Hero title scroll interaction: subtly increase font weight when the user starts scrolling.
+    if (!prefersReducedMotion.matches) {
+      heroTitle?.classList.toggle("hero-title--scrolled", isScrolled);
+    }
   }
 
   toggle.addEventListener("click", () => {

@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Specialty BIM Modeling icon</title>
+  <path d="M32 8l22 12v24L32 56 10 44V20L32 8Z" fill="#eef5ff"/>
+  <path d="M32 8v48M10 20l22 12 22-12M10 44l22-12 22 12" stroke="#002d72" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M32 32l10-6v12l-10 6-10-6V26l10 6Z" fill="#1e88e5" opacity=".92"/>
+</svg>

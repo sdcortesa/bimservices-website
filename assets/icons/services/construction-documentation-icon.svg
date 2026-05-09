@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Construction Documentation icon</title>
+  <rect x="14" y="8" width="36" height="48" rx="3" fill="#eef5ff" stroke="#002d72" stroke-width="3"/>
+  <path d="M22 22h20M22 31h20M22 40h12" stroke="#1e88e5" stroke-width="3" stroke-linecap="square"/>
+  <path d="M42 8v12h8" fill="none" stroke="#002d72" stroke-width="3"/>
+</svg>
