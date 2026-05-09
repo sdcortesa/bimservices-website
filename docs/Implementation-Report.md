@@ -2,40 +2,153 @@
 
 ## Audit Implementation Summary
 
-This iteration polished the Hero, global motion, placeholders, header spacing and service icons. The pass stayed within visual refinement and microinteraction work: no copy, section structure, service order or metadata changed.
+This iteration integrated a provisional Three.js model into the existing Hero. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while adding a modular 3D canvas, transparent fallback image, controlled scroll rotation and horizontal-only drag interaction.
 
 ## Files Modified
 
-- `assets/icons/services/cad-to-bim-icon.svg`
-- `assets/icons/services/specialty-bim-modeling-icon.svg`
-- `assets/icons/services/coordination-3d-icon.svg`
-- `assets/icons/services/construction-documentation-icon.svg`
-- `assets/icons/services/cost-quantity-estimation-icon.svg`
-- `assets/icons/services/construction-planning-4d-icon.svg`
-- `assets/images/team/team-group-placeholder.jpg`
-- `assets/images/projects/project-coordination-package.svg`
-- `assets/images/projects/project-documentation-set.svg`
-- `assets/images/projects/project-residential-bim-support.svg`
-- `assets/images/workflow/workflow-step-04-placeholder.svg`
-- `assets/images/workflow/workflow-step-05-placeholder.svg`
-- `assets/logos/bim-services-logo-white-01.svg`
-- `assets/logos/bim-services-logo.svg`
+- `assets/models/hero/cabana-tusa.glb`
+- `assets/images/hero/hero-3d-fallback.png`
 - `css/styles.css`
-- `js/main.js`
+- `js/hero-3d.js`
 - `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
 - `docs/Plan.md`
 
+Pre-existing manual change detected and preserved:
+
+- `assets/images/hero/hero-main-placeholder.svg`
+
 ## Main Changes
 
-- Added six replaceable SVG service icons under `assets/icons/services/`.
-- Connected service icon paths through the existing `services` data in `js/main.js`.
-- Balanced header lateral spacing so the logo and `Let's talk` CTA breathe more evenly.
-- Removed active CSS grid textures from Hero, service icon, project placeholder, team placeholder and contact-panel treatments.
-- Changed global reveal motion to fade-only.
-- Added a subtle Hero title font-weight change once scrolling starts.
-- Preserved existing copy, section structure, service order and metadata.
+- Added a modular Three.js Hero enhancement in `js/hero-3d.js`.
+- Moved the provisional `cabana-tusa.glb` model from the project root into `assets/models/hero/`.
+- Added a transparent PNG fallback at `assets/images/hero/hero-3d-fallback.png`.
+- Integrated a decorative Hero 3D canvas on the right side of the Hero on desktop.
+- Added mobile stacking so the 3D visual appears below the Hero copy.
+- Added scroll-linked horizontal rotation up to approximately 45 degrees.
+- Added click-and-drag horizontal rotation only, without zoom, pan or vertical orbit.
+- Preserved existing copy, section structure, service order, metadata and navigation.
+
+## 3D Hero Integration Review
+
+### Library and loading approach
+
+- Three.js is loaded as an ES module through an import map in `index.html`.
+- CDN/version used: `https://cdn.jsdelivr.net/npm/three@0.164.1/`.
+- `GLTFLoader` is loaded from the matching Three.js examples module path.
+- The implementation avoids multiple Three.js versions and does not add a build step or package manager dependency.
+
+### Model asset
+
+- Final GLB path used: `assets/models/hero/cabana-tusa.glb`
+- The model was not renamed.
+- The original file was detected as an untracked root-level asset before implementation and moved into `assets/models/hero/` to avoid leaving a loose 3D asset in the project root.
+- This GLB is provisional and should be replaced with the final optimized Hero model later.
+
+### Fallback asset
+
+- Fallback path used: `assets/images/hero/hero-3d-fallback.png`
+- The fallback is a transparent PNG placeholder created for this iteration so the Hero never shows a broken or empty visual if 3D loading fails.
+- This fallback is not a final rendered PNG of the GLB model; it should be replaced with a transparent render of the final model when that visual is ready.
+
+### Hero integration
+
+- `index.html` now includes a decorative `.hero-3d` region inside the existing Hero stage.
+- The region contains a canvas host and fallback image.
+- The canvas uses a transparent renderer so it integrates with the current Deep Sapphire Hero background.
+- CSS positions the 3D area on the right side of the Hero on desktop.
+- On mobile, the same 3D region stacks below the Hero copy to avoid competing with the H1, supporting copy and CTAs.
+- The Hero overlay now sits above the 3D layer with `pointer-events: none` to visually integrate the model without blocking drag interaction or CTA clicks.
+
+### Scroll rotation
+
+- Scroll rotation is implemented in `js/hero-3d.js`.
+- Setting used: `maxScrollRotationDegrees: 45`
+- The model rotates horizontally based on the Hero scroll progress.
+- The scroll effect does not zoom, pan or move the model vertically.
+
+### Manual interaction
+
+- Manual interaction uses pointer events on the `.hero-3d` region.
+- Click-and-drag modifies horizontal rotation only.
+- Setting used: `maxManualRotationDegrees: 45`
+- Setting used: `dragSensitivity: 0.006`
+- `OrbitControls` is not used, which prevents user-facing zoom, pan and free vertical orbit behavior.
+- Mouse drag is limited to the primary button.
+
+### Mobile behavior
+
+- Mobile 3D remains enabled through `enableMobile3D: true`.
+- Renderer pixel ratio is capped lower on mobile: up to `1.35`.
+- The 3D area uses a controlled responsive height and appears below the Hero text.
+- If WebGL, module loading or model loading fails on mobile, the transparent fallback PNG remains visible.
+
+### Reduced motion
+
+- `prefers-reduced-motion` disables automatic scroll-driven 3D rotation.
+- The scene can remain static, and the rest of the Hero content stays accessible.
+- CSS reduced-motion rules also remove visual transitions globally.
+
+### Performance considerations
+
+- The renderer uses `alpha: true`, simple lights and no postprocessing.
+- Pixel ratio is capped to reduce high-density-device cost.
+- Rendering is skipped when the Hero 3D region is outside the viewport.
+- A load timeout of `9000ms` activates fallback if the GLB does not become usable quickly.
+- If the model fails, the render loop is cancelled instead of continuing indefinitely.
+
+### Accessibility
+
+- The 3D region is marked `aria-hidden="true"` because it is decorative.
+- The fallback image has empty `alt` text for the same reason.
+- Hero H1, supporting copy and CTAs remain normal HTML and do not depend on Three.js.
+- The overlay uses `pointer-events: none`, so it does not block Hero links or 3D drag interaction.
+
+### Git state before implementation
+
+- Local branch: `main`
+- Tracking branch: `origin/main`
+- Pre-existing changes detected before coding:
+  - `assets/images/hero/hero-main-placeholder.svg`
+  - untracked root file `cabana-tusa.glb`
+- The pre-existing Hero placeholder SVG change was preserved.
+
+### Git state after implementation before final sync
+
+- Modified files include:
+  - `assets/images/hero/hero-main-placeholder.svg`
+  - `css/styles.css`
+  - `index.html`
+  - `docs/Documentation.md`
+  - `docs/Implementation-Report.md`
+  - `docs/Plan.md`
+- New files include:
+  - `assets/models/hero/cabana-tusa.glb`
+  - `assets/images/hero/hero-3d-fallback.png`
+  - `js/hero-3d.js`
+- Commit/push status will be finalized after the implementation report is staged and synced.
+
+### Validation performed
+
+- `node --check js/main.js` completed without syntax errors.
+- `node --check js/hero-3d.js` completed without syntax errors.
+- Static path checks confirmed the GLB, fallback PNG, logo assets, CSS and JavaScript files exist.
+- A temporary Node static server confirmed local HTTP access for:
+  - `/index.html`
+  - `/assets/models/hero/cabana-tusa.glb`
+  - `/assets/images/hero/hero-3d-fallback.png`
+  - `/js/hero-3d.js`
+- The fallback PNG was verified as `Format32bppArgb`, confirming transparent PNG support.
+- Browser automation with Playwright was not available in the current environment, so visual WebGL QA remains pending.
+
+### Open review points
+
+- Test the module import and GLB loading on GitHub Pages, not only via static code inspection.
+- Replace the temporary fallback PNG with a transparent render of the actual final model.
+- Optimize the final GLB before consolidating the 3D Hero direction.
+- Review mobile performance on a real device before increasing visual complexity.
+- Confirm the 45-degree scroll and drag range feels subtle enough in a live browser.
 
 ## Hero Polish + Global Motion Refinement Review
 

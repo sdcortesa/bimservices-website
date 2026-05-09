@@ -6,16 +6,19 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
-The latest iteration polished the Hero, placeholders, service icons and global motion. Header spacing was balanced, placeholder grids were removed from active CSS treatments, service cards now use replaceable SVG icon assets, global reveal motion is fade-only, and the Hero title subtly increases weight when the user starts scrolling.
+The latest iteration integrated a provisional Three.js Hero model as a progressive enhancement. The Hero now keeps the existing copy and CTAs while adding a right-side 3D visual on desktop, a stacked 3D visual on mobile and a transparent PNG fallback if WebGL, Three.js or the GLB model fails.
 
 ## Project Structure
 
 - `index.html` is the main entry file and includes metadata, Fontshare stylesheet loading, stylesheet and script references.
 - `css/styles.css` contains the visual system tokens, layout rules, responsive behavior, component styles and motion/focus states.
 - `js/main.js` contains editable content data, rendering functions, navigation behavior, project overlay interaction, Hero parallax, global reveal motion and contact-form mailto logic.
+- `js/hero-3d.js` contains the Three.js Hero scene, GLB loading, fallback handling, scroll rotation and horizontal drag interaction.
 - `assets/logos/bim-services-logo.svg` is the blue/original SVG logo used once the header is scrolled over light backgrounds.
 - `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
 - `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
+- `assets/models/hero/cabana-tusa.glb` is the provisional 3D Hero model.
+- `assets/images/hero/hero-3d-fallback.png` is the transparent fallback image shown if the 3D enhancement cannot render.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five temporary framework step placeholder graphics.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
@@ -39,7 +42,7 @@ The latest iteration polished the Hero, placeholders, service icons and global m
 - CSS
 - JavaScript
 - No front-end framework
-- No JavaScript libraries
+- Three.js loaded as an ES module from `cdn.jsdelivr.net` through an import map in `index.html`
 - Fontshare stylesheet loaded from `api.fontshare.com`
 
 ## Typography
@@ -85,6 +88,8 @@ Current active assets:
 
 - Scrolled header logo: `assets/logos/bim-services-logo.svg`
 - Top-of-page header logo: `assets/logos/bim-services-logo-white-01.svg`
+- Provisional Hero GLB model: `assets/models/hero/cabana-tusa.glb`
+- Hero 3D transparent fallback: `assets/images/hero/hero-3d-fallback.png`
 - Service icons: `assets/icons/services/*.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework placeholders: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
@@ -98,6 +103,8 @@ Current active assets:
 Temporary or pending assets:
 
 - Hero visual is a placeholder and should be replaced with a real BIM render, model capture, architectural visual or interactive asset.
+- `assets/models/hero/cabana-tusa.glb` is provisional and should be replaced with the final optimized Hero model when ready.
+- `assets/images/hero/hero-3d-fallback.png` is a generated transparent placeholder, not a final rendered PNG of the GLB model.
 - Project visuals are placeholders and should be replaced when real or validated project examples are available.
 - Team photos and bios are placeholders.
 - Contact email and WhatsApp number are placeholders.
@@ -126,6 +133,11 @@ Temporary or pending assets:
 - Visible header navigation now includes only How We Work, Services, Projects and About.
 - Internal anchor links navigate within the single page.
 - The page uses a short initial fade-in on load, disabled when `prefers-reduced-motion` is enabled.
+- Hero 3D is loaded as a progressive enhancement through `js/hero-3d.js`.
+- The Hero 3D model rotates horizontally with scroll up to approximately 45 degrees.
+- The Hero 3D model supports click-and-drag horizontal rotation only; zoom, pan and vertical orbit are not exposed.
+- The Hero 3D canvas uses a transparent background and falls back to `assets/images/hero/hero-3d-fallback.png` if WebGL, Three.js or the model load fails.
+- The Hero 3D scroll rotation is disabled when `prefers-reduced-motion` is active.
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
 - Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback. Global reveal is fade-only; Workflow can still reveal card-by-card.
 - Workflow cards reuse the same reveal system with a slightly stronger reveal distance and stagger.
@@ -167,6 +179,8 @@ SEO notes:
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
 - Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
+- The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without WebGL.
+- The 3D implementation favors performance over spectacle by using simple lights, capped pixel ratio, no postprocessing and a fallback timeout.
 
 ## Known Issues
 
@@ -178,6 +192,10 @@ SEO notes:
 - Hero parallax should be tested on physical mobile devices.
 - Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
 - The Hero title weight interaction should be checked in a live browser for subtlety and layout stability.
+- The Three.js Hero should be tested on GitHub Pages because it depends on CDN module loading and GLB asset loading.
+- The 3D Hero fallback PNG is a temporary transparent placeholder and should be replaced with a real transparent render of the final model.
+- The provisional `cabana-tusa.glb` model has not been web-optimized inside this iteration.
+- The 3D Hero should be tested on physical mobile devices for performance, interaction comfort and fallback behavior.
 - New service SVG icons should be visually reviewed against the final service-card rhythm.
 - The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.
 - The initial page fade should be checked against GitHub Pages load behavior to confirm it does not feel too subtle or too slow.
@@ -191,6 +209,10 @@ SEO notes:
 
 - Confirm real WhatsApp number and email.
 - Replace Hero, project and team placeholders with validated assets.
+- Replace the provisional Hero GLB with the final optimized model.
+- Replace the temporary Hero 3D fallback PNG with a transparent render of the final Hero model.
+- Validate Three.js loading, scroll rotation and horizontal drag on GitHub Pages.
+- Optimize/compress the final GLB before considering the 3D Hero direction consolidated.
 - Replace the About group-photo placeholder with a real team photo when available.
 - Each team member already has an individual JPG placeholder ready for direct replacement.
 - Decide whether unused legacy project sample placeholders should be deleted or archived.
@@ -209,4 +231,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass polished header spacing, active placeholder treatments, service icons, global reveal motion and the Hero title scroll interaction while preserving content and structure.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass added a modular Three.js Hero integration with a provisional GLB model, transparent PNG fallback, scroll rotation, restricted horizontal drag and updated documentation while preserving Hero copy, CTAs and page structure.

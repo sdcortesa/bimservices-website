@@ -14,6 +14,15 @@
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,600&f[]=general-sans@300,400&display=swap"
       rel="stylesheet"
     />
+    <!-- Three.js import map: one module version for the progressive Hero 3D enhancement. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -83,6 +92,16 @@
 
             <!-- Hero overlay: adjust opacity to balance text legibility and visual impact. -->
             <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-3d" data-hero-3d aria-hidden="true">
+              <div class="hero-3d-canvas" data-hero-3d-canvas></div>
+              <img
+                class="hero-3d-fallback"
+                data-hero-3d-fallback
+                src="./assets/images/hero/hero-3d-fallback.png"
+                alt=""
+              />
+            </div>
 
             <div class="hero-copy">
               <p class="eyebrow" id="hero-eyebrow">For architecture, engineering and construction teams</p>
@@ -350,6 +369,7 @@
       </div>
     </footer>
 
+    <script type="module" src="./js/hero-3d.js"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>

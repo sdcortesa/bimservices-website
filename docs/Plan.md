@@ -16,9 +16,14 @@ Ready to keep:
 - Deep Sapphire, Royal Blue, Neon and Luxe Ivory color system.
 - Soft technical radius system.
 - Lightweight JavaScript interactions.
+- Modular Three.js Hero enhancement in `js/hero-3d.js`, with the core Hero content still independent from WebGL.
 
 Still in testing:
 
+- Three.js Hero model integration using `assets/models/hero/cabana-tusa.glb`.
+- Hero 3D transparent fallback behavior using `assets/images/hero/hero-3d-fallback.png`.
+- Hero 3D scroll rotation and restricted horizontal drag.
+- Hero 3D performance on GitHub Pages and mobile devices.
 - Hero title font-weight interaction on scroll.
 - Fade-only reveal rhythm across the full page.
 - Service icon SVG balance inside cards.
@@ -48,10 +53,17 @@ Do not touch yet:
 - Backend form handling.
 - Structured data, until business/entity details are confirmed.
 
-## Milestone 0: Motion and About QA
+## Milestone 0: Hero 3D, Motion and About QA
 
 Acceptance criteria:
 
+- The provisional GLB appears on the right side of the Hero on desktop.
+- On mobile, the 3D visual stacks below the Hero copy without hiding CTAs.
+- Scroll rotates the model horizontally in a controlled range of roughly 45 degrees.
+- Click-and-drag rotates horizontally only, with no zoom, pan or vertical orbit behavior.
+- The transparent fallback PNG appears if WebGL, CDN module loading or GLB loading fails.
+- `prefers-reduced-motion` disables the automatic 3D scroll rotation.
+- Hero text, CTAs and navigation remain usable if the 3D enhancement fails.
 - Header CTA and logo spacing feel balanced within the header container.
 - Active placeholders feel cleaner and no longer read as wireframes.
 - Service icons feel consistent in size, position and visual weight.
@@ -73,6 +85,11 @@ Acceptance criteria:
 
 Validation:
 
+- Test the Hero on GitHub Pages or a local server, not only as a local file.
+- Temporarily block or rename the GLB path to confirm fallback behavior.
+- Test horizontal drag with mouse and touch.
+- Confirm no Three.js console errors appear during load, resize or scroll.
+- Review mobile performance on at least one real device before consolidating the 3D direction.
 - Review header spacing at desktop, tablet and mobile widths.
 - Confirm active placeholder areas no longer show grid textures.
 - Check each service icon asset in the rendered service cards.

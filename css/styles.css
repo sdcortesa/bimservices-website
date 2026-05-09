@@ -379,6 +379,7 @@ section[id] {
   transform: translate3d(0, 0, 0) scale(1.04);
   transform-origin: center top;
   will-change: transform;
+  z-index: 0;
 }
 
 .hero-visual-layer::before {
@@ -404,6 +405,7 @@ section[id] {
   right: clamp(1.2rem, 3vw, 2rem);
   bottom: clamp(1.2rem, 3vw, 2rem);
   z-index: 1;
+  display: none;
 }
 
 .hero-visual-tag span {
@@ -423,14 +425,83 @@ section[id] {
 
 /* Hero overlay and parallax are experimental and should be easy to tune. */
 .hero-overlay {
+  z-index: 2;
+  pointer-events: none;
   background:
     linear-gradient(90deg, rgba(0, 45, 114, 0.86) 0%, rgba(0, 45, 114, 0.64) 34%, rgba(0, 45, 114, 0.28) 62%, rgba(0, 45, 114, 0.12) 100%),
     linear-gradient(180deg, rgba(0, 45, 114, 0.08), rgba(0, 45, 114, 0.22));
 }
 
+/* Hero 3D canvas: premium progressive enhancement over the existing Hero visual area. */
+.hero-3d {
+  position: absolute;
+  z-index: 1;
+  top: 13%;
+  right: clamp(0.75rem, 3vw, 2.5rem);
+  bottom: 7%;
+  width: min(48vw, 42rem);
+  min-width: 24rem;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.hero-3d.is-dragging {
+  cursor: grabbing;
+}
+
+.hero-3d-canvas,
+.hero-3d-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-3d-canvas {
+  opacity: 0;
+  transition: opacity 420ms ease-out;
+}
+
+.hero-3d-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-3d-fallback {
+  object-fit: contain;
+  opacity: 1;
+  transform: scale(0.96);
+  filter: drop-shadow(0 28px 34px rgba(0, 19, 49, 0.18));
+  transition:
+    opacity 320ms ease-out,
+    transform 420ms ease-out;
+  pointer-events: none;
+}
+
+/* Fallback state: transparent PNG remains visible if Three.js, WebGL or the GLB model fails. */
+.hero-3d.is-loaded .hero-3d-canvas {
+  opacity: 1;
+}
+
+.hero-3d.is-loaded .hero-3d-fallback {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.hero-3d.is-fallback .hero-3d-canvas {
+  opacity: 0;
+}
+
+.hero-3d.is-fallback .hero-3d-fallback {
+  opacity: 1;
+}
+
 .hero-copy {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 37rem;
 }
 
@@ -1437,6 +1508,14 @@ html.motion-safe .workflow-card.is-visible {
     min-height: 88vh;
   }
 
+  .hero-3d {
+    top: 17%;
+    right: clamp(0.5rem, 2vw, 1.25rem);
+    bottom: 10%;
+    width: min(44vw, 32rem);
+    min-width: 18rem;
+  }
+
   .contact-shell {
     grid-template-columns: 1fr;
   }
@@ -1572,6 +1651,7 @@ html.motion-safe .workflow-card.is-visible {
   }
 
   .hero-copy {
+    order: 1;
     max-width: none;
   }
 
@@ -1588,6 +1668,26 @@ html.motion-safe .workflow-card.is-visible {
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .hero-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 1.7rem;
+  }
+
+  .hero-3d {
+    position: relative;
+    order: 2;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    min-width: 0;
+    height: clamp(14rem, 54vw, 20rem);
+    margin-top: 0.2rem;
   }
 
   .workflow-section {
