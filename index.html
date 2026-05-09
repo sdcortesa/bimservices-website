@@ -14,6 +14,10 @@
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,600&f[]=general-sans@300,400&display=swap"
       rel="stylesheet"
     />
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -85,7 +89,30 @@
             <div class="hero-overlay" aria-hidden="true"></div>
 
             <div class="hero-3d" data-hero-3d aria-hidden="true">
-              <div class="hero-3d-canvas" data-hero-3d-canvas></div>
+              <model-viewer
+                class="hero-model-viewer"
+                data-hero-model-viewer
+                src="./assets/models/hero/cabana-tusa.glb"
+                camera-controls
+                disable-zoom
+                disable-pan
+                auto-rotate
+                auto-rotate-delay="0"
+                rotation-per-second="8deg"
+                shadow-intensity="1"
+                shadow-softness="0.8"
+                exposure="1"
+                environment-image="neutral"
+                tone-mapping="aces"
+                camera-orbit="245deg 58deg 80%"
+                camera-target="0m 2m 0m"
+                min-camera-orbit="200deg 58deg 80%"
+                max-camera-orbit="290deg 58deg 80%"
+                field-of-view="28deg"
+                interaction-prompt="none"
+                loading="eager"
+                reveal="auto"
+              ></model-viewer>
             </div>
 
             <div class="hero-copy">

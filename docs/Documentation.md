@@ -13,8 +13,7 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `index.html` is the main entry file and includes metadata, Fontshare stylesheet loading, stylesheet and script references.
 - `css/styles.css` contains the visual system tokens, layout rules, responsive behavior, component styles and motion/focus states.
 - `js/main.js` contains editable content data, rendering functions, navigation behavior, project overlay interaction, Hero parallax, global reveal motion and contact-form mailto logic.
-- `js/hero-3d.js` contains the Three.js Hero scene, GLB loading, debug status handling, scroll rotation and horizontal drag interaction.
-- `js/vendor/three.bundle.mjs` and `js/vendor/GLTFLoader.bundle.mjs` are local ESM vendor files used by the Hero 3D integration so the page does not depend on a runtime Three.js CDN.
+- `js/hero-3d.js` contains the lightweight Hero model-viewer status handling and scroll-orbit refinement.
 - `assets/logos/bim-services-logo.svg` is the blue/original SVG logo used once the header is scrolled over light backgrounds.
 - `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
 - `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
@@ -42,7 +41,7 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - CSS
 - JavaScript
 - No front-end framework
-- Three.js loaded from local ESM vendor files in `js/vendor/`
+- `@google/model-viewer` loaded from `unpkg.com` for the Hero GLB embed.
 - Fontshare stylesheet loaded from `api.fontshare.com`
 
 ## Typography
@@ -177,8 +176,8 @@ SEO notes:
 - About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
 - Team photos use a branded blue treatment in the base state instead of fully natural color.
 - Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
-- The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without WebGL.
-- The 3D implementation favors performance over spectacle by using simple lights, capped pixel ratio and no postprocessing.
+- The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without the model.
+- The 3D implementation now uses `<model-viewer>` because the same GLB worked with that approach in a previous project and it reduces custom Three.js loader risk.
 
 ## Known Issues
 
@@ -190,7 +189,7 @@ SEO notes:
 - Hero parallax should be tested on physical mobile devices.
 - Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
 - The Hero title weight interaction should be checked in a live browser for subtlety and layout stability.
-- The Three.js Hero should be tested on GitHub Pages because it depends on local module loading and GLB asset loading.
+- The model-viewer Hero should be tested on GitHub Pages because it depends on the web component script and GLB asset loading.
 - Opening `index.html` directly from the filesystem can block GLB loading in some browsers; use GitHub Pages or a local HTTP server for 3D testing.
 - The fallback PNG was removed from the active Hero flow so model loading issues are not hidden by placeholder art.
 - The provisional `cabana-tusa.glb` model has not been web-optimized inside this iteration.
@@ -209,7 +208,7 @@ SEO notes:
 - Confirm real WhatsApp number and email.
 - Replace Hero, project and team placeholders with validated assets.
 - Replace the provisional Hero GLB with the final optimized model.
-- Validate local Three.js module loading, scroll rotation and horizontal drag on GitHub Pages.
+- Validate model-viewer loading, camera controls and scroll orbit on GitHub Pages.
 - Optimize/compress the final GLB before considering the 3D Hero direction consolidated.
 - Replace the About group-photo placeholder with a real team photo when available.
 - Each team member already has an individual JPG placeholder ready for direct replacement.
@@ -229,4 +228,4 @@ SEO notes:
 
 ## Last Audit Summary
 
-The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass removed the Hero fallback image, kept the modular Three.js integration, and exposed loading/error status directly while preserving Hero copy, CTAs and page structure.
+The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass replaced the custom Three.js Hero implementation with a `<model-viewer>` embed, removed fallback art and preserved Hero copy, CTAs and page structure.

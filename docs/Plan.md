@@ -16,12 +16,11 @@ Ready to keep:
 - Deep Sapphire, Royal Blue, Neon and Luxe Ivory color system.
 - Soft technical radius system.
 - Lightweight JavaScript interactions.
-- Modular Three.js Hero enhancement in `js/hero-3d.js`, with the core Hero content still independent from WebGL.
-- Local Three.js vendor modules in `js/vendor/` for the Hero 3D integration.
+- Hero GLB embed using `<model-viewer>`, with the core Hero content still independent from the 3D model.
 
 Still in testing:
 
-- Three.js Hero model integration using `assets/models/hero/cabana-tusa.glb`.
+- Model-viewer Hero integration using `assets/models/hero/cabana-tusa.glb`.
 - Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
 - Hero 3D performance on GitHub Pages and mobile devices.
@@ -90,8 +89,8 @@ Validation:
 - Do not validate the 3D model by opening `index.html` directly from the filesystem; browsers can block GLB loading outside HTTP.
 - Temporarily block or rename the GLB path to confirm `data-hero3d-status="error"` and `data-hero3d-error` are exposed.
 - Test horizontal drag with mouse and touch.
-- Confirm no Three.js console errors appear during load, resize or scroll.
-- Confirm `js/vendor/three.bundle.mjs` and `js/vendor/GLTFLoader.bundle.mjs` load on GitHub Pages.
+- Confirm no model-viewer console errors appear during load, resize or scroll.
+- Confirm the model-viewer web component and local GLB load on GitHub Pages.
 - Review mobile performance on at least one real device before consolidating the 3D direction.
 - Review header spacing at desktop, tablet and mobile widths.
 - Confirm active placeholder areas no longer show grid textures.

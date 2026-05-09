@@ -2,15 +2,13 @@
 
 ## Audit Implementation Summary
 
-This iteration removed the Hero fallback image and refocused the implementation on direct GLB loading. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while keeping the modular 3D canvas, controlled scroll rotation and horizontal-only drag interaction.
+This iteration replaced the custom Three.js Hero implementation with a `<model-viewer>` embed, matching the approach that already worked in another project. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while keeping the local GLB model and a controlled Hero 3D area.
 
 ## Files Modified
 
 - `assets/models/hero/cabana-tusa.glb`
 - `css/styles.css`
 - `js/hero-3d.js`
-- `js/vendor/three.bundle.mjs`
-- `js/vendor/GLTFLoader.bundle.mjs`
 - `index.html`
 - `docs/Documentation.md`
 - `docs/Implementation-Report.md`
@@ -22,30 +20,28 @@ Pre-existing manual change detected and preserved:
 
 ## Main Changes
 
-- Added a modular Three.js Hero enhancement in `js/hero-3d.js`.
+- Replaced the custom Three.js Hero enhancement with a `<model-viewer>` embed.
 - Moved the provisional `cabana-tusa.glb` model from the project root into `assets/models/hero/`.
 - Removed the transparent PNG fallback from the active Hero flow.
-- Kept the decorative Hero 3D canvas on the right side of the Hero on desktop.
+- Kept the decorative Hero 3D area on the right side of the Hero on desktop.
 - Added mobile stacking so the 3D visual appears below the Hero copy.
-- Added scroll-linked horizontal rotation up to approximately 45 degrees.
-- Added click-and-drag horizontal rotation only, without zoom, pan or vertical orbit.
+- Kept scroll-linked camera orbit refinement through `js/hero-3d.js`.
+- Enabled model-viewer camera controls while disabling zoom and pan.
 - Preserved existing copy, section structure, service order, metadata and navigation.
 
 ## 3D Hero Integration Review
 
 ### Library and loading approach
 
-- Three.js is loaded from local ESM vendor files inside `js/vendor/`.
-- Vendor source/version used: `three@0.164.1`.
-- `GLTFLoader` is loaded from a local bundled ESM file.
-- The previous CDN direct-import approach was replaced because remote loader modules can still fail on dependency resolution or network availability.
-- The runtime no longer depends on a Three.js CDN.
+- The Hero now uses `@google/model-viewer` loaded from `https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js`.
+- This matches the working embed approach provided by the user from another project.
+- The custom Three.js scene, `GLTFLoader` and local vendor modules were removed from the active implementation.
 - The implementation avoids a build step or package manager dependency.
 
 ### Model asset
 
 - Final GLB path used: `assets/models/hero/cabana-tusa.glb`
-- Runtime path resolution uses `new URL("../assets/models/hero/cabana-tusa.glb", import.meta.url).href` so the model path stays correct on GitHub Pages.
+- The model is referenced directly from the `<model-viewer>` tag as `./assets/models/hero/cabana-tusa.glb`.
 - The model was not renamed.
 - The original file was detected as an untracked root-level asset before implementation and moved into `assets/models/hero/` to avoid leaving a loose 3D asset in the project root.
 - This GLB is provisional and should be replaced with the final optimized Hero model later.
@@ -60,34 +56,31 @@ Pre-existing manual change detected and preserved:
 ### Hero integration
 
 - `index.html` now includes a decorative `.hero-3d` region inside the existing Hero stage.
-- The region contains only a canvas host.
-- The canvas uses a transparent renderer so it integrates with the current Deep Sapphire Hero background.
+- The region contains a `<model-viewer>` element.
+- The model-viewer background and poster color are transparent so the model integrates with the current Deep Sapphire Hero background.
 - CSS positions the 3D area on the right side of the Hero on desktop.
 - On mobile, the same 3D region stacks below the Hero copy to avoid competing with the H1, supporting copy and CTAs.
 - The Hero overlay now sits above the 3D layer with `pointer-events: none` to visually integrate the model without blocking drag interaction or CTA clicks.
 
 ### Scroll rotation
 
-- Scroll rotation is implemented in `js/hero-3d.js`.
+- Scroll orbit refinement is implemented in `js/hero-3d.js`.
 - Setting used: `maxScrollRotationDegrees: 45`
-- The model rotates horizontally based on the Hero scroll progress.
+- The model-viewer camera orbit updates horizontally based on Hero scroll progress.
 - The scroll effect does not zoom, pan or move the model vertically.
 
 ### Manual interaction
 
-- Manual interaction uses pointer events on the `.hero-3d` region.
-- Click-and-drag modifies horizontal rotation only.
-- Setting used: `maxManualRotationDegrees: 45`
-- Setting used: `dragSensitivity: 0.006`
-- `OrbitControls` is not used, which prevents user-facing zoom, pan and free vertical orbit behavior.
-- Mouse drag is limited to the primary button.
+- Manual interaction is handled by `model-viewer` through `camera-controls`.
+- Zoom is disabled with `disable-zoom`.
+- Pan is disabled with `disable-pan`.
+- Camera orbit limits keep the model in a controlled range.
 
 ### Mobile behavior
 
-- Mobile 3D remains enabled through `enableMobile3D: true`.
-- Renderer pixel ratio is capped lower on mobile: up to `1.35`.
+- Mobile 3D remains enabled through the same `<model-viewer>` element.
 - The 3D area uses a controlled responsive height and appears below the Hero text.
-- If WebGL, module loading or model loading fails on mobile, the Hero 3D region stays empty and exposes debug state instead of showing fallback art.
+- If model-viewer or model loading fails on mobile, the Hero 3D region stays empty and exposes debug state instead of showing fallback art.
 
 ### Reduced motion
 
@@ -97,35 +90,29 @@ Pre-existing manual change detected and preserved:
 
 ### Performance considerations
 
-- The renderer uses `alpha: true`, simple lights and no postprocessing.
-- Pixel ratio is capped to reduce high-density-device cost.
-- Rendering is skipped when the Hero 3D region is outside the viewport.
-- The previous visual fallback timeout was removed so the implementation focuses on direct model loading.
+- `<model-viewer>` owns the renderer and GLB loading lifecycle.
+- The implementation is simpler than the previous custom Three.js setup.
 - If the model fails, the error is logged and stored on `data-hero3d-error`.
 
 ### Model loading fix
 
 - The screenshot review showed the Hero was staying in fallback state.
-- The most likely weak points were the import map dependency and the relative asset path strategy.
-- The patch removed the import map from `index.html`.
-- `js/hero-3d.js` now imports Three.js and `GLTFLoader` from local vendor files.
-- GLB and fallback paths are now resolved from `import.meta.url`, which is safer for GitHub Pages project paths.
-- The module now uses dynamic `import()` so failures can be reported after the script starts, instead of failing silently at static import evaluation.
-- A `data-hero3d-status` attribute now reports `initializing`, `modules-loading`, `model-loading`, `loaded`, `disabled` or `error` on the Hero 3D container for easier debugging.
+- The custom Three.js path was replaced by the user-proven `<model-viewer>` approach.
+- `js/hero-3d.js` now only manages debug status and scroll orbit refinement.
+- A `data-hero3d-status` attribute now reports `model-viewer-initializing`, `loaded` or `error` on the Hero 3D container for easier debugging.
 - `data-hero3d-error` stores the latest error message when model or module loading fails.
 
-### Local vendor module pass
+### Local vendor cleanup
 
-- Runtime imports were moved from `esm.sh` to local files:
+- Removed the local Three.js vendor files:
   - `js/vendor/three.bundle.mjs`
   - `js/vendor/GLTFLoader.bundle.mjs`
-- This removes external CDN dependency from the runtime Hero 3D path.
 - The active Hero no longer includes a visual fallback image, so model-loading failures are no longer hidden by placeholder art.
 
 ### Accessibility
 
 - The 3D region is marked `aria-hidden="true"` because it is decorative.
-- Hero H1, supporting copy and CTAs remain normal HTML and do not depend on Three.js.
+- Hero H1, supporting copy and CTAs remain normal HTML and do not depend on the 3D model.
 - The overlay uses `pointer-events: none`, so it does not block Hero links or 3D drag interaction.
 
 ### Git state before implementation
@@ -164,10 +151,20 @@ Pre-existing manual change detected and preserved:
   - `/assets/models/hero/cabana-tusa.glb`
   - `/js/hero-3d.js`
 - Browser automation with Playwright was not available in the current environment, so visual WebGL QA remains pending.
+- Node fetch confirmed the `@google/model-viewer` script URL returns `200`.
+- Local static-server checks confirmed `/index.html`, `/js/hero-3d.js` and `/assets/models/hero/cabana-tusa.glb` resolve with HTTP `200`.
+
+### Model-viewer replacement pass
+
+- Replaced the custom Three.js canvas host with a native `<model-viewer>` element in `index.html`.
+- Removed the local Three.js vendor files from `js/vendor/`.
+- Kept `js/hero-3d.js` as a small helper for load/error status and scroll orbit updates.
+- Current debug states are exposed through `data-hero3d-status` and `data-hero3d-error`.
+- The active model path remains `./assets/models/hero/cabana-tusa.glb`.
 
 ### Open review points
 
-- Test the module import and GLB loading on GitHub Pages, not only via static code inspection.
+- Test model-viewer and GLB loading on GitHub Pages, not only via static code inspection.
 - If a fallback is reintroduced later, use it only after the GLB loading path is confirmed stable.
 - Optimize the final GLB before consolidating the 3D Hero direction.
 - Review mobile performance on a real device before increasing visual complexity.
