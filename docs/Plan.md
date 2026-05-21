@@ -155,7 +155,7 @@ Validation:
 
 - Confirm all referenced asset paths exist.
 - Confirm image alt text matches the real asset purpose.
-- Confirm visual files remain organized under `assets/images/`.
+- Confirm visual files remain organized under `assets/images/` and favicon/icon files remain organized under `assets/icons/`.
 
 ## Milestone 4: Typography and Readability Review
 
@@ -183,7 +183,7 @@ Acceptance criteria:
 Validation:
 
 - Run a static path check.
-- Confirm active assets listed in documentation match current UI references.
+- Confirm active assets listed in documentation match current UI references, including Workflow SVGs and the SVG favicon.
 
 ## Milestone 6: SEO and Entity Refinement
 

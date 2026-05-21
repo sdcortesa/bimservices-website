@@ -17,9 +17,10 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/logos/bim-services-logo.svg` is the blue/original SVG logo used once the header is scrolled over light backgrounds.
 - `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
 - `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
+- `assets/icons/favicon.svg` is the SVG favicon connected from `index.html`.
 - `assets/models/hero/cabana-tusa.glb` is the provisional 3D Hero model.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
-- `assets/images/workflow/` contains five temporary framework step placeholder graphics.
+- `assets/images/workflow/` contains five SVG framework step visuals used by the How We Work cards.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
 - `assets/images/team/team-group-placeholder.jpg` is the temporary group-photo preview for the collapsed About section.
 - `assets/images/team/team-member-01-placeholder.jpg`, `team-member-02-placeholder.jpg` and `team-member-03-placeholder.jpg` are individual temporary team-photo placeholders.
@@ -87,10 +88,11 @@ Current active assets:
 
 - Scrolled header logo: `assets/logos/bim-services-logo.svg`
 - Top-of-page header logo: `assets/logos/bim-services-logo-white-01.svg`
+- Favicon: `assets/icons/favicon.svg`
 - Provisional Hero GLB model: `assets/models/hero/cabana-tusa.glb`
 - Service icons: `assets/icons/services/*.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
-- Framework placeholders: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
+- Framework visuals: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
 - Project placeholders: `assets/images/projects/project-residential-bim-support.svg`, `project-coordination-package.svg`, `project-documentation-set.svg`
 - Team group preview: `assets/images/team/team-group-placeholder.jpg`
 - Team placeholders:
@@ -178,6 +180,7 @@ SEO notes:
 - Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
 - The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without the model.
 - The 3D implementation now uses `<model-viewer>` because the same GLB worked with that approach in a previous project and it reduces custom Three.js loader risk.
+- The Hero model-viewer camera is closer than the original test state and the vertical orbit is locked so interaction remains horizontal and presentation-safe.
 
 ## Known Issues
 

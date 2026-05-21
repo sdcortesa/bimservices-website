@@ -29,6 +29,25 @@ Pre-existing manual change detected and preserved:
 - Enabled model-viewer camera controls while disabling zoom and pan.
 - Preserved existing copy, section structure, service order, metadata and navigation.
 
+## Workflow Image Asset Update
+
+- Updated the five How We Work / Framework image references in `js/main.js` back to SVG after the workflow visuals were replaced manually.
+- Active workflow assets now use:
+  - `assets/images/workflow/workflow-step-01-placeholder.svg`
+  - `assets/images/workflow/workflow-step-02-placeholder.svg`
+  - `assets/images/workflow/workflow-step-03-placeholder.svg`
+  - `assets/images/workflow/workflow-step-04-placeholder.svg`
+  - `assets/images/workflow/workflow-step-05-placeholder.svg`
+- The previous PNG workflow references are no longer active.
+- No workflow text, step order, layout or interaction behavior was changed.
+
+## Favicon Asset Review
+
+- Created `assets/icons/favicon.svg` as a real editable SVG favicon asset.
+- Connected the favicon from `index.html` with `<link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />`.
+- The favicon uses the active BIM Services palette: Deep Sapphire, white and Neon.
+- No layout, content, navigation or interaction behavior was changed.
+
 ## 3D Hero Integration Review
 
 ### Library and loading approach
@@ -162,6 +181,15 @@ Pre-existing manual change detected and preserved:
 - Current debug states are exposed through `data-hero3d-status` and `data-hero3d-error`.
 - The active model path remains `./assets/models/hero/cabana-tusa.glb`.
 
+### Hero model layout refinement
+
+- Expanded the Hero 3D area so the model occupies the right visual field instead of appearing as a small floating object.
+- Moved the model-viewer camera closer with `camera-orbit="238deg 58deg 32%"`.
+- Kept zoom and pan disabled.
+- Locked vertical camera orbit by using the same polar angle in `min-camera-orbit` and `max-camera-orbit`.
+- Kept horizontal camera orbit constrained between `200deg` and `290deg`.
+- Added a subtle branded radial glow behind the model to integrate it with the Deep Sapphire Hero background.
+
 ### Open review points
 
 - Test model-viewer and GLB loading on GitHub Pages, not only via static code inspection.
@@ -292,8 +320,8 @@ Pre-existing manual change detected and preserved:
 - `assets/images/projects/project-coordination-package.svg`
 - `assets/images/projects/project-documentation-set.svg`
 - `assets/images/projects/project-residential-bim-support.svg`
-- `assets/images/workflow/workflow-step-04-placeholder.svg`
-- `assets/images/workflow/workflow-step-05-placeholder.svg`
+- `assets/images/workflow/workflow-step-04-placeholder.png`
+- `assets/images/workflow/workflow-step-05-placeholder.png`
 - `assets/logos/bim-services-logo-white-01.svg`
 - `assets/logos/bim-services-logo.svg`
 - `index.html`
@@ -311,8 +339,8 @@ Pre-existing manual change detected and preserved:
   - `assets/images/projects/project-coordination-package.svg`
   - `assets/images/projects/project-documentation-set.svg`
   - `assets/images/projects/project-residential-bim-support.svg`
-  - `assets/images/workflow/workflow-step-04-placeholder.svg`
-  - `assets/images/workflow/workflow-step-05-placeholder.svg`
+  - `assets/images/workflow/workflow-step-04-placeholder.png`
+  - `assets/images/workflow/workflow-step-05-placeholder.png`
   - `assets/logos/bim-services-logo-white-01.svg`
   - `assets/logos/bim-services-logo.svg`
 - No untracked files were detected in the initial review.
@@ -659,8 +687,8 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 - `assets/images/projects/project-coordination-package.svg`
 - `assets/images/projects/project-documentation-set.svg`
 - `assets/images/projects/project-residential-bim-support.svg`
-- `assets/images/workflow/workflow-step-04-placeholder.svg`
-- `assets/images/workflow/workflow-step-05-placeholder.svg`
+- `assets/images/workflow/workflow-step-04-placeholder.png`
+- `assets/images/workflow/workflow-step-05-placeholder.png`
 - `assets/logos/bim-services-logo-white-01.svg`
 - `assets/logos/bim-services-logo.svg`
 - `index.html`
@@ -742,6 +770,7 @@ Open responsive notes:
 Reviewed active asset references:
 
 - `assets/logos/bim-services-logo.svg`
+- `assets/icons/favicon.svg`
 - `assets/images/hero/hero-main-placeholder.svg`
 - `assets/images/workflow/workflow-step-01-placeholder.svg`
 - `assets/images/workflow/workflow-step-02-placeholder.svg`

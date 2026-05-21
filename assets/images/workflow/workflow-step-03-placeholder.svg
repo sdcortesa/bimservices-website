@@ -7,53 +7,57 @@
         fill: #fff;
       }
 
-      .st1 {
-        stroke: #1e88e5;
+      .st0, .st1, .st2, .st3, .st4, .st5 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
-      .st1, .st2, .st3, .st4 {
-        fill: none;
+      .st0, .st3 {
+        stroke-width: 8.7px;
       }
 
-      .st1, .st3, .st4 {
-        stroke-width: 8px;
-      }
-
-      .st5, .st6, .st7 {
-        isolation: isolate;
-      }
-
-      .st3 {
+      .st0, .st4, .st5 {
         stroke: #002d72;
       }
 
-      .st6 {
-        fill: #002d72;
-        font-family: Arial-BoldMT, Arial;
-        font-size: 24px;
-        font-weight: 700;
+      .st1 {
+        stroke: #d8e022;
       }
 
-      .st7 {
-        fill: #4b5563;
-        font-family: ArialMT, Arial;
-        font-size: 22px;
+      .st1, .st2, .st3, .st4, .st5 {
+        fill: none;
+      }
+
+      .st1, .st2, .st5 {
+        stroke-width: 12px;
+      }
+
+      .st2, .st3 {
+        stroke: #1e88e5;
       }
 
       .st4 {
-        stroke: #d9df23;
+        stroke-width: 7.7px;
       }
     </style>
   </defs>
-  <rect class="st2" x="40" y="40" width="720" height="440"/>
-  <rect class="st0" x="110" y="124" width="580" height="272"/>
-  <path class="st3" d="M146,180h508"/>
-  <path class="st1" d="M146,240h508"/>
-  <path class="st4" d="M146,299.6h508"/>
-  <g class="st5">
-    <text class="st6" transform="translate(84 118)"><tspan x="0" y="0">Workflow step 03</tspan></text>
-  </g>
-  <g class="st5">
-    <text class="st7" transform="translate(84 438)"><tspan x="0" y="0">Deliver coordinated outputs</tspan></text>
-  </g>
+  <line class="st2" x1="352.4" y1="232.6" x2="256.4" y2="136.6"/>
+  <line class="st2" x1="352.4" y1="286.7" x2="256.4" y2="385.7"/>
+  <line class="st1" x1="448.5" y1="232.6" x2="544.5" y2="136.6"/>
+  <line class="st1" x1="448.5" y1="286.7" x2="544.5" y2="385.7"/>
+  <polygon class="st5" points="400.5 205.6 448.5 232.6 448.5 286.7 400.5 313.7 352.4 286.7 352.4 232.6 400.5 205.6"/>
+  <rect class="st0" x="193.4" y="67.6" width="108.1" height="108.1" rx="24" ry="24"/>
+  <rect class="st0" x="500.4" y="72.7" width="108.1" height="108.1" rx="24" ry="24"/>
+  <rect class="st0" x="193.4" y="338.4" width="108.1" height="108.1" rx="24" ry="24"/>
+  <rect class="st0" x="499.5" y="343.3" width="108.1" height="108.1" rx="24" ry="24"/>
+  <path class="st3" d="M227.9,114.1h12c4.1,0,7.5,3.4,7.5,7.5h0c0,4.1-3.4,7.5-7.5,7.5h-12c-4.1,0-7.5-3.4-7.5-7.5h0c0-4.1,3.4-7.5,7.5-7.5Z"/>
+  <path class="st3" d="M255,114.1h12c4.1,0,7.5,3.4,7.5,7.5h0c0,4.1-3.4,7.5-7.5,7.5h-12c-4.1,0-7.5-3.4-7.5-7.5h0c0-4.1,3.4-7.5,7.5-7.5h0Z"/>
+  <line class="st2" x1="247.4" y1="121.7" x2="247.4" y2="121.7"/>
+  <polyline class="st4" points="566.4 87.7 542.4 129.7 566.4 129.7 548.4 165.8"/>
+  <line class="st2" x1="247.4" y1="362.4" x2="247.4" y2="422.4"/>
+  <line class="st2" x1="217.4" y1="392.4" x2="277.4" y2="392.4"/>
+  <line class="st2" x1="226.4" y1="371.4" x2="268.5" y2="413.4"/>
+  <line class="st2" x1="268.5" y1="371.4" x2="226.4" y2="413.4"/>
+  <path class="st4" d="M553.5,357.6c-18,24-27,39-27,52.5s12.1,27,27,27,27-12.1,27-27-9-28.5-27-52.5Z"/>
+  <polyline class="st1" points="594 48.1 633 48.1 633 87.1"/>
 </svg>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+  <!-- Generator: Adobe Illustrator 29.2.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 108)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #002d72;
+      }
+
+      .st1 {
+        fill: none;
+      }
+
+      .st2 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st3 {
+        fill: #d8e022;
+      }
+
+      .st4 {
+        opacity: .2;
+      }
+
+      .st5 {
+        fill: #fff8e1;
+      }
+
+      .st6 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st1" x="1.3" y="1.3" width="61.4" height="61.4" rx="19.2" ry="19.2"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="st1" x="-3.7" y="-3.7" width="71.4" height="71.4"/>
+    </clipPath>
+  </defs>
+  <g>
+    <rect class="st0" x="1.3" y="1.3" width="61.4" height="61.4" rx="19.2" ry="19.2" transform="translate(0 64) rotate(-90)"/>
+    <g class="st4">
+      <g class="st6">
+        <g class="st2">
+          <image width="150" height="150" transform="translate(-3.8 -4.2) scale(.5)" xlink:href="favicon-1.png"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g>
+    <path class="st3" d="M42.6,31.8c0,2.9-.8,4.9-2.9,6.9-2,2-4.5,2.9-7.8,2.9s-5.7-.8-7.8-2.9c-2-2-2.9-4.1-2.9-6.9s.8-5.3,2.9-6.9c2-1.6,4.5-2.9,7.8-2.9s5.7.8,7.8,2.9c2,1.6,2.9,4.1,2.9,6.9Z"/>
+    <rect class="st5" x="24.7" y="49.7" width="14.7" height="13"/>
+  </g>
+</svg>

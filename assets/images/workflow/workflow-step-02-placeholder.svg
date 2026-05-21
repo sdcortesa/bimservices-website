@@ -4,55 +4,71 @@
   <defs>
     <style>
       .st0 {
-        fill: #1e88e5;
-        fill-opacity: .1;
+        fill: #d9e8ff;
+        opacity: .6;
       }
 
-      .st1, .st2 {
-        fill: none;
+      .st0, .st1 {
+        stroke: #1e88e5;
       }
 
-      .st3 {
-        fill: #f9a825;
-        fill-opacity: .2;
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6 {
+        stroke-linejoin: round;
       }
 
-      .st4 {
-        font-family: Arial-BoldMT, Arial;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      .st4, .st5 {
+      .st0, .st2 {
         isolation: isolate;
       }
 
-      .st4, .st6 {
-        fill: #002d72;
+      .st0, .st3, .st5 {
+        stroke-width: 4.7px;
       }
 
-      .st5 {
-        fill: #4b5563;
-        font-family: ArialMT, Arial;
-        font-size: 22px;
+      .st1, .st2, .st3, .st4, .st5, .st6 {
+        fill: none;
+        stroke-linecap: round;
+      }
+
+      .st1, .st2, .st4, .st6 {
+        stroke-width: 9.4px;
       }
 
       .st2 {
+        opacity: .9;
+      }
+
+      .st2, .st4 {
         stroke: #002d72;
-        stroke-width: 6px;
+      }
+
+      .st3, .st5 {
+        stroke: #b9c7dd;
+      }
+
+      .st5 {
+        stroke-dasharray: 9.4 11.7;
       }
 
       .st6 {
-        fill-opacity: 0;
+        stroke: #d8e022;
       }
     </style>
   </defs>
-  <rect class="st1" x="40" y="40" width="720" height="440"/>
-  <rect class="st6" x="84" y="142" width="190" height="104"/>
-  <rect class="st0" x="306" y="142" width="190" height="104"/>
-  <rect class="st3" x="528" y="142" width="190" height="104"/>
-  <path class="st2" d="M274,194h32"/>
-  <path class="st2" d="M496,194h32"/>
-  <text class="st4" transform="translate(84 118)"><tspan x="0" y="0">Workflow step 02</tspan></text>
-  <text class="st5" transform="translate(84 424)"><tspan x="0" y="0">Define the right BIM support</tspan></text>
+  <line class="st3" x1="281.9" y1="173.5" x2="333.4" y2="173.5"/>
+  <line class="st3" x1="281.9" y1="262.3" x2="333.4" y2="262.3"/>
+  <line class="st3" x1="281.9" y1="351.2" x2="333.4" y2="351.2"/>
+  <line class="st3" x1="281.9" y1="440" x2="333.4" y2="440"/>
+  <line class="st5" x1="333.4" y1="173.5" x2="333.4" y2="440"/>
+  <polygon class="st2" points="513.4 264.7 630.3 327.8 513.4 390.9 396.5 327.8 513.4 264.7"/>
+  <polygon class="st4" points="513.4 320.8 630.3 383.9 513.4 447 396.5 383.9 513.4 320.8"/>
+  <polygon class="st1" points="513.4 208.5 630.3 271.7 513.4 334.8 396.5 271.7 513.4 208.5"/>
+  <polygon class="st0" points="513.4 208.5 630.3 271.7 513.4 334.8 396.5 271.7 513.4 208.5"/>
+  <polygon class="st4" points="513.4 96.3 630.3 159.5 513.4 222.6 396.5 159.5 513.4 96.3"/>
+  <polygon class="st2" points="513.4 152.5 630.3 215.5 513.4 278.7 396.5 215.5 513.4 152.5"/>
+  <line class="st5" x1="513.4" y1="222.6" x2="513.4" y2="447"/>
+  <polyline class="st6" points="604.5 54.3 635 54.3 635 84.6"/>
+  <path class="st4" d="M165,133.7h44.5l11.7,14h60.8v51.5h-116.9v-65.4Z"/>
+  <path class="st4" d="M165,222.6h44.5l11.7,14h60.8v51.5h-116.9v-65.4Z"/>
+  <path class="st4" d="M165,311.5h44.5l11.7,14h60.8v51.5h-116.9v-65.4Z"/>
+  <path class="st4" d="M165,400.3h44.5l11.7,14h60.8v51.5h-116.9v-65.4h0Z"/>
 </svg>

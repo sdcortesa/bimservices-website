@@ -54,7 +54,7 @@ const frameworkContent = {
 };
 
 // BDI Framework steps: these are internal method steps, not homepage sections.
-// Workflow visual placeholder assets live in ./assets/images/workflow/
+// Workflow visual assets live in ./assets/images/workflow/
 const frameworkSteps = [
   {
     number: "01",
@@ -400,13 +400,13 @@ function renderServices() {
     .map(
       (service) => `
         <article class="service-card reveal">
-          <div class="service-icon" aria-hidden="true">
-            <img src="${service.icon}" alt="" loading="lazy" />
-          </div>
-          <div>
+          <div class="service-card-heading">
+            <div class="service-icon" aria-hidden="true">
+              <img src="${service.icon}" alt="" loading="lazy" />
+            </div>
             <h3>${service.title}</h3>
-            <p>${service.description}</p>
           </div>
+          <p>${service.description}</p>
         </article>
       `,
     )

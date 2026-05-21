@@ -436,14 +436,25 @@ section[id] {
 .hero-3d {
   position: absolute;
   z-index: 1;
-  top: 13%;
-  right: clamp(0.75rem, 3vw, 2.5rem);
-  bottom: 7%;
-  width: min(48vw, 42rem);
-  min-width: 24rem;
+  top: clamp(7rem, 16vh, 10rem);
+  right: clamp(0.6rem, 2.4vw, 2rem);
+  bottom: clamp(1rem, 3.5vw, 2.5rem);
+  width: min(53vw, 47rem);
+  min-width: 30rem;
   cursor: grab;
   touch-action: none;
   user-select: none;
+}
+
+.hero-3d::before {
+  content: "";
+  position: absolute;
+  inset: 10% 4% 8% 18%;
+  background: radial-gradient(circle at 54% 44%, rgba(216, 224, 34, 0.16), transparent 34%),
+    radial-gradient(circle at 52% 52%, rgba(255, 255, 255, 0.14), transparent 46%);
+  filter: blur(18px);
+  opacity: 0.72;
+  pointer-events: none;
 }
 
 .hero-model-viewer {
@@ -455,6 +466,7 @@ section[id] {
   background: transparent;
   --poster-color: transparent;
   opacity: 1;
+  filter: drop-shadow(0 34px 42px rgba(0, 14, 38, 0.28));
   transition: opacity 420ms ease-out;
 }
 
@@ -802,6 +814,8 @@ html.motion-safe .workflow-card.is-visible {
 
 .service-card {
   padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card::before {
@@ -814,14 +828,26 @@ html.motion-safe .workflow-card.is-visible {
   background: var(--color-royal-blue);
 }
 
+.service-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  font-weight: var(--font-weight-heading);
+}
+
 .service-icon {
   position: relative;
-  width: 3.2rem;
-  height: 3.2rem;
-  margin-bottom: 1.15rem;
-  border-radius: var(--radius-small);
-  background: var(--color-surface-blue);
-  overflow: hidden;
+  width: 4.4rem;
+  height: 4.4rem;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
 }
 
 .service-icon img {
@@ -1468,11 +1494,11 @@ html.motion-safe .workflow-card.is-visible {
   }
 
   .hero-3d {
-    top: 17%;
+    top: clamp(7rem, 17vh, 9rem);
     right: clamp(0.5rem, 2vw, 1.25rem);
-    bottom: 10%;
-    width: min(44vw, 32rem);
-    min-width: 18rem;
+    bottom: 8%;
+    width: min(46vw, 34rem);
+    min-width: 21rem;
   }
 
   .contact-shell {
@@ -1645,8 +1671,12 @@ html.motion-safe .workflow-card.is-visible {
     bottom: auto;
     width: 100%;
     min-width: 0;
-    height: clamp(14rem, 54vw, 20rem);
+    height: clamp(18rem, 76vw, 28rem);
     margin-top: 0.2rem;
+  }
+
+  .hero-3d::before {
+    inset: 14% 8% 10%;
   }
 
   .workflow-section {

@@ -2,9 +2,9 @@ const HERO_MODEL_VIEWER_SETTINGS = {
   containerSelector: "[data-hero-3d]",
   viewerSelector: "[data-hero-model-viewer]",
   baseOrbit: {
-    theta: 245,
+    theta: 238,
     phi: 58,
-    radius: 80,
+    radius: 32,
   },
   maxScrollRotationDegrees: 45,
   reducedMotionDisablesScrollRotation: true,
