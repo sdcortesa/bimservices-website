@@ -24,6 +24,8 @@ Still in testing:
 - Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
 - Hero 3D performance on GitHub Pages and mobile devices.
+- Mobile Hero header separation and 3D color consistency after removing the overlay from above the model.
+- Validate the requested `65%` Hero camera radius on desktop and mobile.
 - Hero title font-weight interaction on scroll.
 - Fade-only reveal rhythm across the full page.
 - Service icon SVG balance inside cards.

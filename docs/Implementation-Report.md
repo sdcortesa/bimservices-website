@@ -4,12 +4,20 @@
 
 - Replaced the active Hero model path from `assets/models/hero/cabana-tusa.glb` to `assets/models/hero/main_model.glb`.
 - Kept `cabana-tusa.glb` as an inactive previous test asset rather than deleting it.
-- Increased the model-viewer camera radius from `32%` to `42%` so the new model appears slightly farther away.
+- Set the model-viewer camera radius to the requested `65%` test value and synchronized the initial, minimum, maximum and scroll-controlled radius values.
+- Replaced the previous fixed camera target with `camera-target="auto auto auto"` so model-viewer centers the new model from its actual bounds.
 - Updated the initial, minimum and maximum camera-orbit radius values in `index.html`.
 - Updated the shared scroll-orbit radius in `js/hero-3d.js` so the model maintains the same distance while scrolling.
 - Preserved horizontal drag, automatic rotation, scroll rotation, disabled zoom and disabled pan.
 - Validated the new file header as a GLB/glTF asset. The active model is approximately 12 MB, so mobile loading performance should be reviewed and the model should be optimized later.
 - Updated current project documentation and asset references.
+
+## Mobile Hero Responsive Review
+
+- Removed the negative Hero/header overlap on mobile by resetting the Hero top margin.
+- Gave the mobile Header its own Deep Sapphire surface and bottom padding so it no longer covers the Hero eyebrow or heading.
+- Raised the mobile 3D region above the Hero legibility overlay, removing the dark-mask appearance while preserving the desktop layer order.
+- Desktop Hero layout, overlay and Header behavior remain unchanged.
 
 ## Contact Cleanup + Scroll Weight Review
 

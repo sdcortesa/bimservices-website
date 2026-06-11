@@ -181,7 +181,8 @@ SEO notes:
 - Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
 - The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without the model.
 - The 3D implementation now uses `<model-viewer>` because the same GLB worked with that approach in a previous project and it reduces custom Three.js loader risk.
-- The Hero model-viewer camera is closer than the original test state and the vertical orbit is locked so interaction remains horizontal and presentation-safe.
+- The Hero model-viewer uses automatic model centering and a test camera radius of `65%`. Vertical orbit stays locked so interaction remains horizontal and presentation-safe.
+- On mobile, the 3D region sits above the Hero legibility overlay so its colors remain consistent with desktop, and the Header receives its own Deep Sapphire surface instead of overlapping Hero copy.
 
 ## Known Issues
 
