@@ -5,7 +5,7 @@ const HERO_MODEL_VIEWER_SETTINGS = {
     theta: 238,
     phi: 58,
     // Camera distance: increase this percentage to show the model farther away.
-    radius: 42,
+    radius: 75,
   },
   maxScrollRotationDegrees: 45,
   reducedMotionDisablesScrollRotation: true,
