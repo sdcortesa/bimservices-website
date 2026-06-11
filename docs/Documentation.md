@@ -232,3 +232,5 @@ SEO notes:
 ## Last Audit Summary
 
 The latest audit and follow-up iterations reviewed structure, HTML, CSS, JavaScript, assets, responsive behavior, SEO basics, accessibility basics and documentation. The most recent pass replaced the custom Three.js Hero implementation with a `<model-viewer>` embed, removed fallback art and preserved Hero copy, CTAs and page structure.
+
+The Contact section now prioritizes the conversation form and no longer shows the temporary WhatsApp or direct-email cards. Its `Start a Conversation` heading uses a scroll-linked weight emphasis as it approaches the viewport center, with reduced-motion users receiving the static heading state.

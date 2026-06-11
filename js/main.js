@@ -240,12 +240,9 @@ const footerContent = {
   locationNote: "Serving international AEC teams.",
 };
 
-// Contact data: replace WhatsApp number and email when confirmed.
+// Contact data: replace the email when confirmed to activate form submission.
 const contactInfo = {
-  whatsappUrl: "https://wa.me/[PHONE_NUMBER_TO_CONFIRM]",
-  whatsappDisplay: "[PHONE_NUMBER_TO_CONFIRM]",
   emailAddress: "[EMAIL_TO_CONFIRM]",
-  emailHref: "mailto:[EMAIL_TO_CONFIRM]",
 };
 
 // Motion settings: keep animations controlled and easy to disable or adjust.
@@ -544,32 +541,36 @@ function bindFooterContent() {
 }
 
 function bindContactInfo() {
-  setTextContent("#whatsapp-display", contactInfo.whatsappDisplay);
-  setTextContent("#email-display", contactInfo.emailAddress);
   setTextContent("#footer-year", new Date().getFullYear().toString());
+}
 
-  const whatsappLink = document.querySelector("#whatsapp-link");
-  const emailLink = document.querySelector("#email-link");
-  const footerWhatsappLink = document.querySelector("#footer-whatsapp-link");
-  const footerEmailLink = document.querySelector("#footer-email-link");
+function setupContactTitleScrollWeight() {
+  const contactTitle = document.querySelector("#contact-title");
+  if (!contactTitle || prefersReducedMotion.matches) return;
 
-  if (whatsappLink) {
-    whatsappLink.setAttribute("href", contactInfo.whatsappUrl);
+  let isTicking = false;
+
+  // Contact title scroll interaction: increase weight near the viewport center in either direction.
+  function updateContactTitleWeight() {
+    const rect = contactTitle.getBoundingClientRect();
+    const titleCenter = rect.top + rect.height / 2;
+    const viewportCenter = window.innerHeight / 2;
+    const emphasisRange = window.innerHeight * 0.34;
+    const isEmphasized = Math.abs(titleCenter - viewportCenter) < emphasisRange;
+
+    contactTitle.classList.toggle("is-scroll-emphasized", isEmphasized);
+    isTicking = false;
   }
 
-  if (emailLink) {
-    emailLink.setAttribute("href", contactInfo.emailHref);
+  function onScroll() {
+    if (isTicking) return;
+    isTicking = true;
+    window.requestAnimationFrame(updateContactTitleWeight);
   }
 
-  if (footerWhatsappLink) {
-    footerWhatsappLink.setAttribute("href", contactInfo.whatsappUrl);
-    footerWhatsappLink.textContent = `WhatsApp: ${contactInfo.whatsappDisplay}`;
-  }
-
-  if (footerEmailLink) {
-    footerEmailLink.setAttribute("href", contactInfo.emailHref);
-    footerEmailLink.textContent = `Email: ${contactInfo.emailAddress}`;
-  }
+  updateContactTitleWeight();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
 }
 
 function setupNavigation() {
@@ -938,3 +939,4 @@ setupRevealMotion();
 setupExpandableSections();
 setupProjectOverlays();
 setupContactForm();
+setupContactTitleScrollWeight();

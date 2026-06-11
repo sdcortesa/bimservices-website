@@ -1,5 +1,16 @@
 # Implementation Report
 
+## Contact Cleanup + Scroll Weight Review
+
+- Removed the temporary WhatsApp and direct-email action cards from the Contact section.
+- Removed the matching temporary WhatsApp and email links from the footer.
+- Preserved the Email field inside the contact form and the internal placeholder email used by the current form-submission prototype.
+- Added `setupContactTitleScrollWeight()` in `js/main.js`.
+- `Start a Conversation` changes from heading weight `400` to `600` when it approaches the viewport center, making the effect visible while scrolling down or back up.
+- The interaction uses `requestAnimationFrame` and a passive scroll listener.
+- When `prefers-reduced-motion` is enabled, the scroll-linked title emphasis is not initialized.
+- Modified files: `index.html`, `css/styles.css`, `js/main.js`, `docs/Documentation.md`, `docs/Plan.md`, and `docs/Implementation-Report.md`.
+
 ## Audit Implementation Summary
 
 This iteration replaced the custom Three.js Hero implementation with a `<model-viewer>` embed, matching the approach that already worked in another project. The pass preserved the Hero copy, CTAs, navigation, metadata and page structure while keeping the local GLB model and a controlled Hero 3D area.

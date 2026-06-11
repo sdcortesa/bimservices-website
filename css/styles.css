@@ -1316,46 +1316,12 @@ html.motion-safe .workflow-card.is-visible {
 
 .contact-copy h2 {
   color: var(--color-white);
+  font-weight: var(--font-weight-heading-medium);
+  transition: font-weight 420ms ease-out;
 }
 
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-
-.contact-button {
-  flex: 1 1 15rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  padding: 1rem 1.05rem;
-  border-radius: var(--radius-small);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  transition:
-    transform var(--motion-fast) ease-out,
-    border-color var(--motion-fast) ease-out,
-    background-color var(--motion-fast) ease-out;
-}
-
-.contact-button:hover,
-.contact-button:focus-visible {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(216, 224, 34, 0.46);
-}
-
-.contact-button-label {
-  font-family: var(--font-body);
-  color: var(--color-white);
-  font-weight: var(--font-weight-body-strong);
-}
-
-.contact-button-value {
-  color: rgba(234, 241, 255, 0.72);
-  overflow-wrap: anywhere;
+.contact-copy h2.is-scroll-emphasized {
+  font-weight: var(--font-weight-heading);
 }
 
 .contact-form {
@@ -1724,7 +1690,6 @@ html.motion-safe .workflow-card.is-visible {
     font-size: 1.28rem;
   }
 
-  .contact-button,
   .form-submit {
     width: 100%;
   }

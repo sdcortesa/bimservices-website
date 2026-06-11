@@ -41,7 +41,8 @@ Still in testing:
 - About card reveal rhythm on desktop and mobile.
 - Global reveal timing and repetition across the full page.
 - Team photo blue-treatment intensity with real photography.
-- Contact flow because WhatsApp and email are placeholders.
+- Contact form flow because the final delivery endpoint is still pending.
+- Contact heading scroll-weight emphasis and visual balance after removing temporary direct-contact cards.
 
 Do not touch yet:
 
