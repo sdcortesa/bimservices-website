@@ -1,5 +1,16 @@
 # Implementation Report
 
+## Hero Model Replacement Review
+
+- Replaced the active Hero model path from `assets/models/hero/cabana-tusa.glb` to `assets/models/hero/main_model.glb`.
+- Kept `cabana-tusa.glb` as an inactive previous test asset rather than deleting it.
+- Increased the model-viewer camera radius from `32%` to `42%` so the new model appears slightly farther away.
+- Updated the initial, minimum and maximum camera-orbit radius values in `index.html`.
+- Updated the shared scroll-orbit radius in `js/hero-3d.js` so the model maintains the same distance while scrolling.
+- Preserved horizontal drag, automatic rotation, scroll rotation, disabled zoom and disabled pan.
+- Validated the new file header as a GLB/glTF asset. The active model is approximately 12 MB, so mobile loading performance should be reviewed and the model should be optimized later.
+- Updated current project documentation and asset references.
+
 ## Contact Cleanup + Scroll Weight Review
 
 - Removed the temporary WhatsApp and direct-email action cards from the Contact section.

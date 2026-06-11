@@ -18,7 +18,8 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/logos/bim-services-logo-white-01.svg` is the light SVG logo used over the Hero at the top of the page.
 - `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
 - `assets/icons/favicon.svg` is the SVG favicon connected from `index.html`.
-- `assets/models/hero/cabana-tusa.glb` is the provisional 3D Hero model.
+- `assets/models/hero/main_model.glb` is the active 3D Hero model.
+- `assets/models/hero/cabana-tusa.glb` is retained as an inactive previous test model.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five SVG framework step visuals used by the How We Work cards.
 - `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
@@ -89,7 +90,7 @@ Current active assets:
 - Scrolled header logo: `assets/logos/bim-services-logo.svg`
 - Top-of-page header logo: `assets/logos/bim-services-logo-white-01.svg`
 - Favicon: `assets/icons/favicon.svg`
-- Provisional Hero GLB model: `assets/models/hero/cabana-tusa.glb`
+- Active Hero GLB model: `assets/models/hero/main_model.glb`
 - Service icons: `assets/icons/services/*.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework visuals: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
@@ -103,10 +104,10 @@ Current active assets:
 Temporary or pending assets:
 
 - Hero visual is a placeholder and should be replaced with a real BIM render, model capture, architectural visual or interactive asset.
-- `assets/models/hero/cabana-tusa.glb` is provisional and should be replaced with the final optimized Hero model when ready.
+- `assets/models/hero/main_model.glb` is the active Hero model and should be optimized before the 3D direction is consolidated.
 - Project visuals are placeholders and should be replaced when real or validated project examples are available.
 - Team photos and bios are placeholders.
-- Contact email and WhatsApp number are placeholders.
+- The final contact-form delivery endpoint is still pending.
 - Older `project-sample-01.svg`, `project-sample-02.svg` and `project-sample-03.svg` still exist in `assets/images/projects/` but are not referenced by the current UI.
 
 ## Components
@@ -195,7 +196,7 @@ SEO notes:
 - The model-viewer Hero should be tested on GitHub Pages because it depends on the web component script and GLB asset loading.
 - Opening `index.html` directly from the filesystem can block GLB loading in some browsers; use GitHub Pages or a local HTTP server for 3D testing.
 - The fallback PNG was removed from the active Hero flow so model loading issues are not hidden by placeholder art.
-- The provisional `cabana-tusa.glb` model has not been web-optimized inside this iteration.
+- The active `main_model.glb` is approximately 12 MB and has not been web-optimized inside this iteration.
 - The 3D Hero should be tested on physical mobile devices for performance, interaction comfort and fallback behavior.
 - New service SVG icons should be visually reviewed against the final service-card rhythm.
 - The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.

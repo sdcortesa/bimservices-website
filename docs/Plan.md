@@ -20,7 +20,7 @@ Ready to keep:
 
 Still in testing:
 
-- Model-viewer Hero integration using `assets/models/hero/cabana-tusa.glb`.
+- Model-viewer Hero integration using `assets/models/hero/main_model.glb`.
 - Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
 - Hero 3D performance on GitHub Pages and mobile devices.
