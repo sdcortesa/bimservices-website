@@ -37,8 +37,8 @@
   --font-weight-heading: 600;
   --font-weight-heading-active: 650;
   --expandable-duration: 480ms;
-  --team-photo-overlay-opacity: 0.26;
-  --team-photo-overlay-hover-opacity: 0.08;
+  --team-photo-overlay-opacity: 0;
+  --team-photo-overlay-hover-opacity: 0.16;
   --team-photo-base-saturation: 0.62;
   --team-photo-hover-saturation: 0.84;
   --team-photo-base-brightness: 0.94;
@@ -662,8 +662,7 @@ section[id] {
 
 .workflow-card,
 .service-card,
-.project-card,
-.team-card {
+.project-card {
   position: relative;
   border-radius: var(--radius-medium);
 }
@@ -773,8 +772,7 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 .service-card,
-.project-card,
-.team-card {
+.project-card {
   background: var(--color-white);
   border: 1px solid rgba(0, 45, 114, 0.04);
   box-shadow: var(--shadow-soft);
@@ -787,9 +785,7 @@ html.motion-safe .workflow-card.is-visible {
 .service-card:hover,
 .service-card:focus-within,
 .project-card:hover,
-.project-card:focus-within,
-.team-card:hover,
-.team-card:focus-within {
+.project-card:focus-within {
   transform: translateY(-4px);
   border-color: rgba(30, 136, 229, 0.14);
   box-shadow: var(--shadow-medium);
@@ -854,15 +850,47 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 .section-toggle {
-  gap: 0.8rem;
+  min-height: 0;
+  gap: 0.6rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-deep-sapphire);
   box-shadow: none;
+  font-size: clamp(1.03rem, 1.4vw, 1.18rem);
+  font-weight: var(--font-weight-body-strong);
+  letter-spacing: -0.02em;
 }
 
 .section-toggle-icon {
   position: relative;
-  width: 0.95rem;
-  height: 0.95rem;
+  order: -1;
+  width: 2rem;
+  height: 2rem;
   flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-deep-sapphire);
+  color: var(--color-white);
+  transition:
+    transform 360ms ease-out,
+    background-color var(--motion-fast) ease-out,
+    box-shadow var(--motion-fast) ease-out;
+}
+
+.section-toggle [data-toggle-label] {
+  display: inline-block;
+  border-bottom: 1.5px solid currentColor;
+  line-height: 1.05;
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out,
+    color var(--motion-fast) ease-out;
+}
+
+.section-toggle [data-toggle-label].is-changing {
+  opacity: 0;
+  transform: translateY(0.2rem);
 }
 
 .section-toggle-icon::before,
@@ -871,7 +899,7 @@ html.motion-safe .workflow-card.is-visible {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.75rem;
+  width: 0.88rem;
   height: 2px;
   background: currentColor;
   transform: translate(-50%, -50%);
@@ -884,9 +912,31 @@ html.motion-safe .workflow-card.is-visible {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
+.section-toggle:hover,
+.section-toggle:focus-visible {
+  color: var(--color-deep-sapphire);
+  transform: none;
+}
+
+.section-toggle:hover .section-toggle-icon,
+.section-toggle:focus-visible .section-toggle-icon {
+  background: var(--color-royal-blue);
+  box-shadow: 0 10px 22px rgba(30, 136, 229, 0.22);
+  transform: rotate(90deg) scale(0.86);
+}
+
+.section-toggle:hover [data-toggle-label],
+.section-toggle:focus-visible [data-toggle-label] {
+  color: var(--color-royal-blue);
+}
+
 .section-toggle[aria-expanded="true"] .section-toggle-icon::after {
   opacity: 0;
   transform: translate(-50%, -50%) rotate(90deg) scaleX(0.2);
+}
+
+.section-toggle[aria-expanded="true"] .section-toggle-icon {
+  background: var(--color-royal-blue);
 }
 
 /* Expandable section motion: keep transitions subtle and consistent with global reveal. */
@@ -911,11 +961,42 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 .projects-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: block;
+}
+
+.projects-carousel {
+  --project-carousel-gap: 1.25rem;
+  --project-carousel-duration: 34s;
+}
+
+.projects-carousel-viewport {
+  container-type: inline-size;
+  overflow: hidden;
+  border-radius: var(--radius-medium);
+}
+
+.projects-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: project-carousel-scroll var(--project-carousel-duration) linear infinite;
+  will-change: transform;
+}
+
+.projects-carousel-set {
+  display: flex;
+  gap: var(--project-carousel-gap);
+  padding-right: var(--project-carousel-gap);
+}
+
+.projects-carousel:hover .projects-carousel-track,
+.projects-carousel:focus-within .projects-carousel-track {
+  animation-play-state: paused;
 }
 
 .project-card {
+  flex: 0 0 calc((100cqw - (var(--project-carousel-gap) * 2)) / 3);
   overflow: hidden;
+  background: var(--color-white);
 }
 
 .project-media {
@@ -935,40 +1016,12 @@ html.motion-safe .workflow-card.is-visible {
   color: var(--color-text-secondary);
 }
 
-.project-placeholder {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 45, 114, 0.05);
-  background: var(--color-surface-blue);
-  overflow: hidden;
-}
-
-.project-placeholder::before {
-  content: none;
-}
-
-.project-placeholder span {
-  font-family: var(--font-body);
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  min-height: 2.7rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 0.9rem;
-  border-radius: var(--radius-small);
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(0, 45, 114, 0.1);
-  color: var(--color-deep-sapphire);
-  font-weight: var(--font-weight-body-strong);
-}
-
 .project-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-bottom: 1px solid rgba(0, 45, 114, 0.05);
+  transform: scale(1.01);
+  transition: transform var(--motion-normal) ease-out;
 }
 
 .project-overlay {
@@ -977,11 +1030,11 @@ html.motion-safe .workflow-card.is-visible {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 0.7rem;
-  padding: 1.4rem;
-  background: linear-gradient(180deg, rgba(0, 45, 114, 0.14), rgba(0, 45, 114, 0.9));
+  gap: 0.45rem;
+  padding: 1.35rem;
+  background: linear-gradient(180deg, rgba(0, 45, 114, 0.04), rgba(0, 45, 114, 0.86));
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
   transition:
     opacity var(--motion-normal) ease-out,
     transform var(--motion-normal) ease-out;
@@ -991,27 +1044,24 @@ html.motion-safe .workflow-card.is-visible {
   font-family: var(--font-heading);
   margin: 0;
   color: var(--color-white);
-  font-size: 1.14rem;
-  font-weight: var(--font-weight-heading-medium);
-}
-
-.project-overlay p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.6;
+  font-size: 1.18rem;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.18;
 }
 
 .project-services {
   font-family: var(--font-body);
-  margin: 0 0 0.35rem;
-  color: var(--color-deep-sapphire);
-  font-size: 0.88rem;
-  font-weight: var(--font-weight-body-medium);
-  line-height: 1.55;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-body-strong);
+  line-height: 1.4;
 }
 
-.project-overlay .project-services {
-  color: rgba(255, 255, 255, 0.88);
+.project-card:hover .project-image,
+.project-card:focus-within .project-image,
+.project-card.is-active .project-image {
+  transform: scale(1.04);
 }
 
 .project-card:hover .project-overlay,
@@ -1021,8 +1071,13 @@ html.motion-safe .workflow-card.is-visible {
   transform: translateY(0);
 }
 
-.project-tag,
-.team-role {
+@keyframes project-carousel-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.project-tag {
   font-family: var(--font-body);
   display: inline-flex;
   width: fit-content;
@@ -1032,26 +1087,6 @@ html.motion-safe .workflow-card.is-visible {
   font-weight: var(--font-weight-body-strong);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.project-tag {
-  background: rgba(216, 224, 34, 0.18);
-  border: 1px solid rgba(216, 224, 34, 0.34);
-  color: var(--color-deep-sapphire);
-}
-
-.project-overlay .project-tag {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: var(--color-white);
-}
-
-.project-body {
-  padding: 1.35rem 1.35rem 1.5rem;
-}
-
-.project-body .project-tag {
-  margin-bottom: 0.85rem;
 }
 
 #about {
@@ -1072,6 +1107,7 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 .about-preview {
+  position: relative;
   overflow: hidden;
   max-height: 34rem;
   border-radius: var(--radius-medium);
@@ -1082,6 +1118,18 @@ html.motion-safe .workflow-card.is-visible {
     opacity var(--motion-normal) ease-out,
     transform var(--motion-normal) ease-out,
     margin-bottom var(--motion-normal) ease-out;
+}
+
+.about-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-deep-sapphire);
+  border-radius: var(--radius-medium);
+  opacity: var(--team-photo-overlay-opacity);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity var(--team-photo-transition) ease-out;
 }
 
 .about-preview.is-hidden {
@@ -1098,6 +1146,14 @@ html.motion-safe .workflow-card.is-visible {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--radius-medium);
+  filter:
+    grayscale(1)
+    contrast(1.04)
+    brightness(1.03);
+  transform: scale(1);
+  transition:
+    filter var(--team-photo-transition) ease-out,
+    transform var(--team-photo-transition) ease-out;
 }
 
 .about-team-expandable .team-grid,
@@ -1114,21 +1170,25 @@ html.motion-safe .workflow-card.is-visible {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.4rem;
+  padding: 0;
   text-align: left;
   overflow: hidden;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .team-photo {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 4;
-  margin: 0 0 1.2rem;
+  /* Team photo upload size: use 900x1350 JPG images to match this 2:3 editorial frame. */
+  aspect-ratio: 2 / 3;
+  margin: 0 0 1.35rem;
   border-radius: var(--radius-medium);
   overflow: hidden;
 }
 
-/* Team photo treatment: branded blue overlay using Deep Sapphire. */
+/* Team expanded layout: grayscale base, soft Deep Sapphire tint appears on hover/focus. */
 .team-photo::after {
   content: "";
   position: absolute;
@@ -1167,12 +1227,12 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 .team-image {
-  border: 1px solid var(--color-border-soft);
+  border: 0;
   object-fit: cover;
   filter:
-    saturate(var(--team-photo-base-saturation))
-    contrast(0.96)
-    brightness(var(--team-photo-base-brightness));
+    grayscale(1)
+    contrast(1.04)
+    brightness(1.03);
   transition:
     filter var(--team-photo-transition) ease-out,
     transform var(--team-photo-transition) ease-out;
@@ -1182,21 +1242,58 @@ html.motion-safe .workflow-card.is-visible {
   width: 100%;
 }
 
+.team-member-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .team-card h3 {
   color: var(--color-deep-sapphire);
-  margin-bottom: 0;
+  margin-bottom: 0.18rem;
   font-size: 1.36rem;
   font-weight: var(--font-weight-heading);
 }
 
 .team-role {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 0.85rem;
-  padding: 0.45rem 0.7rem;
-  background: rgba(216, 224, 34, 0.14);
-  border: 1px solid rgba(216, 224, 34, 0.28);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
   color: var(--color-deep-sapphire);
+  font-size: 1rem;
+  font-weight: var(--font-weight-body);
+  letter-spacing: 0;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.team-linkedin {
+  display: inline-flex;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-deep-sapphire);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: var(--font-weight-body-strong);
+  line-height: 1;
+  transition:
+    transform var(--motion-fast) ease-out,
+    background-color var(--motion-fast) ease-out,
+    box-shadow var(--motion-fast) ease-out;
+}
+
+.team-linkedin:hover,
+.team-linkedin:focus-visible {
+  transform: translateY(-2px);
+  background: var(--color-royal-blue);
+  box-shadow: 0 10px 22px rgba(30, 136, 229, 0.22);
 }
 
 .team-details {
@@ -1211,9 +1308,23 @@ html.motion-safe .workflow-card.is-visible {
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
-  /* About interaction: desktop hover reveals role and description. */
-  /* Hover state: reduce blue overlay and recover controlled color, not fully raw saturation. */
-  /* Adjust overlay opacity and saturation here if real team photos need different balance. */
+  /* About group photo: same branded hover treatment used by the individual team photos. */
+  .about-preview:hover::after,
+  .about-preview:focus-within::after {
+    opacity: var(--team-photo-overlay-hover-opacity);
+  }
+
+  .about-preview:hover .about-group-image,
+  .about-preview:focus-within .about-group-image {
+    filter:
+      grayscale(0)
+      saturate(0.78)
+      contrast(1.02)
+      brightness(0.98);
+    transform: scale(1.025);
+  }
+
+  /* Team interaction: keep the expanded layout clean and use only a subtle photo hover. */
   .team-card:hover .team-photo::after,
   .team-card:focus-visible .team-photo::after,
   .team-card:focus-within .team-photo::after {
@@ -1224,32 +1335,15 @@ html.motion-safe .workflow-card.is-visible {
   .team-card:focus-visible .team-image,
   .team-card:focus-within .team-image {
     filter:
-      saturate(var(--team-photo-hover-saturation))
-      contrast(1)
-      brightness(var(--team-photo-hover-brightness));
+      grayscale(0)
+      saturate(0.78)
+      contrast(1.02)
+      brightness(0.98);
     transform: scale(1.02);
   }
 
   .team-details {
-    max-height: 0;
-    margin-top: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(10px);
-    transition:
-      max-height var(--motion-normal) ease-out,
-      opacity var(--motion-normal) ease-out,
-      transform var(--motion-normal) ease-out,
-      margin-top var(--motion-normal) ease-out;
-  }
-
-  .team-card:hover .team-details,
-  .team-card:focus-visible .team-details,
-  .team-card:focus-within .team-details {
-    max-height: 10rem;
-    margin-top: 0.85rem;
-    opacity: 1;
-    transform: translateY(0);
+    display: none;
   }
 }
 
@@ -1460,6 +1554,10 @@ html.motion-safe .workflow-card.is-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .project-card {
+    flex-basis: calc((100cqw - var(--project-carousel-gap)) / 2);
+  }
+
   .footer-shell {
     grid-template-columns: 1fr 1fr;
   }
@@ -1549,6 +1647,19 @@ html.motion-safe .workflow-card.is-visible {
   .team-grid,
   .footer-shell {
     grid-template-columns: 1fr;
+  }
+
+  .projects-carousel {
+    --project-carousel-gap: 0.9rem;
+    --project-carousel-duration: 28s;
+  }
+
+  .project-card {
+    flex-basis: 100cqw;
+  }
+
+  .project-overlay {
+    padding: 1rem;
   }
 
   /* Mobile behavior: simplified motion and hamburger menu. */
@@ -1659,17 +1770,13 @@ html.motion-safe .workflow-card.is-visible {
   }
 
   .section-toggle-row {
-    justify-content: stretch;
-  }
-
-  .section-toggle {
-    width: 100%;
+    justify-content: flex-start;
   }
 
   /* Mobile About behavior: keep secondary info visible to avoid inaccessible hover-only content. */
   .team-card {
     align-items: flex-start;
-    padding: 1.25rem;
+    padding: 0;
   }
 
   .team-card h3 {
@@ -1711,10 +1818,12 @@ html.motion-safe .workflow-card.is-visible {
     transform: none !important;
   }
 
+  .about-preview::after,
   .team-photo::after {
     transition: none !important;
   }
 
+  .about-group-image,
   .team-image {
     transition: none !important;
     transform: none !important;
@@ -1724,6 +1833,16 @@ html.motion-safe .workflow-card.is-visible {
   .about-preview {
     transition: none !important;
     transform: none !important;
+  }
+
+  .projects-carousel-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .section-toggle-icon,
+  .section-toggle [data-toggle-label] {
+    transition: none !important;
   }
 
   *,

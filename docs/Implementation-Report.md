@@ -1,5 +1,54 @@
 # Implementation Report
 
+## Team Expanded Layout Review
+
+- Reworked only the expanded About / Team card layout.
+- Changed team cards from bordered cards with hidden/revealed descriptions to an editorial layout inspired by the provided reference.
+- Team photos now use a `2 / 3` editorial portrait format aligned with the new `900x1350` JPG placeholders.
+- Team names keep the existing visual size.
+- Roles now appear directly below names as simple text, without chip background, border or badge styling.
+- Added one circular LinkedIn action per team member.
+- LinkedIn URLs are currently placeholders pointing to `https://www.linkedin.com/` and should be replaced with real profile URLs later.
+- Removed the desktop hover reveal behavior for team descriptions in the expanded state.
+- Team photos use a black-and-white editorial base state.
+- On hover/focus, photos recover controlled color with a subtle Deep Sapphire overlay so the effect remains branded instead of fully raw.
+- Created new active portrait placeholders:
+- `assets/images/team/team-member-01-portrait-placeholder.jpg`
+- `assets/images/team/team-member-02-portrait-placeholder.jpg`
+- `assets/images/team/team-member-03-portrait-placeholder.jpg`
+- Future replacement photos should use `900x1350` JPG files to avoid unexpected cropping.
+
+## About Group Photo Treatment Review
+
+- Applied the same editorial photo treatment to the collapsed About group image.
+- Kept the current group-image format and `16 / 9` frame unchanged.
+- Base state is black and white with controlled contrast/brightness.
+- Hover/focus recovers color with a subtle Deep Sapphire overlay and a slight scale-in effect.
+- `prefers-reduced-motion` removes the image transform/transition.
+
+## Project and Team Toggle Button Review
+
+- Restyled only the Project Experience and About/Team expandable toggle buttons.
+- Replaced the previous rectangular button look with an editorial link-style control inspired by the reference: circular plus icon plus underlined text.
+- The plus circle now rotates `90deg` and scales down on hover/focus.
+- The circle uses Deep Sapphire by default and Royal Blue on hover/focus/open state.
+- The toggle label crossfades/translates briefly when switching between the closed text and `Show less`.
+- Removed the mobile full-width toggle override so the control keeps the same compact editorial behavior on responsive layouts.
+- Existing expand/collapse behavior, accessibility attributes and section content were preserved.
+
+## Project Carousel Refinement Review
+
+- Reworked only the Project Experience card presentation.
+- Expanded the `projects` data in `js/main.js` from 3 to 6 project entries.
+- Created six active PNG project placeholders in `assets/images/projects/`.
+- Replaced the static three-column project grid with a continuous auto-moving carousel.
+- Desktop shows 3 project cards at once; tablet shows 2; phone shows 1.
+- Duplicated the rendered project set inside the carousel track to create a seamless loop from last project back to first.
+- Removed the visible text block below each project image.
+- Project overlay now shows only the project name and a small service label on hover/focus/tap.
+- The carousel pauses on hover/focus and disables animation under `prefers-reduced-motion`.
+- Older project SVG placeholders remain in the assets folder but are no longer active UI references.
+
 ## Hero Model Replacement Review
 
 - Replaced the active Hero model path from `assets/models/hero/cabana-tusa.glb` to `assets/models/hero/main_model.glb`.

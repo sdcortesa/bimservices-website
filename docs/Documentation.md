@@ -22,9 +22,9 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/models/hero/cabana-tusa.glb` is retained as an inactive previous test model.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five SVG framework step visuals used by the How We Work cards.
-- `assets/images/projects/` contains current project placeholders plus older sample placeholders retained for now.
+- `assets/images/projects/` contains six active PNG project carousel placeholders plus older SVG placeholders retained for now.
 - `assets/images/team/team-group-placeholder.jpg` is the temporary group-photo preview for the collapsed About section.
-- `assets/images/team/team-member-01-placeholder.jpg`, `team-member-02-placeholder.jpg` and `team-member-03-placeholder.jpg` are individual temporary team-photo placeholders.
+- `assets/images/team/team-member-01-portrait-placeholder.jpg`, `team-member-02-portrait-placeholder.jpg` and `team-member-03-portrait-placeholder.jpg` are the active individual team-photo placeholders.
 - `docs/` contains project memory and audit reports.
 
 ## Implemented Sections
@@ -94,12 +94,12 @@ Current active assets:
 - Service icons: `assets/icons/services/*.svg`
 - Hero placeholder: `assets/images/hero/hero-main-placeholder.svg`
 - Framework visuals: `assets/images/workflow/workflow-step-01-placeholder.svg` through `workflow-step-05-placeholder.svg`
-- Project placeholders: `assets/images/projects/project-residential-bim-support.svg`, `project-coordination-package.svg`, `project-documentation-set.svg`
+- Project carousel placeholders: six PNG files in `assets/images/projects/`, including `project-residential-bim-support.png`, `project-coordination-package.png`, `project-documentation-set.png`, `project-specialty-bim-modeling.png`, `project-quantity-estimation.png` and `project-4d-construction-planning.png`
 - Team group preview: `assets/images/team/team-group-placeholder.jpg`
-- Team placeholders:
-- `assets/images/team/team-member-01-placeholder.jpg`
-- `assets/images/team/team-member-02-placeholder.jpg`
-- `assets/images/team/team-member-03-placeholder.jpg`
+- Team portrait placeholders:
+- `assets/images/team/team-member-01-portrait-placeholder.jpg`
+- `assets/images/team/team-member-02-portrait-placeholder.jpg`
+- `assets/images/team/team-member-03-portrait-placeholder.jpg`
 
 Temporary or pending assets:
 
@@ -108,7 +108,7 @@ Temporary or pending assets:
 - Project visuals are placeholders and should be replaced when real or validated project examples are available.
 - Team photos and bios are placeholders.
 - The final contact-form delivery endpoint is still pending.
-- Older `project-sample-01.svg`, `project-sample-02.svg` and `project-sample-03.svg` still exist in `assets/images/projects/` but are not referenced by the current UI.
+- Older project SVG placeholders still exist in `assets/images/projects/` but are not referenced by the current UI.
 
 ## Components
 
@@ -118,9 +118,9 @@ Temporary or pending assets:
 - Cards: shared radius/shadow/surface language for workflow, service, project and team cards.
 - Service cards: rendered from the `services` array in `js/main.js`.
 - Service icons: SVG assets referenced from the service data and sized through the existing `.service-icon` frame.
-- Project cards: rendered from the `projects` array, with hover/focus/tap overlay behavior.
-- Expandable section toggles: in-place expand/collapse controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
-- Team cards: rendered from the `teamMembers` array, with larger editorial visuals, stronger name hierarchy, branded blue photo treatment and hover/focus reveal for secondary details on desktop.
+- Project carousel: rendered from the `projects` array as six image-led cards in a continuous loop, with hover/focus/tap overlay text.
+- Expandable section toggles: editorial link-style controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
+- Team cards: rendered from the `teamMembers` array, with 2:3 editorial portrait photos, name, role text and one LinkedIn action button.
 - Forms: simple contact form with labels, required fields and mailto-based behavior once real email is confirmed.
 - Footer: entity description, short navigation and contact placeholders.
 
@@ -141,11 +141,12 @@ Temporary or pending assets:
 - Hero background has subtle scroll-linked parallax, disabled when `prefers-reduced-motion` is enabled.
 - Global reveal motion uses Intersection Observer for headings, intros, service cards, contact shell and workflow cards, with reduced-motion fallback. Global reveal is fade-only; Workflow can still reveal card-by-card.
 - Workflow cards reuse the same reveal system with a slightly stronger reveal distance and stagger.
-- Project overlays appear on hover, focus and tap.
-- Project Experience starts collapsed and expands in place to show the current project cards.
+- Project overlays appear on hover, focus and tap and show only the project name plus the small service label.
+- Project Experience starts collapsed and expands in place to show the current carousel.
 - About starts with intro plus group preview image, then expands in place to show the individual team cards.
-- Team cards reveal role and description on desktop hover/focus and keep the same information visible on mobile/touch layouts.
-- Team photo wrappers keep a Deep Sapphire overlay in the base state and reduce that overlay on card hover/focus to recover controlled color.
+- The About group preview image uses the same black-and-white base and controlled color/Deep Sapphire hover treatment as the individual team photos.
+- Team cards no longer use hover-revealed descriptions in the expanded About state; they show identity first with name, role and LinkedIn action.
+- Team photos use a black-and-white editorial base treatment, then recover controlled color with a subtle Deep Sapphire tint on hover/focus.
 - Contact form validates required fields and opens a mailto draft after the real email placeholder is replaced.
 
 ## Metadata
@@ -176,8 +177,8 @@ SEO notes:
 - Active CSS placeholder treatments now favor flat branded surfaces instead of visible grid textures.
 - Service card icons are real SVG files so they can be replaced independently later without changing card layout.
 - Project Experience and About now use in-place expandable regions instead of showing all secondary content immediately.
-- About follows an identity-first card pattern: larger visual, stronger name hierarchy, secondary details revealed later.
-- Team photos use a branded blue treatment in the base state instead of fully natural color.
+- Project Experience uses a continuous carousel: three cards visible on desktop, two on tablet and one on phone.
+- About follows an identity-first card pattern: vertical photo, name, role and LinkedIn action.
 - Workflow cards now treat number + title as one horizontal heading unit instead of separating the number into a badge.
 - The 3D Hero is treated as decorative progressive enhancement: the H1, supporting copy and CTAs remain the primary Hero content and continue to work without the model.
 - The 3D implementation now uses `<model-viewer>` because the same GLB worked with that approach in a previous project and it reduces custom Three.js loader risk.
@@ -211,7 +212,7 @@ SEO notes:
 ## Pending Recommendations
 
 - Confirm real WhatsApp number and email.
-- Replace Hero, project and team placeholders with validated assets.
+- Replace Hero, project and team placeholders with validated assets. Team member photos should be uploaded as `900x1350` JPG files to match the current 2:3 portrait frame.
 - Replace the provisional Hero GLB with the final optimized model.
 - Validate model-viewer loading, camera controls and scroll orbit on GitHub Pages.
 - Optimize/compress the final GLB before considering the 3D Hero direction consolidated.

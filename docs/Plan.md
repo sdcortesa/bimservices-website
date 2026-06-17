@@ -36,6 +36,9 @@ Still in testing:
 - Initial page fade timing on local vs. hosted load.
 - Hero placeholder and parallax intensity.
 - Project overlay behavior on touch devices.
+- Project carousel rhythm, responsive card count and hover overlay clarity.
+- Project and About toggle button motion, icon rotation and label transition.
+- Expanded Team editorial layout, LinkedIn links and 2:3 portrait photo crop quality.
 - General Sans 300 body weight on small screens.
 - Neon accent strength in real browser context.
 - Expandable section rhythm for Project Experience and About.
@@ -78,11 +81,11 @@ Acceptance criteria:
 - Header logo is clearly readable over the Hero and remains clearly readable once the header is scrolled.
 - Initial page fade feels polished and does not delay interaction.
 - About cards feel identity-first on desktop.
-- Project Experience feels understandable and intentional in its collapsed state.
+- Project Experience feels understandable and intentional in its collapsed state and carousel expanded state.
 - About feels understandable and intentional in its collapsed state with the group preview image.
 - The About group preview swaps cleanly with the individual team cards without visual overlap.
-- Role and description reveal smoothly on hover and keyboard focus.
-- Mobile keeps About details visible without hidden hover-only content.
+- Team photos recover controlled color with a soft blue tint on hover/focus.
+- Mobile keeps Team identity content visible without hidden hover-only details.
 - Global reveal motion feels consistent and understated across headings, intros and cards.
 - Team photos keep a strong branded base state without becoming too dark or too artificial.
 
@@ -112,7 +115,7 @@ Validation:
 - Check keyboard activation and `aria-expanded` updates on both section toggle buttons.
 - Confirm `prefers-reduced-motion` disables reveal transitions cleanly.
 - Confirm reveal timing does not feel repetitive or overly delayed.
-- Review team photo overlay and hover recovery with real photos when available.
+- Review team photo 2:3 portrait crop, blue hover tint and color recovery with real photos when available.
 
 ## Milestone 1: Confirm Contact Conversion Details
 
@@ -145,14 +148,15 @@ Validation:
 - Test desktop, tablet and mobile viewport widths in a real browser.
 - Review 320px, 375px, 768px, 1024px and 1280px widths.
 - Test keyboard focus and Escape behavior in the menu and project overlays.
+- Test project carousel movement at desktop, tablet and phone widths.
 
 ## Milestone 3: Replace or Approve Visual Placeholders
 
 Acceptance criteria:
 
 - Hero placeholder is replaced with a validated BIM/architectural visual, or explicitly approved as a temporary testing visual.
-- Project placeholders are replaced with validated examples or renamed as sample experience.
-- Team JPG placeholders are replaced with real photos or approved temporary profile graphics.
+- Project carousel PNG placeholders are replaced with validated examples or renamed as sample experience.
+- Team JPG placeholders are replaced with real `900x1350` portrait photos or approved temporary profile graphics.
 
 Validation:
 

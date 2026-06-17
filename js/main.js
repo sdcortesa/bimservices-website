@@ -161,28 +161,43 @@ const projects = [
     title: "Residential BIM Support",
     type: "Residential",
     servicesApplied: "CAD to BIM + Specialty BIM Modeling",
-    result:
-      "Structured BIM information prepared for design development and coordination.",
-    image: "./assets/images/projects/project-residential-bim-support.svg",
-    alt: "Placeholder project image for Residential BIM Support",
+    image: "./assets/images/projects/project-residential-bim-support.png",
+    alt: "Project visual placeholder for Residential BIM Support",
   },
   {
     title: "Coordination Package",
     type: "AEC Coordination",
     servicesApplied: "3D Coordination + Clash Review",
-    result:
-      "Discipline conflicts identified and organized for technical resolution.",
-    image: "./assets/images/projects/project-coordination-package.svg",
-    alt: "Placeholder project image for Coordination Package",
+    image: "./assets/images/projects/project-coordination-package.png",
+    alt: "Project visual placeholder for Coordination Package",
   },
   {
     title: "Documentation Set",
     type: "Technical Documentation",
     servicesApplied: "Construction Documentation",
-    result:
-      "Drawings and technical information prepared for review, permits or construction.",
-    image: "./assets/images/projects/project-documentation-set.svg",
-    alt: "Placeholder project image for Documentation Set",
+    image: "./assets/images/projects/project-documentation-set.png",
+    alt: "Project visual placeholder for Documentation Set",
+  },
+  {
+    title: "Specialty BIM Modeling",
+    type: "BIM Modeling",
+    servicesApplied: "Specialty BIM Modeling",
+    image: "./assets/images/projects/project-specialty-bim-modeling.png",
+    alt: "Project visual placeholder for Specialty BIM Modeling",
+  },
+  {
+    title: "Quantity Estimation",
+    type: "Cost & Quantity",
+    servicesApplied: "Quantity Takeoff + Cost Data",
+    image: "./assets/images/projects/project-quantity-estimation.png",
+    alt: "Project visual placeholder for Quantity Estimation",
+  },
+  {
+    title: "4D Construction Planning",
+    type: "Planning",
+    servicesApplied: "4D Construction Planning",
+    image: "./assets/images/projects/project-4d-construction-planning.png",
+    alt: "Project visual placeholder for 4D Construction Planning",
   },
 ];
 
@@ -204,24 +219,27 @@ const teamMembers = [
     role: "BIM Delivery Lead",
     description: "Sergio leads BIM delivery, design coordination and technical documentation, helping turn project information into organized Revit models and construction-ready deliverables.",
     initials: "SC",
-    image: "./assets/images/team/team-member-01-placeholder.jpg",
+    image: "./assets/images/team/team-member-01-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 01",
+    linkedinUrl: "https://www.linkedin.com/",
   },
   {
     name: "Tatiana Hernandez",
     role: "Operations & Documentation Lead",
     description: "Tatiana leads project organization, documentation workflows and internal coordination, helping keep information clear, consistent and aligned with each project’s standards.",
     initials: "TH",
-    image: "./assets/images/team/team-member-02-placeholder.jpg",
+    image: "./assets/images/team/team-member-02-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 02",
+    linkedinUrl: "https://www.linkedin.com/",
   },
   {
     name: "Camilo Ramirez",
     role: "BIM Production Lead",
     description: "Camilo leads BIM production and Revit modeling support, helping develop coordinated models, drawing packages and technical documentation for AEC teams.",
     initials: "CR",
-    image: "./assets/images/team/team-member-03-placeholder.jpg",
+    image: "./assets/images/team/team-member-03-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 03",
+    linkedinUrl: "https://www.linkedin.com/",
   },
 ];
 
@@ -419,7 +437,7 @@ function bindProjectExperienceContent() {
 function createProjectMedia(project) {
   if (project.image) {
     return `
-      <img src="${project.image}" alt="${project.alt}" class="project-image" />
+      <img src="${project.image}" alt="${project.alt}" class="project-image" loading="lazy" decoding="async" />
     `;
   }
 
@@ -434,36 +452,41 @@ function renderProjects() {
   const projectsGrid = document.querySelector("#projects-grid");
   if (!projectsGrid) return;
 
-  projectsGrid.innerHTML = projects
-    .map(
-      (project, index) => `
-        <article class="project-card">
-          <button
-            class="project-media"
-            type="button"
-            aria-expanded="false"
-            aria-label="Show details for ${project.title}"
-            data-project-trigger="${index}"
-          >
-            ${createProjectMedia(project)}
-            <div class="project-overlay">
-              <span class="project-tag">${project.type}</span>
-              <h3>${project.title}</h3>
-              <p class="project-services">${project.servicesApplied}</p>
-              <p>${project.result}</p>
-            </div>
-          </button>
+  function renderProjectSet(isDuplicate = false) {
+    return projects
+      .map(
+        (project, index) => `
+          <article class="project-card">
+            <button
+              class="project-media"
+              type="button"
+              aria-expanded="false"
+              aria-label="Show details for ${project.title}"
+              data-project-trigger="${index}"
+              ${isDuplicate ? 'tabindex="-1"' : ""}
+            >
+              ${createProjectMedia(project)}
+              <div class="project-overlay">
+                <h3>${project.title}</h3>
+                <p class="project-services">${project.servicesApplied}</p>
+              </div>
+            </button>
+          </article>
+        `,
+      )
+      .join("");
+  }
 
-          <div class="project-body">
-            <span class="project-tag">${project.type}</span>
-            <h3>${project.title}</h3>
-            <p class="project-services">${project.servicesApplied}</p>
-            <p>${project.result}</p>
-          </div>
-        </article>
-      `,
-    )
-    .join("");
+  projectsGrid.innerHTML = `
+    <div class="projects-carousel" aria-label="Project experience carousel">
+      <div class="projects-carousel-viewport">
+        <div class="projects-carousel-track">
+          <div class="projects-carousel-set">${renderProjectSet()}</div>
+          <div class="projects-carousel-set" aria-hidden="true">${renderProjectSet(true)}</div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function bindAboutContent() {
@@ -507,8 +530,22 @@ function renderTeam() {
         >
           ${createTeamMedia(member)}
           <div class="team-card-body">
-            <h3>${member.name}</h3>
-            <div class="team-details">
+            <div class="team-member-meta">
+              <div>
+                <h3>${member.name}</h3>
+                <p class="team-role">${member.role}</p>
+              </div>
+              <a
+                class="team-linkedin"
+                href="${member.linkedinUrl}"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile for ${member.name}"
+              >
+                <span aria-hidden="true">in</span>
+              </a>
+            </div>
+            <div class="team-details" hidden>
               <p class="team-role">${member.role}</p>
               <p class="team-description">${member.description}</p>
             </div>
@@ -775,7 +812,14 @@ function setupRevealMotion() {
 function updateExpandableButton(button, text) {
   const label = button.querySelector("[data-toggle-label]");
   if (label) {
-    label.textContent = text;
+    if (label.textContent === text) return;
+
+    label.classList.add("is-changing");
+
+    window.setTimeout(() => {
+      label.textContent = text;
+      label.classList.remove("is-changing");
+    }, prefersReducedMotion.matches ? 0 : 120);
     return;
   }
 
