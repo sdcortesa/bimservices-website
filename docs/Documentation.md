@@ -19,7 +19,7 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/icons/services/` contains six replaceable SVG icons used by the service cards.
 - `assets/icons/favicon.svg` is the SVG favicon connected from `index.html`.
 - `assets/models/hero/main_model.glb` is the active 3D Hero model.
-- `assets/models/hero/cabana-tusa.glb` is retained as an inactive previous test model.
+- `assets/models/hero/cabana-tusa.glb` was removed after the active Hero model was updated.
 - `assets/images/hero/hero-main-placeholder.svg` is the temporary Hero background placeholder referenced from CSS.
 - `assets/images/workflow/` contains five SVG framework step visuals used by the How We Work cards.
 - `assets/images/projects/` contains six active PNG project carousel placeholders plus older SVG placeholders retained for now.
@@ -106,7 +106,7 @@ Temporary or pending assets:
 - Hero visual is a placeholder and should be replaced with a real BIM render, model capture, architectural visual or interactive asset.
 - `assets/models/hero/main_model.glb` is the active Hero model and should be optimized before the 3D direction is consolidated.
 - Project visuals are placeholders and should be replaced when real or validated project examples are available.
-- Team photos and bios are placeholders.
+- Team photos and LinkedIn URLs are placeholders.
 - The final contact-form delivery endpoint is still pending.
 - Older project SVG placeholders still exist in `assets/images/projects/` but are not referenced by the current UI.
 
@@ -120,7 +120,7 @@ Temporary or pending assets:
 - Service icons: SVG assets referenced from the service data and sized through the existing `.service-icon` frame.
 - Project carousel: rendered from the `projects` array as six image-led cards in a continuous loop, with hover/focus/tap overlay text.
 - Expandable section toggles: editorial link-style controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
-- Team cards: rendered from the `teamMembers` array, with 2:3 editorial portrait photos, name, role text and one LinkedIn action button.
+- Team cards: rendered from the `teamMembers` array, with 2:3 editorial portrait photos, name, role text and one LinkedIn action button. Descriptions are intentionally not rendered in the current expanded Team layout.
 - Forms: simple contact form with labels, required fields and mailto-based behavior once real email is confirmed.
 - Footer: entity description, short navigation and contact placeholders.
 
@@ -146,7 +146,7 @@ Temporary or pending assets:
 - About starts with intro plus group preview image, then expands in place to show the individual team cards.
 - The About group preview image uses the same black-and-white base and controlled color/Deep Sapphire hover treatment as the individual team photos.
 - Team cards no longer use hover-revealed descriptions in the expanded About state; they show identity first with name, role and LinkedIn action.
-- Team photos use a black-and-white editorial base treatment, then recover controlled color with a subtle Deep Sapphire tint on hover/focus.
+- Team photos use a black-and-white editorial base treatment, then recover controlled color with a subtle Deep Sapphire tint on hover, focus or touch/active states.
 - Contact form validates required fields and opens a mailto draft after the real email placeholder is replaced.
 
 ## Metadata

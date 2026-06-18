@@ -84,7 +84,7 @@ Acceptance criteria:
 - Project Experience feels understandable and intentional in its collapsed state and carousel expanded state.
 - About feels understandable and intentional in its collapsed state with the group preview image.
 - The About group preview swaps cleanly with the individual team cards without visual overlap.
-- Team photos recover controlled color with a soft blue tint on hover/focus.
+- Team photos recover controlled color with a soft blue tint on hover, focus and touch/active states.
 - Mobile keeps Team identity content visible without hidden hover-only details.
 - Global reveal motion feels consistent and understated across headings, intros and cards.
 - Team photos keep a strong branded base state without becoming too dark or too artificial.

@@ -211,13 +211,12 @@ const aboutContent = {
   ],
 };
 
-// Team data: replace placeholders with real photos, names, roles and descriptions.
+// Team data: expanded About cards intentionally show only name, role and LinkedIn.
 // TEMP JPG assets live in ./assets/images/team/
 const teamMembers = [
   {
     name: "Sergio Cortes",
     role: "BIM Delivery Lead",
-    description: "Sergio leads BIM delivery, design coordination and technical documentation, helping turn project information into organized Revit models and construction-ready deliverables.",
     initials: "SC",
     image: "./assets/images/team/team-member-01-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 01",
@@ -226,7 +225,6 @@ const teamMembers = [
   {
     name: "Tatiana Hernandez",
     role: "Operations & Documentation Lead",
-    description: "Tatiana leads project organization, documentation workflows and internal coordination, helping keep information clear, consistent and aligned with each project’s standards.",
     initials: "TH",
     image: "./assets/images/team/team-member-02-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 02",
@@ -235,7 +233,6 @@ const teamMembers = [
   {
     name: "Camilo Ramirez",
     role: "BIM Production Lead",
-    description: "Camilo leads BIM production and Revit modeling support, helping develop coordinated models, drawing packages and technical documentation for AEC teams.",
     initials: "CR",
     image: "./assets/images/team/team-member-03-portrait-placeholder.jpg",
     alt: "Team photo placeholder for Team Member 03",
@@ -544,10 +541,6 @@ function renderTeam() {
               >
                 <span aria-hidden="true">in</span>
               </a>
-            </div>
-            <div class="team-details" hidden>
-              <p class="team-role">${member.role}</p>
-              <p class="team-description">${member.description}</p>
             </div>
           </div>
         </article>

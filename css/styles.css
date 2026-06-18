@@ -1296,15 +1296,26 @@ html.motion-safe .workflow-card.is-visible {
   box-shadow: 0 10px 22px rgba(30, 136, 229, 0.22);
 }
 
-.team-details {
-  display: grid;
-  gap: 0.8rem;
-  margin-top: 0.85rem;
-}
-
 .team-card:focus-visible {
   outline: 3px solid var(--color-focus-ring);
   outline-offset: 3px;
+}
+
+.team-card:active .team-photo::after,
+.team-card:focus-visible .team-photo::after,
+.team-card:focus-within .team-photo::after {
+  opacity: var(--team-photo-overlay-hover-opacity);
+}
+
+.team-card:active .team-image,
+.team-card:focus-visible .team-image,
+.team-card:focus-within .team-image {
+  filter:
+    grayscale(0)
+    saturate(0.78)
+    contrast(1.02)
+    brightness(0.98);
+  transform: scale(1.02);
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
@@ -1342,9 +1353,6 @@ html.motion-safe .workflow-card.is-visible {
     transform: scale(1.02);
   }
 
-  .team-details {
-    display: none;
-  }
 }
 
 #contact {

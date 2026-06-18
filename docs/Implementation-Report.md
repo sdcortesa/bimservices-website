@@ -18,6 +18,16 @@
 - `assets/images/team/team-member-03-portrait-placeholder.jpg`
 - Future replacement photos should use `900x1350` JPG files to avoid unexpected cropping.
 
+## Team Responsive Cleanup Review
+
+- Adjusted the Team photo treatment so mobile/touch states behave closer to desktop.
+- The individual Team photos now recover controlled color with a soft Deep Sapphire tint on hover, keyboard focus, focus-within and active/touch states.
+- Removed unused Team member descriptions from `teamMembers` because the current expanded Team layout only displays name, role and LinkedIn.
+- Removed the unused hidden `.team-details` markup from the rendered Team cards.
+- Kept the 2:3 portrait photo format, current names, current roles and LinkedIn button layout unchanged.
+- The active Hero model file `assets/models/hero/main_model.glb` was updated manually before this sync.
+- The inactive previous test model `assets/models/hero/cabana-tusa.glb` was removed and is no longer documented as an active or retained asset.
+
 ## About Group Photo Treatment Review
 
 - Applied the same editorial photo treatment to the collapsed About group image.
