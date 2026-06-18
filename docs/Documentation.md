@@ -6,6 +6,8 @@ The project is a static single-page website for BIM Services. The current implem
 
 The site is functional as a front-end prototype with editable content stored in `js/main.js`, visual tokens centralized in `css/styles.css`, and organized local assets under `assets/`. Contact details, project imagery, team information and final brand assets remain placeholders.
 
+The latest SEO and AI visibility pass added crawlable initial HTML for framework steps, services, representative project examples and team profiles. JavaScript still enhances interactive blocks, but the core commercial content is no longer empty when JavaScript is disabled.
+
 The latest iteration removed the Hero 3D fallback image and refocused the implementation on loading the provisional GLB model directly. The Hero keeps the existing copy and CTAs while adding a right-side 3D canvas on desktop and a stacked 3D canvas on mobile.
 
 ## Project Structure
@@ -26,6 +28,7 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/images/team/team-group-placeholder.jpg` is the temporary group-photo preview for the collapsed About section.
 - `assets/images/team/team-member-01-portrait-placeholder.jpg`, `team-member-02-portrait-placeholder.jpg` and `team-member-03-portrait-placeholder.jpg` are the active individual team-photo placeholders.
 - `docs/` contains project memory and audit reports.
+- `robots.txt`, `sitemap.xml` and `llms.txt` support crawler discovery and AI-reader context for the current GitHub Pages URL.
 
 ## Implemented Sections
 
@@ -118,6 +121,7 @@ Temporary or pending assets:
 - Cards: shared radius/shadow/surface language for workflow, service, project and team cards.
 - Service cards: rendered from the `services` array in `js/main.js`.
 - Service icons: SVG assets referenced from the service data and sized through the existing `.service-icon` frame.
+- SEO quick answers: visible answer cards below Services covering what BIM Services does, who it serves, input materials and deliverables.
 - Project carousel: rendered from the `projects` array as six image-led cards in a continuous loop, with hover/focus/tap overlay text.
 - Expandable section toggles: editorial link-style controls for Project Experience and About, using accessible buttons with `aria-expanded` and `aria-controls`.
 - Team cards: rendered from the `teamMembers` array, with 2:3 editorial portrait photos, name, role text and one LinkedIn action button. Descriptions are intentionally not rendered in the current expanded Team layout.
@@ -144,15 +148,16 @@ Temporary or pending assets:
 - Project overlays appear on hover, focus and tap and show only the project name plus the small service label.
 - Project Experience starts collapsed and expands in place to show the current carousel.
 - About starts with intro plus group preview image, then expands in place to show the individual team cards.
-- The About group preview image uses the same black-and-white base and controlled color/Deep Sapphire hover treatment as the individual team photos.
+- The About group preview image uses the same black-and-white base and controlled color/Deep Sapphire hover/touch treatment as the individual team photos.
 - Team cards no longer use hover-revealed descriptions in the expanded About state; they show identity first with name, role and LinkedIn action.
 - Team photos use a black-and-white editorial base treatment, then recover controlled color with a subtle Deep Sapphire tint on hover, focus or touch/active states.
-- Contact form validates required fields and opens a mailto draft after the real email placeholder is replaced.
+- Contact form validates required fields, includes a basic honeypot and opens a mailto draft after the real email placeholder is replaced.
 
 ## Metadata
 
 - Title: `BIM Services | BIM Modeling, Coordination & Documentation for AEC Teams`
 - Meta description: `BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables.`
+- Canonical: `https://sdcortesa.github.io/bimservices-website/`
 - H1: `BIM Delivery Intelligence`
 
 SEO notes:
@@ -160,7 +165,11 @@ SEO notes:
 - The page uses one H1.
 - Section H2s are clear and entity-oriented.
 - Service titles are rendered as H3s through JavaScript.
+- Framework, Services, Project Experience and Team content also exist in the initial HTML for crawler and no-JavaScript readability.
 - About and footer copy define BIM Services as an AEC BIM support studio.
+- `robots.txt` allows Googlebot, Bingbot, OAI-SearchBot, PerplexityBot and Perplexity-User. `GPTBot` is blocked until the owner decides whether to allow training crawls.
+- `sitemap.xml` includes the canonical homepage URL.
+- JSON-LD `Organization` schema is present in `index.html` and uses only visible confirmed information.
 - The site is readable for search and AI answer engines, but richer real project evidence and confirmed contact/entity details are still needed.
 
 ## Current Design Decisions
@@ -189,6 +198,8 @@ SEO notes:
 
 - Real WhatsApp number and email are not confirmed; active contact links still point to placeholders.
 - Contact form is front-end/mailto only and does not submit to a backend.
+- Contact form does not send externally until a confirmed email or provider is configured.
+- LinkedIn profile URLs are not confirmed, so generic LinkedIn links are hidden instead of published.
 - Project and team content are not validated real examples.
 - Some older project sample SVGs remain unused in the assets folder.
 - JavaScript rendering uses `innerHTML` from local constants; safe in the current static context, but should be reconsidered if content becomes externally managed.

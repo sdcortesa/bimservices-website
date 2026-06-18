@@ -20,11 +20,15 @@ Ready to keep:
 
 Still in testing:
 
+- Technical SEO and AI visibility implementation on GitHub Pages.
+- Crawlable static HTML fallback for JavaScript-rendered sections.
+- Robots policy that allows AI search bots but blocks `GPTBot` training crawls until owner approval.
 - Model-viewer Hero integration using `assets/models/hero/main_model.glb`.
 - Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
 - Hero 3D performance on GitHub Pages and mobile devices.
 - Mobile Hero header separation and 3D color consistency after removing the overlay from above the model.
+- Mobile Hero 3D mask intensity now needs visual review to confirm it feels close to desktop without becoming too dark.
 - Validate the requested `65%` Hero camera radius on desktop and mobile.
 - Hero title font-weight interaction on scroll.
 - Fade-only reveal rhythm across the full page.
@@ -57,7 +61,7 @@ Do not touch yet:
 - New sections or internal pages.
 - Booking integration.
 - Backend form handling.
-- Structured data, until business/entity details are confirmed.
+- Additional structured data beyond the current Organization schema, until business/entity details are confirmed.
 
 ## Milestone 0: Hero 3D, Motion and About QA
 
@@ -84,7 +88,7 @@ Acceptance criteria:
 - Project Experience feels understandable and intentional in its collapsed state and carousel expanded state.
 - About feels understandable and intentional in its collapsed state with the group preview image.
 - The About group preview swaps cleanly with the individual team cards without visual overlap.
-- Team photos recover controlled color with a soft blue tint on hover, focus and touch/active states.
+- Team and About group photos recover controlled color with a soft blue tint on hover, focus and touch/active states.
 - Mobile keeps Team identity content visible without hidden hover-only details.
 - Global reveal motion feels consistent and understated across headings, intros and cards.
 - Team photos keep a strong branded base state without becoming too dark or too artificial.
@@ -124,14 +128,29 @@ Acceptance criteria:
 - Real WhatsApp number replaces `[PHONE_NUMBER_TO_CONFIRM]`.
 - Real email replaces `[EMAIL_TO_CONFIRM]`.
 - Header CTA, Contact quick links, Footer links and form mailto flow all point to real destinations.
-- Placeholder warning in the form is no longer triggered when required fields are valid.
+- The form has a confirmed delivery path or selected provider.
 
 Validation:
 
-- Click WhatsApp link.
-- Click email link.
+- Click any confirmed direct contact links if they are reintroduced.
 - Submit form with valid test data.
 - Confirm no placeholder contact strings remain in active UI.
+
+## Milestone 1A: Validate SEO Deployment
+
+Acceptance criteria:
+
+- `https://sdcortesa.github.io/bimservices-website/robots.txt` returns the deployed robots policy.
+- `https://sdcortesa.github.io/bimservices-website/sitemap.xml` returns the deployed sitemap.
+- Canonical URL, JSON-LD and Open Graph metadata resolve on the deployed page.
+- Google Search Console and Bing Webmaster Tools receive the sitemap.
+
+Validation:
+
+- Inspect deployed page source after GitHub Pages deploys.
+- Test JSON-LD with a schema validator.
+- Confirm no generic LinkedIn URLs or visible development placeholders are published.
+- Decide whether `GPTBot` should remain blocked or be allowed later.
 
 ## Milestone 2: Live Responsive QA
 

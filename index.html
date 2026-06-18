@@ -7,6 +7,32 @@
       name="description"
       content="BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables."
     />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sdcortesa.github.io/bimservices-website/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BIM Services" />
+    <meta
+      property="og:title"
+      content="BIM Services | BIM Modeling, Coordination &amp; Documentation for AEC Teams"
+    />
+    <meta
+      property="og:description"
+      content="BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables."
+    />
+    <meta property="og:url" content="https://sdcortesa.github.io/bimservices-website/" />
+    <meta
+      property="og:image"
+      content="https://sdcortesa.github.io/bimservices-website/assets/logos/bim-services-logo.svg"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="BIM Services | BIM Modeling, Coordination &amp; Documentation for AEC Teams"
+    />
+    <meta
+      name="twitter:description"
+      content="BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables."
+    />
     <title>BIM Services | BIM Modeling, Coordination &amp; Documentation for AEC Teams</title>
     <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
     <!-- Fontshare: Cabinet Grotesk + General Sans -->
@@ -21,6 +47,17 @@
     ></script>
     <script>
       document.documentElement.classList.add("js");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BIM Services",
+        "url": "https://sdcortesa.github.io/bimservices-website/",
+        "logo": "https://sdcortesa.github.io/bimservices-website/assets/logos/bim-services-logo.svg",
+        "description": "BIM Services provides BIM modeling, 3D coordination, construction documentation and technical support for architecture, engineering and construction teams.",
+        "areaServed": "International"
+      }
     </script>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
@@ -80,7 +117,7 @@
             <!-- Hero visual placeholder: replace this with final image, BIM render, model viewer or interactive visual. -->
             <div class="hero-visual-layer" data-hero-parallax aria-hidden="true">
               <div class="hero-visual-tag">
-                <span id="hero-visual-tag-text">Visual area - to be replaced</span>
+                <span id="hero-visual-tag-text">BIM model visualization</span>
               </div>
             </div>
 
@@ -109,7 +146,7 @@
                 max-camera-orbit="290deg 58deg 65%"
                 field-of-view="18deg"
                 interaction-prompt="none"
-                loading="eager"
+                loading="lazy"
                 reveal="auto"
               ></model-viewer>
             </div>
@@ -158,7 +195,62 @@
             </p>
           </div>
 
-          <div class="workflow-grid" id="framework-grid"></div>
+          <div class="workflow-grid" id="framework-grid">
+            <article class="workflow-card" data-workflow-card>
+              <div class="workflow-card-visual" aria-hidden="true">
+                <img src="./assets/images/workflow/workflow-step-01-placeholder.svg" alt="" loading="lazy" />
+              </div>
+              <div class="workflow-step-heading">
+                <span class="workflow-number">01</span>
+                <h3 class="workflow-step-title">Model</h3>
+              </div>
+              <p>Create or receive the BIM model from design or existing documentation.</p>
+            </article>
+
+            <article class="workflow-card" data-workflow-card>
+              <div class="workflow-card-visual" aria-hidden="true">
+                <img src="./assets/images/workflow/workflow-step-02-placeholder.svg" alt="" loading="lazy" />
+              </div>
+              <div class="workflow-step-heading">
+                <span class="workflow-number">02</span>
+                <h3 class="workflow-step-title">Structure</h3>
+              </div>
+              <p>Organize information, parameters, views, families, naming conventions and project standards.</p>
+            </article>
+
+            <article class="workflow-card" data-workflow-card>
+              <div class="workflow-card-visual" aria-hidden="true">
+                <img src="./assets/images/workflow/workflow-step-03-placeholder.svg" alt="" loading="lazy" />
+              </div>
+              <div class="workflow-step-heading">
+                <span class="workflow-number">03</span>
+                <h3 class="workflow-step-title">Coordinate</h3>
+              </div>
+              <p>Detect clashes, inconsistencies and technical conflicts across disciplines.</p>
+            </article>
+
+            <article class="workflow-card" data-workflow-card>
+              <div class="workflow-card-visual" aria-hidden="true">
+                <img src="./assets/images/workflow/workflow-step-04-placeholder.svg" alt="" loading="lazy" />
+              </div>
+              <div class="workflow-step-heading">
+                <span class="workflow-number">04</span>
+                <h3 class="workflow-step-title">Quantify</h3>
+              </div>
+              <p>Extract quantities, cost data and decision-ready project information.</p>
+            </article>
+
+            <article class="workflow-card" data-workflow-card>
+              <div class="workflow-card-visual" aria-hidden="true">
+                <img src="./assets/images/workflow/workflow-step-05-placeholder.svg" alt="" loading="lazy" />
+              </div>
+              <div class="workflow-step-heading">
+                <span class="workflow-number">05</span>
+                <h3 class="workflow-step-title">Deliver</h3>
+              </div>
+              <p>Issue coordinated models, documentation, reports, and deliverables.</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -174,7 +266,86 @@
             </p>
           </div>
 
-          <div class="services-grid" id="services-grid"></div>
+          <div class="services-grid" id="services-grid">
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/cad-to-bim-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>CAD to BIM</h3>
+              </div>
+              <p>Convert existing CAD files, PDFs or drawings into structured BIM models ready for coordination and development.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/specialty-bim-modeling-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>Specialty BIM Modeling</h3>
+              </div>
+              <p>Create detailed BIM models for architecture, structure and MEP systems with clear technical organization.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/coordination-3d-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>3D Coordination</h3>
+              </div>
+              <p>Identify and resolve clashes between disciplines before construction to reduce rework and coordination issues.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/construction-documentation-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>Construction Documentation</h3>
+              </div>
+              <p>Produce drawings, specifications and technical documentation ready for permits, coordination and construction.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/cost-quantity-estimation-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>Cost &amp; Quantity Estimation</h3>
+              </div>
+              <p>Extract quantities, material takeoffs and cost-related project information directly from BIM models.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card-heading">
+                <div class="service-icon" aria-hidden="true">
+                  <img src="./assets/icons/services/construction-planning-4d-icon.svg" alt="" loading="lazy" />
+                </div>
+                <h3>4D Construction Planning</h3>
+              </div>
+              <p>Support sequencing and timeline planning through 4D simulation based on model and construction data.</p>
+            </article>
+          </div>
+
+          <div class="answer-grid reveal" aria-label="BIM Services quick answers">
+            <article class="answer-card">
+              <h3>What does BIM Services do?</h3>
+              <p>BIM Services provides specialized BIM modeling, coordination, Revit production support and construction documentation for AEC teams.</p>
+            </article>
+            <article class="answer-card">
+              <h3>Who is BIM Services for?</h3>
+              <p>The studio supports architecture firms, engineering offices, contractors and developers that need external BIM capacity and organized project delivery.</p>
+            </article>
+            <article class="answer-card">
+              <h3>What can clients provide?</h3>
+              <p>Clients can start with CAD files, PDFs, drawings, existing BIM models, project standards or an incomplete scope that still needs technical definition.</p>
+            </article>
+            <article class="answer-card">
+              <h3>What deliverables can clients receive?</h3>
+              <p>Typical outputs include coordinated BIM models, Revit documentation, drawings, quantity information, clash-review support and construction-ready project information.</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -208,11 +379,141 @@
               id="project-experience-content"
               role="region"
               aria-labelledby="projects-title"
-              aria-hidden="true"
-              hidden
-              inert
+              aria-hidden="false"
             >
-              <div class="projects-grid" id="projects-grid"></div>
+              <div class="projects-grid" id="projects-grid">
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for Residential BIM Support"
+                    data-project-trigger="0"
+                  >
+                    <img
+                      src="./assets/images/projects/project-residential-bim-support.png"
+                      alt="Representative visual for Residential BIM Support"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>Residential BIM Support</h3>
+                      <p class="project-services">CAD to BIM + Specialty BIM Modeling</p>
+                    </div>
+                  </button>
+                </article>
+
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for Coordination Package"
+                    data-project-trigger="1"
+                  >
+                    <img
+                      src="./assets/images/projects/project-coordination-package.png"
+                      alt="Representative visual for Coordination Package"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>Coordination Package</h3>
+                      <p class="project-services">3D Coordination + Clash Review</p>
+                    </div>
+                  </button>
+                </article>
+
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for Documentation Set"
+                    data-project-trigger="2"
+                  >
+                    <img
+                      src="./assets/images/projects/project-documentation-set.png"
+                      alt="Representative visual for Documentation Set"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>Documentation Set</h3>
+                      <p class="project-services">Construction Documentation</p>
+                    </div>
+                  </button>
+                </article>
+
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for Specialty BIM Modeling"
+                    data-project-trigger="3"
+                  >
+                    <img
+                      src="./assets/images/projects/project-specialty-bim-modeling.png"
+                      alt="Representative visual for Specialty BIM Modeling"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>Specialty BIM Modeling</h3>
+                      <p class="project-services">Specialty BIM Modeling</p>
+                    </div>
+                  </button>
+                </article>
+
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for Quantity Estimation"
+                    data-project-trigger="4"
+                  >
+                    <img
+                      src="./assets/images/projects/project-quantity-estimation.png"
+                      alt="Representative visual for Quantity Estimation"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>Quantity Estimation</h3>
+                      <p class="project-services">Quantity Takeoff + Cost Data</p>
+                    </div>
+                  </button>
+                </article>
+
+                <article class="project-card">
+                  <button
+                    class="project-media"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Show details for 4D Construction Planning"
+                    data-project-trigger="5"
+                  >
+                    <img
+                      src="./assets/images/projects/project-4d-construction-planning.png"
+                      alt="Representative visual for 4D Construction Planning"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="project-overlay">
+                      <h3>4D Construction Planning</h3>
+                      <p class="project-services">4D Construction Planning</p>
+                    </div>
+                  </button>
+                </article>
+              </div>
             </div>
           </div>
         </div>
@@ -246,7 +547,7 @@
               <img
                 class="about-group-image"
                 src="./assets/images/team/team-group-placeholder.jpg"
-                alt="Team group photo placeholder for BIM Services"
+                alt="BIM Services team group photo"
               />
             </div>
 
@@ -268,11 +569,66 @@
               id="about-team-content"
               role="region"
               aria-labelledby="about-title"
-              aria-hidden="true"
-              hidden
-              inert
+              aria-hidden="false"
             >
-              <div class="team-grid" id="team-grid"></div>
+              <div class="team-grid" id="team-grid">
+                <article class="team-card" tabindex="0">
+                  <div class="team-photo">
+                    <img
+                      class="team-image"
+                      src="./assets/images/team/team-member-01-portrait-placeholder.jpg"
+                      alt="Portrait of Sergio Cortes"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="team-card-body">
+                    <div class="team-member-meta">
+                      <div>
+                        <h3>Sergio Cortes</h3>
+                        <p class="team-role">BIM Delivery Lead</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="team-card" tabindex="0">
+                  <div class="team-photo">
+                    <img
+                      class="team-image"
+                      src="./assets/images/team/team-member-02-portrait-placeholder.jpg"
+                      alt="Portrait of Tatiana Hernandez"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="team-card-body">
+                    <div class="team-member-meta">
+                      <div>
+                        <h3>Tatiana Hernandez</h3>
+                        <p class="team-role">Operations &amp; Documentation Lead</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="team-card" tabindex="0">
+                  <div class="team-photo">
+                    <img
+                      class="team-image"
+                      src="./assets/images/team/team-member-03-portrait-placeholder.jpg"
+                      alt="Portrait of Camilo Ramirez"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="team-card-body">
+                    <div class="team-member-meta">
+                      <div>
+                        <h3>Camilo Ramirez</h3>
+                        <p class="team-role">BIM Production Lead</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
         </div>
@@ -296,6 +652,11 @@
             <div class="form-field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="form-field form-field-honeypot" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
             </div>
 
             <div class="form-field">
@@ -327,6 +688,9 @@
             <button class="button button-primary form-submit" id="contact-submit" type="submit">
               Send message
             </button>
+            <p class="form-privacy">
+              Please do not include confidential files or sensitive project data in this first message.
+            </p>
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>

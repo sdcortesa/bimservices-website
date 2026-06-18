@@ -1,5 +1,31 @@
 # Implementation Report
 
+## SEO Technical + AI Search Visibility Review
+
+- Added crawlable initial HTML for Framework, Services, Project Experience and Team content that previously depended on JavaScript-rendered empty containers.
+- Added visible quick-answer cards under Services to answer common AI-search style questions about what BIM Services does, who it serves, what clients can provide and what deliverables clients can receive.
+- Added canonical, robots meta, Open Graph and Twitter Card metadata to `index.html`.
+- Added JSON-LD `Organization` schema using only visible and confirmed information.
+- Created `robots.txt`, `sitemap.xml` and experimental `llms.txt`.
+- Updated the GitHub Pages deployment workflow so root crawler files are copied into `_site`.
+- Added no-JavaScript CSS fallbacks so expandable Projects and Team content is visible without JavaScript.
+- Removed generic LinkedIn URLs from active Team rendering because real profile URLs are not confirmed.
+- Replaced active placeholder alt text with neutral descriptive alt text.
+- Replaced the visible Hero text `Visual area - to be replaced` with `BIM model visualization`.
+- Added a contact-form honeypot and a short privacy note.
+- Replaced the internal contact-form development warning with a safer user-facing fallback while the final email destination is missing.
+- Changed the Hero `<model-viewer>` loading mode from `eager` to `lazy` to reduce initial load pressure.
+- Added `docs/SEO-AI-Visibility-Implementation.md` with implementation details, robots policy, sitemap URL, schema details, tests and owner action items.
+
+## Mobile Hero Mask + Team Touch Treatment Review
+
+- Added a local mobile-only mask over the Hero 3D area to make the model read closer to the desktop treatment.
+- The mobile 3D mask uses low-opacity Deep Sapphire gradients and `pointer-events: none`, so it does not block model interaction.
+- Kept the mobile mask softer than the desktop visual overlay to avoid making the model too dark.
+- Extended the About group image treatment to touch/active states, not only desktop hover/focus.
+- The group image now matches the Team member behavior more closely on responsive layouts: black-and-white base, controlled color recovery, subtle blue tint and slight zoom.
+- No content, layout structure, model file, navigation or Team data changed in this pass.
+
 ## Team Expanded Layout Review
 
 - Reworked only the expanded About / Team card layout.

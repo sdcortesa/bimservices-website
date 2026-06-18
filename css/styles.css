@@ -771,6 +771,35 @@ html.motion-safe .workflow-card.is-visible {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.answer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.answer-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-medium);
+  background: rgba(255, 248, 225, 0.44);
+}
+
+.answer-card h3 {
+  font-family: var(--font-heading);
+  margin: 0 0 0.55rem;
+  color: var(--color-deep-sapphire);
+  font-size: 1rem;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.25;
+}
+
+.answer-card p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
 .service-card,
 .project-card {
   background: var(--color-white);
@@ -962,6 +991,21 @@ html.motion-safe .workflow-card.is-visible {
 
 .projects-grid {
   display: block;
+}
+
+html:not(.js) .section-toggle-row {
+  display: none;
+}
+
+html:not(.js) .expandable-region {
+  max-height: none;
+  opacity: 1;
+  transform: none;
+}
+
+html:not(.js) .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .projects-carousel {
@@ -1318,6 +1362,21 @@ html.motion-safe .workflow-card.is-visible {
   transform: scale(1.02);
 }
 
+.about-preview:active::after,
+.about-preview:focus-within::after {
+  opacity: var(--team-photo-overlay-hover-opacity);
+}
+
+.about-preview:active .about-group-image,
+.about-preview:focus-within .about-group-image {
+  filter:
+    grayscale(0)
+    saturate(0.78)
+    contrast(1.02)
+    brightness(0.98);
+  transform: scale(1.025);
+}
+
 @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
   /* About group photo: same branded hover treatment used by the individual team photos. */
   .about-preview:hover::after,
@@ -1423,6 +1482,14 @@ html.motion-safe .workflow-card.is-visible {
   gap: 0.45rem;
 }
 
+.form-field-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-field label {
   font-family: var(--font-body);
   color: var(--color-deep-sapphire);
@@ -1476,8 +1543,20 @@ html.motion-safe .workflow-card.is-visible {
   font-size: 0.94rem;
 }
 
+.form-privacy {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .form-status.is-warning {
   color: var(--color-deep-sapphire);
+}
+
+.form-status.is-error {
+  color: #9c2f2f;
 }
 
 .site-footer {
@@ -1557,6 +1636,7 @@ html.motion-safe .workflow-card.is-visible {
   }
 
   .services-grid,
+  .answer-grid,
   .projects-grid,
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1651,6 +1731,7 @@ html.motion-safe .workflow-card.is-visible {
 
   .workflow-grid,
   .services-grid,
+  .answer-grid,
   .projects-grid,
   .team-grid,
   .footer-shell {
@@ -1748,6 +1829,18 @@ html.motion-safe .workflow-card.is-visible {
 
   .hero-3d::before {
     inset: 14% 8% 10%;
+  }
+
+  .hero-3d::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: var(--radius-large);
+    background:
+      linear-gradient(180deg, rgba(0, 45, 114, 0.08) 0%, rgba(0, 45, 114, 0.2) 100%),
+      linear-gradient(90deg, rgba(0, 45, 114, 0.16), rgba(0, 45, 114, 0.06));
+    pointer-events: none;
   }
 
   .workflow-section {

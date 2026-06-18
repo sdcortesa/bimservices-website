@@ -43,7 +43,7 @@ const heroContent = {
     label: "See how we work",
     href: "#how-we-work",
   },
-  visualTagText: "Visual area - to be replaced",
+  visualTagText: "BIM model visualization",
 };
 
 const frameworkContent = {
@@ -162,42 +162,42 @@ const projects = [
     type: "Residential",
     servicesApplied: "CAD to BIM + Specialty BIM Modeling",
     image: "./assets/images/projects/project-residential-bim-support.png",
-    alt: "Project visual placeholder for Residential BIM Support",
+    alt: "Representative visual for Residential BIM Support",
   },
   {
     title: "Coordination Package",
     type: "AEC Coordination",
     servicesApplied: "3D Coordination + Clash Review",
     image: "./assets/images/projects/project-coordination-package.png",
-    alt: "Project visual placeholder for Coordination Package",
+    alt: "Representative visual for Coordination Package",
   },
   {
     title: "Documentation Set",
     type: "Technical Documentation",
     servicesApplied: "Construction Documentation",
     image: "./assets/images/projects/project-documentation-set.png",
-    alt: "Project visual placeholder for Documentation Set",
+    alt: "Representative visual for Documentation Set",
   },
   {
     title: "Specialty BIM Modeling",
     type: "BIM Modeling",
     servicesApplied: "Specialty BIM Modeling",
     image: "./assets/images/projects/project-specialty-bim-modeling.png",
-    alt: "Project visual placeholder for Specialty BIM Modeling",
+    alt: "Representative visual for Specialty BIM Modeling",
   },
   {
     title: "Quantity Estimation",
     type: "Cost & Quantity",
     servicesApplied: "Quantity Takeoff + Cost Data",
     image: "./assets/images/projects/project-quantity-estimation.png",
-    alt: "Project visual placeholder for Quantity Estimation",
+    alt: "Representative visual for Quantity Estimation",
   },
   {
     title: "4D Construction Planning",
     type: "Planning",
     servicesApplied: "4D Construction Planning",
     image: "./assets/images/projects/project-4d-construction-planning.png",
-    alt: "Project visual placeholder for 4D Construction Planning",
+    alt: "Representative visual for 4D Construction Planning",
   },
 ];
 
@@ -219,24 +219,24 @@ const teamMembers = [
     role: "BIM Delivery Lead",
     initials: "SC",
     image: "./assets/images/team/team-member-01-portrait-placeholder.jpg",
-    alt: "Team photo placeholder for Team Member 01",
-    linkedinUrl: "https://www.linkedin.com/",
+    alt: "Portrait of Sergio Cortes",
+    linkedinUrl: "",
   },
   {
     name: "Tatiana Hernandez",
     role: "Operations & Documentation Lead",
     initials: "TH",
     image: "./assets/images/team/team-member-02-portrait-placeholder.jpg",
-    alt: "Team photo placeholder for Team Member 02",
-    linkedinUrl: "https://www.linkedin.com/",
+    alt: "Portrait of Tatiana Hernandez",
+    linkedinUrl: "",
   },
   {
     name: "Camilo Ramirez",
     role: "BIM Production Lead",
     initials: "CR",
     image: "./assets/images/team/team-member-03-portrait-placeholder.jpg",
-    alt: "Team photo placeholder for Team Member 03",
-    linkedinUrl: "https://www.linkedin.com/",
+    alt: "Portrait of Camilo Ramirez",
+    linkedinUrl: "",
   },
 ];
 
@@ -519,8 +519,22 @@ function renderTeam() {
   if (!teamGrid) return;
 
   teamGrid.innerHTML = teamMembers
-    .map(
-      (member) => `
+    .map((member) => {
+      const linkedInLink = member.linkedinUrl
+        ? `
+              <a
+                class="team-linkedin"
+                href="${member.linkedinUrl}"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile for ${member.name}"
+              >
+                <span aria-hidden="true">in</span>
+              </a>
+        `
+        : "";
+
+      return `
         <article
           class="team-card"
           tabindex="0"
@@ -532,20 +546,12 @@ function renderTeam() {
                 <h3>${member.name}</h3>
                 <p class="team-role">${member.role}</p>
               </div>
-              <a
-                class="team-linkedin"
-                href="${member.linkedinUrl}"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn profile for ${member.name}"
-              >
-                <span aria-hidden="true">in</span>
-              </a>
+              ${linkedInLink}
             </div>
           </div>
         </article>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -921,17 +927,28 @@ function setupContactForm() {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    formStatus.classList.remove("is-warning", "is-error");
 
     if (!form.reportValidity()) {
+      formStatus.textContent = "Please complete the required fields before sending your message.";
+      formStatus.classList.add("is-error");
       return;
     }
 
     const formData = new FormData(form);
+    const websiteField = String(formData.get("website") || "").trim();
+
+    if (websiteField) {
+      form.reset();
+      formStatus.textContent = "Thank you. Your message has been received for review.";
+      return;
+    }
+
     const hasConfirmedEmail = !contactInfo.emailAddress.includes("[");
 
     if (!hasConfirmedEmail) {
       formStatus.textContent =
-        "Update the contact email placeholder in js/main.js to activate email sending from this form.";
+        "Your message is ready, but the contact email destination has not been connected yet. Please copy your message and send it through the confirmed contact channel when available.";
       formStatus.classList.add("is-warning");
       return;
     }
