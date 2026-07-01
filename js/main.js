@@ -917,8 +917,9 @@ function setupAboutScrollTransition() {
   // About team transition: sticky group photo fades behind individual cards as the user scrolls.
   const updateProgress = () => {
     if (prefersReducedMotion.matches) {
-      stage.style.setProperty("--about-photo-scroll-progress", "0.58");
+      stage.style.setProperty("--about-photo-scroll-progress", "1");
       stage.style.setProperty("--about-card-scroll-progress", "1");
+      stage.classList.add("is-photo-hidden");
       return;
     }
 
@@ -932,6 +933,7 @@ function setupAboutScrollTransition() {
 
     stage.style.setProperty("--about-photo-scroll-progress", photoProgress.toFixed(3));
     stage.style.setProperty("--about-card-scroll-progress", cardProgress.toFixed(3));
+    stage.classList.toggle("is-photo-hidden", photoProgress > 0.985);
   };
 
   let ticking = false;

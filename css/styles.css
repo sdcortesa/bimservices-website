@@ -1204,13 +1204,22 @@ html:not(.js) .projects-grid {
   border-radius: var(--radius-medium);
   background: var(--color-white);
   box-shadow: var(--shadow-soft);
-  opacity: calc(1 - (var(--about-photo-scroll-progress) * 0.78));
+  opacity: calc(1 - var(--about-photo-scroll-progress));
   transform:
-    translateY(calc(var(--about-photo-scroll-progress) * -14px))
-    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.025)));
+    translateY(calc(var(--about-photo-scroll-progress) * -22px))
+    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.035)));
   transition:
-    opacity 220ms linear,
-    transform 220ms linear;
+    opacity 180ms linear,
+    transform 180ms linear,
+    visibility 0ms linear 180ms;
+  visibility: visible;
+  pointer-events: auto;
+  will-change: opacity, transform;
+}
+
+.about-scroll-stage.is-photo-hidden .about-preview {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .about-preview::after {
@@ -1219,7 +1228,7 @@ html:not(.js) .projects-grid {
   inset: 0;
   background: var(--color-deep-sapphire);
   border-radius: var(--radius-medium);
-  opacity: calc(var(--team-photo-overlay-opacity) + (var(--about-photo-scroll-progress) * 0.08));
+  opacity: calc(var(--team-photo-overlay-opacity) + (var(--about-photo-scroll-progress) * 0.04));
   mix-blend-mode: multiply;
   pointer-events: none;
   transition: opacity 220ms linear;
@@ -1235,7 +1244,7 @@ html:not(.js) .projects-grid {
     grayscale(1)
     contrast(1.04)
     brightness(1.03);
-  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.035)));
+  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.045)));
   transition:
     filter var(--team-photo-transition) ease-out,
     transform 220ms linear;
