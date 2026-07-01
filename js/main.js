@@ -7,7 +7,7 @@ const seoMetadata = {
     "BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables.",
 };
 
-const assetVersion = "20260701-projects";
+const assetVersion = "20260701-projects-refresh";
 
 // Content system: keep hero, framework, services and SEO metadata editable.
 const navItems = [
