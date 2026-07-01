@@ -904,139 +904,8 @@ html.motion-safe .workflow-card.is-visible {
   background: linear-gradient(180deg, var(--color-surface-blue) 0%, #ffffff 100%);
 }
 
-.expandable-section {
-  display: grid;
-  gap: 1rem;
-}
-
-.section-toggle-row {
-  display: flex;
-  align-items: center;
-}
-
-.section-toggle {
-  min-height: 0;
-  gap: 0.6rem;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: var(--color-deep-sapphire);
-  box-shadow: none;
-  font-size: clamp(1.03rem, 1.4vw, 1.18rem);
-  font-weight: var(--font-weight-body-strong);
-  letter-spacing: -0.02em;
-}
-
-.section-toggle-icon {
-  position: relative;
-  order: -1;
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--color-deep-sapphire);
-  color: var(--color-white);
-  transition:
-    transform 360ms ease-out,
-    background-color var(--motion-fast) ease-out,
-    box-shadow var(--motion-fast) ease-out;
-}
-
-.section-toggle [data-toggle-label] {
-  display: inline-block;
-  border-bottom: 1.5px solid currentColor;
-  line-height: 1.05;
-  transition:
-    opacity 180ms ease-out,
-    transform 180ms ease-out,
-    color var(--motion-fast) ease-out;
-}
-
-.section-toggle [data-toggle-label].is-changing {
-  opacity: 0;
-  transform: translateY(0.2rem);
-}
-
-.section-toggle-icon::before,
-.section-toggle-icon::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0.88rem;
-  height: 2px;
-  background: currentColor;
-  transform: translate(-50%, -50%);
-  transition:
-    transform var(--motion-fast) ease-out,
-    opacity var(--motion-fast) ease-out;
-}
-
-.section-toggle-icon::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.section-toggle:hover,
-.section-toggle:focus-visible {
-  color: var(--color-deep-sapphire);
-  transform: none;
-}
-
-.section-toggle:hover .section-toggle-icon,
-.section-toggle:focus-visible .section-toggle-icon {
-  background: var(--color-royal-blue);
-  box-shadow: 0 10px 22px rgba(30, 136, 229, 0.22);
-  transform: rotate(90deg) scale(0.86);
-}
-
-.section-toggle:hover [data-toggle-label],
-.section-toggle:focus-visible [data-toggle-label] {
-  color: var(--color-royal-blue);
-}
-
-.section-toggle[aria-expanded="true"] .section-toggle-icon::after {
-  opacity: 0;
-  transform: translate(-50%, -50%) rotate(90deg) scaleX(0.2);
-}
-
-.section-toggle[aria-expanded="true"] .section-toggle-icon {
-  background: var(--color-royal-blue);
-}
-
-/* Expandable section motion: keep transitions subtle and consistent with global reveal. */
-.expandable-region {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    max-height var(--expandable-duration) ease-out,
-    opacity var(--motion-normal) ease-out,
-    transform var(--motion-normal) ease-out;
-}
-
-.expandable-region.is-expanded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.expandable-region[hidden] {
-  display: none;
-}
-
 .projects-grid {
   display: block;
-}
-
-html:not(.js) .section-toggle-row {
-  display: none;
-}
-
-html:not(.js) .expandable-region {
-  max-height: none;
-  opacity: 1;
-  transform: none;
 }
 
 html:not(.js) .projects-grid {
@@ -1171,19 +1040,6 @@ html:not(.js) .projects-grid {
 
 #about {
   background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
-}
-
-.about-copy {
-  max-width: 52rem;
-  margin: 0 0 2rem;
-  display: grid;
-  gap: 1rem;
-}
-
-.about-copy p {
-  margin: 0;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
 }
 
 .about-team-static {
@@ -1909,10 +1765,6 @@ html:not(.js) .projects-grid {
     font-size: 1.08rem;
   }
 
-  .section-toggle-row {
-    justify-content: flex-start;
-  }
-
   /* Mobile About behavior: keep secondary info visible to avoid inaccessible hover-only content. */
   .team-card {
     align-items: flex-start;
@@ -1969,19 +1821,9 @@ html:not(.js) .projects-grid {
     transform: none !important;
   }
 
-  .expandable-region {
-    transition: none !important;
-    transform: none !important;
-  }
-
   .projects-carousel-track {
     animation: none !important;
     transform: none !important;
-  }
-
-  .section-toggle-icon,
-  .section-toggle [data-toggle-label] {
-    transition: none !important;
   }
 
   .answer-card:hover {

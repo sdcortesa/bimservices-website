@@ -2,6 +2,8 @@
 
 ## Team Static Layout Reversion Review
 
+- Updated the section label and visible heading to `Team`.
+- Removed the About intro paragraphs so the group photo appears immediately after the section heading.
 - Removed the About / Team expand button from the active markup so individual team cards no longer require a click to appear.
 - Kept the group team photo visible as the opening visual for the section.
 - Reverted the scroll-based Team reveal because the interaction did not feel stable enough visually.
@@ -93,13 +95,9 @@
 
 ## Project and Team Toggle Button Review
 
-- Restyled only the Project Experience and About/Team expandable toggle buttons.
-- Replaced the previous rectangular button look with an editorial link-style control inspired by the reference: circular plus icon plus underlined text.
-- The plus circle now rotates `90deg` and scales down on hover/focus.
-- The circle uses Deep Sapphire by default and Royal Blue on hover/focus/open state.
-- The toggle label crossfades/translates briefly when switching between the closed text and `Show less`.
-- Removed the mobile full-width toggle override so the control keeps the same compact editorial behavior on responsive layouts.
-- Existing expand/collapse behavior, accessibility attributes and section content were preserved.
+- Superseded by the later Projects Always Visible + Team Simplification pass.
+- Project Experience and Team no longer use manual expand/collapse toggle buttons.
+- The previous editorial plus-button treatment was removed from the active UI.
 
 ## Project Carousel Refinement Review
 
@@ -756,60 +754,44 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 - Team cards are now keyboard-focusable via `tabindex="0"` to support non-hover reveal, which should be checked in a live browser to confirm focus order feels natural.
 - The new global reveal system is simpler and more maintainable than the previous split approach, but it still benefits from real-device tuning before being treated as final.
 
-## Expandable Sections Review
+## Projects Always Visible + Team Simplification Review
 
 ### Project Experience
 
-- `Selected Project Experience` now starts in a compact editorial state inside `index.html`.
-- The collapsed state shows:
-  - section heading
-  - intro copy
-  - one toggle button labeled `View project experience`
-- The expanded state reveals the existing project cards in place inside `#project-experience-content`.
-- The same button switches to `Show less` and collapses the region again.
+- `Selected Project Experience` no longer uses a manual expand/collapse button.
+- The project carousel is visible immediately when the section enters the page.
+- The previous `View project experience` / `Show less` toggle markup and JavaScript were removed.
+- The existing project carousel behavior and project image hover overlay remain active.
 
 ### About
 
-- `About BIM Services` no longer depends on a manual expand/collapse button.
-- The section shows the existing intro copy, group-photo preview and individual team cards in the normal page flow.
-- The group photo now fades behind the individual cards through the scroll-based Team transition documented in the latest review section.
+- The section now reads as `Team`.
+- The previous About explanatory paragraphs were removed from the visible layout.
+- The group-photo preview and individual team cards remain visible in the normal page flow.
 
 ### Toggle implementation
 
-- Project Experience uses a real `<button>` control.
-- Each button updates:
-  - `aria-expanded`
-  - `aria-controls`
-  - visible button label text
-- The Project Experience expandable region updates:
-  - `hidden`
-  - `aria-hidden`
-  - `inert`
-- The expand/collapse behavior is centralized in `setExpandableSectionState()` and `setupExpandableSections()` in `js/main.js`.
+- No expand/collapse toggle remains active for Projects or Team.
+- Removed the obsolete expandable-section JavaScript for Projects.
 
 ### Motion behavior
 
-- Expand/collapse uses in-place height and opacity transitions.
-- The effect is intentionally separate from the viewport-based reveal system.
-- Transition timing is controlled with `--expandable-duration` in `css/styles.css`.
+- Projects and Team now rely only on the existing global reveal and carousel/photo hover interactions.
 
 ### Mobile behavior
 
-- The same buttons work on touch devices without hover.
-- The page grows naturally when a section opens; no modal or drawer pattern is used.
-- The toggle button stretches to full width on small screens to make tapping clearer.
+- Projects and Team are visible without tap-dependent disclosure controls.
 
 ### Assets created or reused
 
-- Created `assets/images/team/team-group-placeholder.jpg` for the collapsed About preview.
-- Reused the existing individual JPG team placeholders for the expanded About state.
-- Reused the existing project placeholder cards for the expanded Projects state.
+- Reused `assets/images/team/team-group-placeholder.jpg` for the Team group photo.
+- Reused the existing individual JPG team photos.
+- Reused the current project PNG images in the always-visible carousel.
 
 ### Open review points
 
-- Check in a live browser whether the expand/collapse height transition feels fast enough on longer content.
-- Confirm whether `Show less` is the final preferred label or whether a more editorial variation is needed later.
-- Replace the group-photo placeholder with a real team image once available.
+- Confirm whether the navigation label should stay `About` or change to `Team` in a later pass.
+- Replace the group-photo placeholder with a final team image once available.
 
 ## GitHub Sync Review
 

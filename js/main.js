@@ -202,13 +202,8 @@ const projects = [
 ];
 
 const aboutContent = {
-  kicker: "About",
-  title: "About BIM Services",
-  paragraphs: [
-    "BIM Services is a technical support studio specialized in BIM coordination, modeling and construction documentation for AEC teams.",
-    "We work with architecture firms, engineering offices, contractors and developers who need external production capacity, technical clarity and organized project delivery.",
-    "Our team combines technical expertise in Revit, BIM workflows and construction documentation with a flexible, client-adapted approach.",
-  ],
+  kicker: "Team",
+  title: "Team",
 };
 
 // Team data: expanded About cards intentionally show only name, role and LinkedIn.
@@ -271,18 +266,6 @@ const motionSettings = {
   workflowRevealDuration: 500,
   workflowStaggerDelay: 120,
 };
-
-// Expandable sections: controls in-place expand/collapse for Projects only.
-const expandableSections = [
-  {
-    sectionId: "projects",
-    toggleId: "projects-toggle",
-    contentId: "project-experience-content",
-    previewId: null,
-    buttonTextClosed: "View project experience",
-    buttonTextOpen: "Show less",
-  },
-];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -481,13 +464,6 @@ function renderProjects() {
 function bindAboutContent() {
   setTextContent("#about-kicker", aboutContent.kicker);
   setTextContent("#about-title", aboutContent.title);
-
-  const aboutCopy = document.querySelector("#about-copy");
-  if (!aboutCopy) return;
-
-  aboutCopy.innerHTML = aboutContent.paragraphs
-    .map((paragraph) => `<p>${paragraph}</p>`)
-    .join("");
 }
 
 function createTeamMedia(member) {
@@ -800,116 +776,6 @@ function setupRevealMotion() {
   });
 }
 
-function updateExpandableButton(button, text) {
-  const label = button.querySelector("[data-toggle-label]");
-  if (label) {
-    if (label.textContent === text) return;
-
-    label.classList.add("is-changing");
-
-    window.setTimeout(() => {
-      label.textContent = text;
-      label.classList.remove("is-changing");
-    }, prefersReducedMotion.matches ? 0 : 120);
-    return;
-  }
-
-  button.textContent = text;
-}
-
-function setExpandableSectionState(config, expanded, options = {}) {
-  const { instant = false } = options;
-  const section = document.querySelector(`[data-expandable-section="${config.sectionId}"]`);
-  const button = document.querySelector(`#${config.toggleId}`);
-  const content = document.querySelector(`#${config.contentId}`);
-  const preview = config.previewId ? document.querySelector(`#${config.previewId}`) : null;
-
-  if (!section || !button || !content) return;
-
-  // Accessibility: toggle buttons update aria-expanded and control their related content region.
-  button.setAttribute("aria-expanded", String(expanded));
-  updateExpandableButton(
-    button,
-    expanded ? config.buttonTextOpen : config.buttonTextClosed,
-  );
-  section.classList.toggle("is-expanded", expanded);
-  content.setAttribute("aria-hidden", String(!expanded));
-  content.toggleAttribute("inert", !expanded);
-
-  if (preview) {
-    preview.classList.toggle("is-hidden", expanded);
-    preview.setAttribute("aria-hidden", String(expanded));
-  }
-
-  if (prefersReducedMotion.matches || instant) {
-    content.hidden = !expanded;
-    content.classList.toggle("is-expanded", expanded);
-    content.style.maxHeight = expanded ? "none" : "";
-    delete content.dataset.animating;
-    return;
-  }
-
-  if (expanded) {
-    content.dataset.animating = "true";
-    content.hidden = false;
-    content.style.maxHeight = "0px";
-
-    window.requestAnimationFrame(() => {
-      content.classList.add("is-expanded");
-      content.style.maxHeight = `${content.scrollHeight}px`;
-    });
-
-    const handleExpandEnd = (event) => {
-      if (event.target !== content || event.propertyName !== "max-height") return;
-
-      content.style.maxHeight = "none";
-      delete content.dataset.animating;
-      content.removeEventListener("transitionend", handleExpandEnd);
-    };
-
-    content.addEventListener("transitionend", handleExpandEnd);
-    return;
-  }
-
-  const currentHeight = content.scrollHeight;
-  content.dataset.animating = "true";
-  content.style.maxHeight = `${currentHeight}px`;
-
-  window.requestAnimationFrame(() => {
-    content.classList.remove("is-expanded");
-    content.style.maxHeight = "0px";
-  });
-
-  const handleCollapseEnd = (event) => {
-      if (event.target !== content || event.propertyName !== "max-height") return;
-
-      content.hidden = true;
-      content.style.maxHeight = "";
-      delete content.dataset.animating;
-      content.removeEventListener("transitionend", handleCollapseEnd);
-    };
-
-  content.addEventListener("transitionend", handleCollapseEnd);
-}
-
-function setupExpandableSections() {
-  // Project Experience: collapsed state shows heading, intro and toggle only.
-  expandableSections.forEach((config) => {
-    const button = document.querySelector(`#${config.toggleId}`);
-    if (!button) return;
-
-    setExpandableSectionState(config, false, { instant: true });
-
-    button.addEventListener("click", () => {
-      const content = document.querySelector(`#${config.contentId}`);
-      if (content?.dataset.animating === "true") return;
-
-      const expanded = button.getAttribute("aria-expanded") === "true";
-      setExpandableSectionState(config, !expanded);
-    });
-  });
-}
-
 function setupContactForm() {
   const form = document.querySelector("#contact-form");
   const formStatus = document.querySelector("#form-status");
@@ -981,7 +847,6 @@ setupNavigation();
 setupInitialPageFade();
 setupHeroParallax();
 setupRevealMotion();
-setupExpandableSections();
 setupProjectOverlays();
 setupContactForm();
 setupContactTitleScrollWeight();
