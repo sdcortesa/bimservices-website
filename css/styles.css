@@ -1186,40 +1186,20 @@ html:not(.js) .projects-grid {
   line-height: 1.7;
 }
 
-.about-scroll-stage {
-  --about-photo-scroll-progress: 0;
-  --about-card-scroll-progress: 0;
+.about-team-static {
   position: relative;
   display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
   margin-top: 2.4rem;
-  padding-bottom: clamp(1rem, 3vw, 2rem);
 }
 
 .about-preview {
-  position: sticky;
-  top: calc(var(--header-height) + 1rem);
+  position: relative;
   z-index: 1;
   overflow: hidden;
-  max-height: 34rem;
   border-radius: var(--radius-medium);
   background: var(--color-white);
   box-shadow: var(--shadow-soft);
-  opacity: calc(1 - var(--about-photo-scroll-progress));
-  transform:
-    translateY(calc(var(--about-photo-scroll-progress) * 72px))
-    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.045)));
-  transition:
-    opacity 180ms linear,
-    transform 180ms linear,
-    visibility 0ms linear 180ms;
-  visibility: visible;
-  pointer-events: auto;
-  will-change: opacity, transform;
-}
-
-.about-scroll-stage.is-photo-hidden .about-preview {
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .about-preview::after {
@@ -1228,10 +1208,10 @@ html:not(.js) .projects-grid {
   inset: 0;
   background: var(--color-deep-sapphire);
   border-radius: var(--radius-medium);
-  opacity: calc(var(--team-photo-overlay-opacity) + (var(--about-photo-scroll-progress) * 0.04));
+  opacity: var(--team-photo-overlay-opacity);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transition: opacity 220ms linear;
+  transition: opacity var(--team-photo-transition) ease-out;
 }
 
 .about-group-image {
@@ -1244,21 +1224,15 @@ html:not(.js) .projects-grid {
     grayscale(1)
     contrast(1.04)
     brightness(1.03);
-  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.025)));
+  transform: scale(1);
   transition:
     filter var(--team-photo-transition) ease-out,
-    transform 220ms linear;
+    transform var(--team-photo-transition) ease-out;
 }
 
 .about-team-expandable {
   position: relative;
   z-index: 2;
-  margin-top: clamp(-5.5rem, -7vw, -3rem);
-  opacity: calc(0.88 + (var(--about-card-scroll-progress) * 0.12));
-  transform: translateY(calc((1 - var(--about-card-scroll-progress)) * 18px));
-  transition:
-    opacity 220ms linear,
-    transform 220ms linear;
 }
 
 .about-team-expandable .team-grid,
@@ -1816,19 +1790,6 @@ html:not(.js) .projects-grid {
     padding: 1rem;
   }
 
-  .about-scroll-stage {
-    margin-top: 1.8rem;
-  }
-
-  .about-preview {
-    position: relative;
-    top: auto;
-  }
-
-  .about-team-expandable {
-    margin-top: clamp(-2.2rem, -8vw, -1.2rem);
-  }
-
   /* Mobile behavior: simplified motion and hamburger menu. */
   .header-shell {
     grid-template-columns: auto 1fr auto;
@@ -2008,16 +1969,9 @@ html:not(.js) .projects-grid {
     transform: none !important;
   }
 
-  .expandable-region,
-  .about-preview {
+  .expandable-region {
     transition: none !important;
     transform: none !important;
-  }
-
-  .about-team-expandable {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
   }
 
   .projects-carousel-track {

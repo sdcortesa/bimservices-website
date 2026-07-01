@@ -910,51 +910,6 @@ function setupExpandableSections() {
   });
 }
 
-function setupAboutScrollTransition() {
-  const stage = document.querySelector("[data-team-scroll]");
-  if (!stage) return;
-
-  // About team transition: sticky group photo slides down behind individual cards and fades out.
-  const updateProgress = () => {
-    if (prefersReducedMotion.matches) {
-      stage.style.setProperty("--about-photo-scroll-progress", "1");
-      stage.style.setProperty("--about-card-scroll-progress", "1");
-      stage.classList.add("is-photo-hidden");
-      return;
-    }
-
-    const rect = stage.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const start = viewportHeight * 0.82;
-    const end = viewportHeight * 0.22;
-    const rawPhotoProgress = (start - rect.top) / (start - end);
-    const photoProgress = Math.min(1, Math.max(0, rawPhotoProgress));
-    const cardProgress = Math.min(1, Math.max(0, (photoProgress - 0.1) / 0.72));
-
-    stage.style.setProperty("--about-photo-scroll-progress", photoProgress.toFixed(3));
-    stage.style.setProperty("--about-card-scroll-progress", cardProgress.toFixed(3));
-    stage.classList.toggle("is-photo-hidden", photoProgress > 0.995);
-  };
-
-  let ticking = false;
-  const requestUpdate = () => {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(() => {
-      updateProgress();
-      ticking = false;
-    });
-  };
-
-  updateProgress();
-  window.addEventListener("scroll", requestUpdate, { passive: true });
-  window.addEventListener("resize", requestUpdate);
-
-  if (typeof prefersReducedMotion.addEventListener === "function") {
-    prefersReducedMotion.addEventListener("change", updateProgress);
-  }
-}
-
 function setupContactForm() {
   const form = document.querySelector("#contact-form");
   const formStatus = document.querySelector("#form-status");
@@ -1027,7 +982,6 @@ setupInitialPageFade();
 setupHeroParallax();
 setupRevealMotion();
 setupExpandableSections();
-setupAboutScrollTransition();
 setupProjectOverlays();
 setupContactForm();
 setupContactTitleScrollWeight();

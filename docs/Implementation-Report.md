@@ -1,16 +1,13 @@
 # Implementation Report
 
-## Team Scroll Reveal Review
+## Team Static Layout Reversion Review
 
 - Removed the About / Team expand button from the active markup so individual team cards no longer require a click to appear.
 - Kept the group team photo visible as the opening visual for the section.
-- Refined the scroll transition using a lightweight sticky-image pattern inspired by CSS scroll-effect references: the group photo stays visually anchored on desktop while it fades out completely, scales slightly and clears behind the individual team cards.
-- Updated the motion direction so the group photo now slides downward behind the individual cards while fading out.
-- Added a final hidden state so the group photo no longer remains visible or interactive after the transition completes.
-- Added card progress values so the individual cards enter with a subtle opacity/translate adjustment as the group photo fades.
-- Kept the individual team cards visible in the normal page flow for accessibility and mobile stability.
-- Limited the overlap on mobile and disabled sticky positioning there so the section stays readable and does not break the layout.
-- Reduced-motion users receive a simplified static fade state without scroll animation dependency.
+- Reverted the scroll-based Team reveal because the interaction did not feel stable enough visually.
+- Removed the Team scroll listener, scroll progress CSS variables, sticky behavior, fade-out behavior and final hidden state.
+- The section is now static: group photo first, individual team cards below, with normal spacing.
+- Kept the existing image hover/touch treatment on group and individual photos.
 - The Project Experience expand/collapse behavior was not changed.
 
 ## Quick Answers Reposition + Project Image Update Review
