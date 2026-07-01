@@ -5,6 +5,7 @@
 - Removed the About / Team expand button from the active markup so individual team cards no longer require a click to appear.
 - Kept the group team photo visible as the opening visual for the section.
 - Refined the scroll transition using a lightweight sticky-image pattern inspired by CSS scroll-effect references: the group photo stays visually anchored on desktop while it fades out completely, scales slightly and clears behind the individual team cards.
+- Updated the motion direction so the group photo now slides downward behind the individual cards while fading out.
 - Added a final hidden state so the group photo no longer remains visible or interactive after the transition completes.
 - Added card progress values so the individual cards enter with a subtle opacity/translate adjustment as the group photo fades.
 - Kept the individual team cards visible in the normal page flow for accessibility and mobile stability.

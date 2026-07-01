@@ -1206,8 +1206,8 @@ html:not(.js) .projects-grid {
   box-shadow: var(--shadow-soft);
   opacity: calc(1 - var(--about-photo-scroll-progress));
   transform:
-    translateY(calc(var(--about-photo-scroll-progress) * -22px))
-    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.035)));
+    translateY(calc(var(--about-photo-scroll-progress) * 72px))
+    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.045)));
   transition:
     opacity 180ms linear,
     transform 180ms linear,
@@ -1244,7 +1244,7 @@ html:not(.js) .projects-grid {
     grayscale(1)
     contrast(1.04)
     brightness(1.03);
-  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.045)));
+  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.025)));
   transition:
     filter var(--team-photo-transition) ease-out,
     transform 220ms linear;
