@@ -28,7 +28,7 @@ The latest iteration removed the Hero 3D fallback image and refocused the implem
 - `assets/images/team/team-group-placeholder.jpg` is the temporary group-photo preview for the collapsed About section.
 - `assets/images/team/team-member-01-portrait-placeholder.jpg`, `team-member-02-portrait-placeholder.jpg` and `team-member-03-portrait-placeholder.jpg` are the active individual team-photo placeholders.
 - `docs/` contains project memory and audit reports.
-- `robots.txt`, `sitemap.xml` and `llms.txt` support crawler discovery and AI-reader context for the current GitHub Pages URL.
+- `robots.txt`, `sitemap.xml` and `llms.txt` support crawler discovery and AI-reader context for the production domain `https://bimservices.site/`.
 
 ## Implemented Sections
 
@@ -157,7 +157,7 @@ Temporary or pending assets:
 
 - Title: `BIM Services | BIM Modeling, Coordination & Documentation for AEC Teams`
 - Meta description: `BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables.`
-- Canonical: `https://sdcortesa.github.io/bimservices-website/`
+- Canonical: `https://bimservices.site/`
 - H1: `BIM Delivery Intelligence`
 
 SEO notes:
@@ -206,14 +206,14 @@ SEO notes:
 - Hero parallax should be tested on physical mobile devices.
 - Workflow heading alignment should be checked in a real browser to confirm the new number + title unit stays balanced on desktop and mobile.
 - The Hero title weight interaction should be checked in a live browser for subtlety and layout stability.
-- The model-viewer Hero should be tested on GitHub Pages because it depends on the web component script and GLB asset loading.
-- Opening `index.html` directly from the filesystem can block GLB loading in some browsers; use GitHub Pages or a local HTTP server for 3D testing.
+- The model-viewer Hero should be tested on `https://bimservices.site/` because it depends on the web component script and GLB asset loading.
+- Opening `index.html` directly from the filesystem can block GLB loading in some browsers; use the Hostinger deployment or a local HTTP server for 3D testing.
 - The fallback PNG was removed from the active Hero flow so model loading issues are not hidden by placeholder art.
 - The active `main_model.glb` is approximately 12 MB and has not been web-optimized inside this iteration.
 - The 3D Hero should be tested on physical mobile devices for performance, interaction comfort and fallback behavior.
 - New service SVG icons should be visually reviewed against the final service-card rhythm.
 - The new logo swap should be visually checked in a live browser to confirm contrast and opacity timing at the scroll threshold.
-- The initial page fade should be checked against GitHub Pages load behavior to confirm it does not feel too subtle or too slow.
+- The initial page fade should be checked against the live Hostinger deployment load behavior to confirm it does not feel too subtle or too slow.
 - Project Experience and About toggles should be tested in a live browser to confirm the expand/collapse rhythm and transition height behavior.
 - About hover/focus behavior should be visually reviewed in a real browser to confirm reveal height, spacing and rhythm on large screens.
 - The collapsed About state still uses a temporary group-photo placeholder instead of a real team image.
@@ -225,7 +225,7 @@ SEO notes:
 - Confirm real WhatsApp number and email.
 - Replace Hero, project and team placeholders with validated assets. Team member photos should be uploaded as `900x1350` JPG files to match the current 2:3 portrait frame.
 - Replace the provisional Hero GLB with the final optimized model.
-- Validate model-viewer loading, camera controls and scroll orbit on GitHub Pages.
+- Validate model-viewer loading, camera controls and scroll orbit on `https://bimservices.site/`.
 - Optimize/compress the final GLB before considering the 3D Hero direction consolidated.
 - Replace the About group-photo placeholder with a real team photo when available.
 - Each team member already has an individual JPG placeholder ready for direct replacement.

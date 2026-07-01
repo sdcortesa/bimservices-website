@@ -20,13 +20,13 @@ Ready to keep:
 
 Still in testing:
 
-- Technical SEO and AI visibility implementation on GitHub Pages.
+- Technical SEO and AI visibility implementation on the production domain `https://bimservices.site/`.
 - Crawlable static HTML fallback for JavaScript-rendered sections.
 - Robots policy that allows AI search bots but blocks `GPTBot` training crawls until owner approval.
 - Model-viewer Hero integration using `assets/models/hero/main_model.glb`.
 - Hero 3D direct model-loading behavior without visual fallback art.
 - Hero 3D scroll rotation and restricted horizontal drag.
-- Hero 3D performance on GitHub Pages and mobile devices.
+- Hero 3D performance on Hostinger and mobile devices.
 - Mobile Hero header separation and 3D color consistency after removing the overlay from above the model.
 - Mobile Hero 3D mask intensity now needs visual review to confirm it feels close to desktop without becoming too dark.
 - Validate the requested `65%` Hero camera radius on desktop and mobile.
@@ -95,12 +95,12 @@ Acceptance criteria:
 
 Validation:
 
-- Test the Hero on GitHub Pages or a local server, not only as a local file.
+- Test the Hero on `https://bimservices.site/` or a local server, not only as a local file.
 - Do not validate the 3D model by opening `index.html` directly from the filesystem; browsers can block GLB loading outside HTTP.
 - Temporarily block or rename the GLB path to confirm `data-hero3d-status="error"` and `data-hero3d-error` are exposed.
 - Test horizontal drag with mouse and touch.
 - Confirm no model-viewer console errors appear during load, resize or scroll.
-- Confirm the model-viewer web component and local GLB load on GitHub Pages.
+- Confirm the model-viewer web component and local GLB load on `https://bimservices.site/`.
 - Review mobile performance on at least one real device before consolidating the 3D direction.
 - Review header spacing at desktop, tablet and mobile widths.
 - Confirm active placeholder areas no longer show grid textures.
@@ -140,14 +140,14 @@ Validation:
 
 Acceptance criteria:
 
-- `https://sdcortesa.github.io/bimservices-website/robots.txt` returns the deployed robots policy.
-- `https://sdcortesa.github.io/bimservices-website/sitemap.xml` returns the deployed sitemap.
+- `https://bimservices.site/robots.txt` returns the deployed robots policy.
+- `https://bimservices.site/sitemap.xml` returns the deployed sitemap.
 - Canonical URL, JSON-LD and Open Graph metadata resolve on the deployed page.
 - Google Search Console and Bing Webmaster Tools receive the sitemap.
 
 Validation:
 
-- Inspect deployed page source after GitHub Pages deploys.
+- Inspect deployed page source after Hostinger auto deployment completes.
 - Test JSON-LD with a schema validator.
 - Confirm no generic LinkedIn URLs or visible development placeholders are published.
 - Decide whether `GPTBot` should remain blocked or be allowed later.

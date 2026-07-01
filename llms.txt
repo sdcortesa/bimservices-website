@@ -2,7 +2,7 @@
 
 > BIM Services is a technical support studio specialized in BIM coordination, modeling and construction documentation for architecture, engineering and construction teams.
 
-Production URL: https://sdcortesa.github.io/bimservices-website/
+Production URL: https://bimservices.site/
 
 Core positioning: BIM Delivery Intelligence.
 

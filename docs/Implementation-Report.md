@@ -1,5 +1,14 @@
 # Implementation Report
 
+## Canonical Domain + Hostinger Deployment Review
+
+- Updated the active SEO domain from the previous GitHub-hosted URL to `https://bimservices.site/`.
+- Updated canonical, Open Graph URL, Open Graph image URL, JSON-LD `url`, JSON-LD `logo`, `robots.txt`, `sitemap.xml` and `llms.txt`.
+- Updated `sitemap.xml` last modified date to `2026-06-30`.
+- Removed the old GitHub deployment workflow because Hostinger Git deployment is now the active deployment path from `main`.
+- Updated documentation to describe GitHub as the source repository and Hostinger as the live deployment target.
+- No layout, copy, visual system, assets or JavaScript behavior were changed in this pass.
+
 ## SEO Technical + AI Search Visibility Review
 
 - Added crawlable initial HTML for Framework, Services, Project Experience and Team content that previously depended on JavaScript-rendered empty containers.
@@ -7,7 +16,7 @@
 - Added canonical, robots meta, Open Graph and Twitter Card metadata to `index.html`.
 - Added JSON-LD `Organization` schema using only visible and confirmed information.
 - Created `robots.txt`, `sitemap.xml` and experimental `llms.txt`.
-- Updated the GitHub Pages deployment workflow so root crawler files are copied into `_site`.
+- Confirmed root crawler files are stored at repository root so Hostinger Git deployment can publish them with the site.
 - Added no-JavaScript CSS fallbacks so expandable Projects and Team content is visible without JavaScript.
 - Removed generic LinkedIn URLs from active Team rendering because real profile URLs are not confirmed.
 - Replaced active placeholder alt text with neutral descriptive alt text.
@@ -307,7 +316,7 @@ Pre-existing manual change detected and preserved:
 
 ### Open review points
 
-- Test model-viewer and GLB loading on GitHub Pages, not only via static code inspection.
+- Test model-viewer and GLB loading on Hostinger deployment, not only via static code inspection.
 - If a fallback is reintroduced later, use it only after the GLB loading path is confirmed stable.
 - Optimize the final GLB before consolidating the 3D Hero direction.
 - Review mobile performance on a real device before increasing visual complexity.
@@ -380,7 +389,7 @@ Pre-existing manual change detected and preserved:
 ### Open review points
 
 - Verify in a browser that the Hero title weight change is visible but not distracting.
-- Confirm the fade-only reveal feels smooth on GitHub Pages.
+- Confirm the fade-only reveal feels smooth on Hostinger deployment.
 - Review the new service icons visually once real service icon direction is defined.
 
 ### Commit and push status
@@ -527,7 +536,7 @@ Approximate timing:
 
 - Confirm the white logo still feels crisp over the Hero on all screen densities.
 - Confirm the 220ms crossfade is subtle enough and does not feel delayed at the scroll threshold.
-- Confirm the page fade still feels good once tested on GitHub Pages, not only locally.
+- Confirm the page fade still feels good once tested on Hostinger deployment, not only locally.
 
 ## Typography Update Review
 
