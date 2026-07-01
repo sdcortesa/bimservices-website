@@ -1188,21 +1188,26 @@ html:not(.js) .projects-grid {
 
 .about-scroll-stage {
   --about-photo-scroll-progress: 0;
+  --about-card-scroll-progress: 0;
   position: relative;
   display: grid;
   margin-top: 2.4rem;
+  padding-bottom: clamp(1rem, 3vw, 2rem);
 }
 
 .about-preview {
-  position: relative;
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
   z-index: 1;
   overflow: hidden;
   max-height: 34rem;
   border-radius: var(--radius-medium);
   background: var(--color-white);
   box-shadow: var(--shadow-soft);
-  opacity: calc(1 - (var(--about-photo-scroll-progress) * 0.82));
-  transform: translateY(calc(var(--about-photo-scroll-progress) * -12px));
+  opacity: calc(1 - (var(--about-photo-scroll-progress) * 0.78));
+  transform:
+    translateY(calc(var(--about-photo-scroll-progress) * -14px))
+    scale(calc(1 - (var(--about-photo-scroll-progress) * 0.025)));
   transition:
     opacity 220ms linear,
     transform 220ms linear;
@@ -1214,10 +1219,10 @@ html:not(.js) .projects-grid {
   inset: 0;
   background: var(--color-deep-sapphire);
   border-radius: var(--radius-medium);
-  opacity: var(--team-photo-overlay-opacity);
+  opacity: calc(var(--team-photo-overlay-opacity) + (var(--about-photo-scroll-progress) * 0.08));
   mix-blend-mode: multiply;
   pointer-events: none;
-  transition: opacity var(--team-photo-transition) ease-out;
+  transition: opacity 220ms linear;
 }
 
 .about-group-image {
@@ -1230,16 +1235,21 @@ html:not(.js) .projects-grid {
     grayscale(1)
     contrast(1.04)
     brightness(1.03);
-  transform: scale(1);
+  transform: scale(calc(1 + (var(--about-photo-scroll-progress) * 0.035)));
   transition:
     filter var(--team-photo-transition) ease-out,
-    transform var(--team-photo-transition) ease-out;
+    transform 220ms linear;
 }
 
 .about-team-expandable {
   position: relative;
   z-index: 2;
   margin-top: clamp(-5.5rem, -7vw, -3rem);
+  opacity: calc(0.88 + (var(--about-card-scroll-progress) * 0.12));
+  transform: translateY(calc((1 - var(--about-card-scroll-progress)) * 18px));
+  transition:
+    opacity 220ms linear,
+    transform 220ms linear;
 }
 
 .about-team-expandable .team-grid,
@@ -1801,6 +1811,11 @@ html:not(.js) .projects-grid {
     margin-top: 1.8rem;
   }
 
+  .about-preview {
+    position: relative;
+    top: auto;
+  }
+
   .about-team-expandable {
     margin-top: clamp(-2.2rem, -8vw, -1.2rem);
   }
@@ -1988,6 +2003,12 @@ html:not(.js) .projects-grid {
   .about-preview {
     transition: none !important;
     transform: none !important;
+  }
+
+  .about-team-expandable {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .projects-carousel-track {

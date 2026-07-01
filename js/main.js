@@ -914,21 +914,24 @@ function setupAboutScrollTransition() {
   const stage = document.querySelector("[data-team-scroll]");
   if (!stage) return;
 
-  // About team transition: group photo fades behind individual cards as the user scrolls.
+  // About team transition: sticky group photo fades behind individual cards as the user scrolls.
   const updateProgress = () => {
     if (prefersReducedMotion.matches) {
       stage.style.setProperty("--about-photo-scroll-progress", "0.58");
+      stage.style.setProperty("--about-card-scroll-progress", "1");
       return;
     }
 
     const rect = stage.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const start = viewportHeight * 0.78;
-    const end = viewportHeight * 0.28;
-    const rawProgress = (start - rect.top) / (start - end);
-    const progress = Math.min(1, Math.max(0, rawProgress));
+    const start = viewportHeight * 0.82;
+    const end = viewportHeight * 0.22;
+    const rawPhotoProgress = (start - rect.top) / (start - end);
+    const photoProgress = Math.min(1, Math.max(0, rawPhotoProgress));
+    const cardProgress = Math.min(1, Math.max(0, (photoProgress - 0.1) / 0.72));
 
-    stage.style.setProperty("--about-photo-scroll-progress", progress.toFixed(3));
+    stage.style.setProperty("--about-photo-scroll-progress", photoProgress.toFixed(3));
+    stage.style.setProperty("--about-card-scroll-progress", cardProgress.toFixed(3));
   };
 
   let ticking = false;
