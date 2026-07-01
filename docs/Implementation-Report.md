@@ -1,5 +1,14 @@
 # Implementation Report
 
+## Cache Consistency Review
+
+- Compared local `index.html`, `css/styles.css` and `js/main.js` against the live files served by `https://bimservices.site/`.
+- After normalizing Windows/Unix line endings, local and live HTML/CSS matched exactly, and live JS matched local JS.
+- Confirmed live HTML no longer contains `About BIM Services`, `about-copy` or `projects-toggle`.
+- Confirmed live CSS no longer contains obsolete `.about-copy`, `.section-toggle-row` or `.expandable-region` rules.
+- Found that Hostinger serves `css/styles.css` with `Cache-Control: public, max-age=604800`, which can make browsers keep old spacing/styles for up to 7 days.
+- Added cache-busting query strings to `styles.css`, `hero-3d.js` and `main.js` in `index.html` so the browser requests the current assets after deployment.
+
 ## Team Static Layout Reversion Review
 
 - Updated the section label and visible heading to `Team`.
