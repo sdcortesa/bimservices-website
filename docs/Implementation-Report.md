@@ -1,5 +1,14 @@
 # Implementation Report
 
+## Quick Answers Reposition + Project Image Update Review
+
+- Moved the BIM Services quick-answer cards from the Services section to a standalone block directly before Contact.
+- Added a subtle hover interaction to the quick-answer cards: slight lift, warmer surface, softer shadow and a Neon-to-Royal Blue top accent.
+- Added reduced-motion protection so the quick-answer hover does not translate when motion reduction is requested.
+- Included manually updated project PNG images in `assets/images/projects/`.
+- Removed obsolete project SVG placeholders that are no longer referenced by the active project carousel.
+- No contact copy, service copy, project text, navigation or layout structure outside this block was changed.
+
 ## Canonical Domain + Hostinger Deployment Review
 
 - Updated the active SEO domain from the previous GitHub-hosted URL to `https://bimservices.site/`.
