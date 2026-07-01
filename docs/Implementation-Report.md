@@ -8,6 +8,8 @@
 - Confirmed live CSS no longer contains obsolete `.about-copy`, `.section-toggle-row` or `.expandable-region` rules.
 - Found that Hostinger serves `css/styles.css` with `Cache-Control: public, max-age=604800`, which can make browsers keep old spacing/styles for up to 7 days.
 - Added cache-busting query strings to `styles.css`, `hero-3d.js` and `main.js` in `index.html` so the browser requests the current assets after deployment.
+- Verified the six Project PNG files return `200` from `https://bimservices.site/assets/images/projects/`.
+- Added cache-busting query strings to Project image URLs in both `index.html` and `js/main.js` so browsers request the latest uploaded PNG files.
 
 ## Team Static Layout Reversion Review
 

@@ -7,6 +7,8 @@ const seoMetadata = {
     "BIM Delivery Intelligence for AEC teams: BIM modeling, 3D coordination, CAD to BIM and construction documentation support from design information to construction-ready deliverables.",
 };
 
+const assetVersion = "20260701-projects";
+
 // Content system: keep hero, framework, services and SEO metadata editable.
 const navItems = [
   { label: "How We Work", href: "#how-we-work" },
@@ -161,42 +163,42 @@ const projects = [
     title: "Residential BIM Support",
     type: "Residential",
     servicesApplied: "CAD to BIM + Specialty BIM Modeling",
-    image: "./assets/images/projects/project-residential-bim-support.png",
+    image: `./assets/images/projects/project-residential-bim-support.png?v=${assetVersion}`,
     alt: "Representative visual for Residential BIM Support",
   },
   {
     title: "Coordination Package",
     type: "AEC Coordination",
     servicesApplied: "3D Coordination + Clash Review",
-    image: "./assets/images/projects/project-coordination-package.png",
+    image: `./assets/images/projects/project-coordination-package.png?v=${assetVersion}`,
     alt: "Representative visual for Coordination Package",
   },
   {
     title: "Documentation Set",
     type: "Technical Documentation",
     servicesApplied: "Construction Documentation",
-    image: "./assets/images/projects/project-documentation-set.png",
+    image: `./assets/images/projects/project-documentation-set.png?v=${assetVersion}`,
     alt: "Representative visual for Documentation Set",
   },
   {
     title: "Specialty BIM Modeling",
     type: "BIM Modeling",
     servicesApplied: "Specialty BIM Modeling",
-    image: "./assets/images/projects/project-specialty-bim-modeling.png",
+    image: `./assets/images/projects/project-specialty-bim-modeling.png?v=${assetVersion}`,
     alt: "Representative visual for Specialty BIM Modeling",
   },
   {
     title: "Quantity Estimation",
     type: "Cost & Quantity",
     servicesApplied: "Quantity Takeoff + Cost Data",
-    image: "./assets/images/projects/project-quantity-estimation.png",
+    image: `./assets/images/projects/project-quantity-estimation.png?v=${assetVersion}`,
     alt: "Representative visual for Quantity Estimation",
   },
   {
     title: "4D Construction Planning",
     type: "Planning",
     servicesApplied: "4D Construction Planning",
-    image: "./assets/images/projects/project-4d-construction-planning.png",
+    image: `./assets/images/projects/project-4d-construction-planning.png?v=${assetVersion}`,
     alt: "Representative visual for 4D Construction Planning",
   },
 ];
