@@ -272,7 +272,7 @@ const motionSettings = {
   workflowStaggerDelay: 120,
 };
 
-// Expandable sections: controls in-place expand/collapse for Projects and About.
+// Expandable sections: controls in-place expand/collapse for Projects only.
 const expandableSections = [
   {
     sectionId: "projects",
@@ -280,14 +280,6 @@ const expandableSections = [
     contentId: "project-experience-content",
     previewId: null,
     buttonTextClosed: "View project experience",
-    buttonTextOpen: "Show less",
-  },
-  {
-    sectionId: "about",
-    toggleId: "about-toggle",
-    contentId: "about-team-content",
-    previewId: "about-team-preview",
-    buttonTextClosed: "Meet the team",
     buttonTextOpen: "Show less",
   },
 ];
@@ -902,7 +894,6 @@ function setExpandableSectionState(config, expanded, options = {}) {
 
 function setupExpandableSections() {
   // Project Experience: collapsed state shows heading, intro and toggle only.
-  // About: collapsed state shows intro and group photo; expanded state shows individual team cards.
   expandableSections.forEach((config) => {
     const button = document.querySelector(`#${config.toggleId}`);
     if (!button) return;
@@ -917,6 +908,46 @@ function setupExpandableSections() {
       setExpandableSectionState(config, !expanded);
     });
   });
+}
+
+function setupAboutScrollTransition() {
+  const stage = document.querySelector("[data-team-scroll]");
+  if (!stage) return;
+
+  // About team transition: group photo fades behind individual cards as the user scrolls.
+  const updateProgress = () => {
+    if (prefersReducedMotion.matches) {
+      stage.style.setProperty("--about-photo-scroll-progress", "0.58");
+      return;
+    }
+
+    const rect = stage.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const start = viewportHeight * 0.78;
+    const end = viewportHeight * 0.28;
+    const rawProgress = (start - rect.top) / (start - end);
+    const progress = Math.min(1, Math.max(0, rawProgress));
+
+    stage.style.setProperty("--about-photo-scroll-progress", progress.toFixed(3));
+  };
+
+  let ticking = false;
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      updateProgress();
+      ticking = false;
+    });
+  };
+
+  updateProgress();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+
+  if (typeof prefersReducedMotion.addEventListener === "function") {
+    prefersReducedMotion.addEventListener("change", updateProgress);
+  }
 }
 
 function setupContactForm() {
@@ -991,6 +1022,7 @@ setupInitialPageFade();
 setupHeroParallax();
 setupRevealMotion();
 setupExpandableSections();
+setupAboutScrollTransition();
 setupProjectOverlays();
 setupContactForm();
 setupContactTitleScrollWeight();

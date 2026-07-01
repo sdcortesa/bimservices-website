@@ -1,5 +1,15 @@
 # Implementation Report
 
+## Team Scroll Reveal Review
+
+- Removed the About / Team expand button from the active markup so individual team cards no longer require a click to appear.
+- Kept the group team photo visible as the opening visual for the section.
+- Added a scroll-based transition where the group photo fades and lifts subtly behind the individual team cards.
+- Kept the individual team cards visible in the normal page flow for accessibility and mobile stability.
+- Limited the overlap on mobile with a smaller negative margin so the section stays readable and does not break the layout.
+- Reduced-motion users receive a simplified static fade state without scroll animation dependency.
+- The Project Experience expand/collapse behavior was not changed.
+
 ## Quick Answers Reposition + Project Image Update Review
 
 - Moved the BIM Services quick-answer cards from the Services section to a standalone block directly before Contact.
@@ -760,22 +770,18 @@ The effect stays inside the card and does not use overlays, flips or modal-like 
 
 ### About
 
-- `About BIM Services` now starts as a compact block with:
-  - section heading
-  - existing intro copy
-  - a temporary group-photo preview
-  - one toggle button labeled `Meet the team`
-- The expanded state hides the preview image and reveals the existing individual team cards inside `#about-team-content`.
-- The same button switches to `Show less` and restores the collapsed preview state when pressed again.
+- `About BIM Services` no longer depends on a manual expand/collapse button.
+- The section shows the existing intro copy, group-photo preview and individual team cards in the normal page flow.
+- The group photo now fades behind the individual cards through the scroll-based Team transition documented in the latest review section.
 
 ### Toggle implementation
 
-- Both sections use real `<button>` controls.
+- Project Experience uses a real `<button>` control.
 - Each button updates:
   - `aria-expanded`
   - `aria-controls`
   - visible button label text
-- Each expandable region updates:
+- The Project Experience expandable region updates:
   - `hidden`
   - `aria-hidden`
   - `inert`

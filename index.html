@@ -523,8 +523,8 @@
               construction documentation with a flexible, client-adapted approach.
             </p>
           </div>
-          <div class="expandable-section reveal about-expandable" data-expandable-section="about">
-            <div class="about-preview" id="about-team-preview">
+          <div class="about-scroll-stage reveal" data-team-scroll>
+            <div class="about-preview" id="about-team-preview" data-team-preview>
               <!-- TEMP asset: team group photo placeholder, replace with final team photo -->
               <img
                 class="about-group-image"
@@ -533,25 +533,11 @@
               />
             </div>
 
-            <div class="section-toggle-row">
-              <button
-                class="button button-secondary section-toggle"
-                id="about-toggle"
-                type="button"
-                aria-expanded="false"
-                aria-controls="about-team-content"
-              >
-                <span data-toggle-label>Meet the team</span>
-                <span class="section-toggle-icon" aria-hidden="true"></span>
-              </button>
-            </div>
-
             <div
-              class="expandable-region about-team-expandable"
+              class="about-team-expandable"
               id="about-team-content"
               role="region"
               aria-labelledby="about-title"
-              aria-hidden="false"
             >
               <div class="team-grid" id="team-grid">
                 <article class="team-card" tabindex="0">

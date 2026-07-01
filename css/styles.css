@@ -1186,18 +1186,26 @@ html:not(.js) .projects-grid {
   line-height: 1.7;
 }
 
+.about-scroll-stage {
+  --about-photo-scroll-progress: 0;
+  position: relative;
+  display: grid;
+  margin-top: 2.4rem;
+}
+
 .about-preview {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   max-height: 34rem;
   border-radius: var(--radius-medium);
   background: var(--color-white);
   box-shadow: var(--shadow-soft);
+  opacity: calc(1 - (var(--about-photo-scroll-progress) * 0.82));
+  transform: translateY(calc(var(--about-photo-scroll-progress) * -12px));
   transition:
-    max-height var(--expandable-duration) ease-out,
-    opacity var(--motion-normal) ease-out,
-    transform var(--motion-normal) ease-out,
-    margin-bottom var(--motion-normal) ease-out;
+    opacity 220ms linear,
+    transform 220ms linear;
 }
 
 .about-preview::after {
@@ -1210,14 +1218,6 @@ html:not(.js) .projects-grid {
   mix-blend-mode: multiply;
   pointer-events: none;
   transition: opacity var(--team-photo-transition) ease-out;
-}
-
-.about-preview.is-hidden {
-  max-height: 0;
-  opacity: 0;
-  margin-bottom: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
 }
 
 .about-group-image {
@@ -1234,6 +1234,12 @@ html:not(.js) .projects-grid {
   transition:
     filter var(--team-photo-transition) ease-out,
     transform var(--team-photo-transition) ease-out;
+}
+
+.about-team-expandable {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-5.5rem, -7vw, -3rem);
 }
 
 .about-team-expandable .team-grid,
@@ -1789,6 +1795,14 @@ html:not(.js) .projects-grid {
 
   .project-overlay {
     padding: 1rem;
+  }
+
+  .about-scroll-stage {
+    margin-top: 1.8rem;
+  }
+
+  .about-team-expandable {
+    margin-top: clamp(-2.2rem, -8vw, -1.2rem);
   }
 
   /* Mobile behavior: simplified motion and hamburger menu. */
